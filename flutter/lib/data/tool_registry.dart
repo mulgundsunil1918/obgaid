@@ -7,6 +7,14 @@ import '../screens/calculators/dipsi_screen.dart';
 import '../screens/calculators/mgso4_screen.dart';
 import '../screens/calculators/pph_screen.dart';
 import '../screens/calculators/usg_params_screen.dart';
+import '../screens/calculators/anthropometry_screen.dart';
+import '../screens/calculators/weight_gain_screen.dart';
+import '../screens/calculators/haemodynamics_screen.dart';
+import '../screens/calculators/anaemia_screen.dart';
+import '../screens/calculators/insulin_screen.dart';
+import '../screens/calculators/creatinine_screen.dart';
+import '../screens/calculators/vte_risk_screen.dart';
+import '../screens/calculators/apgar_screen.dart';
 
 /// Single source of truth for every working tool. Home quick-access, the
 /// calculators hub and global search all read from here, so a tool added once
@@ -33,6 +41,65 @@ class ToolRegistry {
       blurb: 'GA from CRL and biometry · amniotic fluid index and DVP',
       module: ToolModule.ultrasound,
       builder: _usg,
+    ),
+    Tool(
+      id: 'anthropometry',
+      name: 'Anthropometry',
+      blurb: 'BMI with Asia-Pacific thresholds · BSA · ideal, adjusted and '
+          'lean body weight',
+      module: ToolModule.anthropometry,
+      builder: _anthro,
+      indiaSpecific: true,
+    ),
+    Tool(
+      id: 'weight-gain',
+      name: 'Gestational weight gain',
+      blurb: 'IOM 2009 total and weekly ranges by pre-pregnancy BMI',
+      module: ToolModule.anthropometry,
+      builder: _weightGain,
+    ),
+    Tool(
+      id: 'haemodynamics',
+      name: 'Haemodynamics',
+      blurb: 'MAP · pulse pressure · shock index and modified shock index',
+      module: ToolModule.haemodynamics,
+      builder: _haemo,
+    ),
+    Tool(
+      id: 'anaemia',
+      name: 'Anaemia & iron',
+      blurb: 'WHO/AMB grading · Ganzoni deficit · IV iron and transfusion',
+      module: ToolModule.haematology,
+      builder: _anaemia,
+      indiaSpecific: true,
+    ),
+    Tool(
+      id: 'insulin',
+      name: 'Insulin in pregnancy',
+      blurb: 'Total daily dose by trimester · basal-bolus · correction dose',
+      module: ToolModule.diabetes,
+      builder: _insulin,
+    ),
+    Tool(
+      id: 'creatinine',
+      name: 'Renal function',
+      blurb: 'Cockcroft-Gault · CKD-EPI · why pregnancy shifts the range',
+      module: ToolModule.maternalMedicine,
+      builder: _creatinine,
+    ),
+    Tool(
+      id: 'vte-risk',
+      name: 'VTE risk',
+      blurb: 'RCOG Green-top 37a antenatal and postnatal scoring · LMWH dosing',
+      module: ToolModule.maternalMedicine,
+      builder: _vte,
+    ),
+    Tool(
+      id: 'apgar',
+      name: 'Apgar score',
+      blurb: 'At 1 and 5 minutes — and what it must not be used for',
+      module: ToolModule.neonatal,
+      builder: _apgar,
     ),
     Tool(
       id: 'bishop',
@@ -94,3 +161,11 @@ Widget _dipsi(BuildContext _) => const DipsiScreen();
 Widget _mgso4(BuildContext _) => const MgSo4Screen();
 Widget _pph(BuildContext _) => const PphScreen();
 Widget _usg(BuildContext _) => const UsgParamsScreen();
+Widget _anthro(BuildContext _) => const AnthropometryScreen();
+Widget _weightGain(BuildContext _) => const WeightGainScreen();
+Widget _haemo(BuildContext _) => const HaemodynamicsScreen();
+Widget _anaemia(BuildContext _) => const AnaemiaScreen();
+Widget _insulin(BuildContext _) => const InsulinScreen();
+Widget _creatinine(BuildContext _) => const CreatinineScreen();
+Widget _vte(BuildContext _) => const VteRiskScreen();
+Widget _apgar(BuildContext _) => const ApgarScreen();

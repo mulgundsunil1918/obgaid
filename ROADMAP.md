@@ -51,29 +51,29 @@ before any further content. That is Tier 0 below.
 
 ## Tier 1 — Bedside essentials *(spec §64)*
 
-### 1A · Calculators — 18 named in §64
+### 1A · Calculators — **all 18 of §64 built**
 
 | Tool | Spec § | Status |
 |---|---|---|
 | Gestational age · EDD | §3 | ✅ |
-| Bishop score | §11 | ✅ |
-| EFW | §10 | ✅ |
-| Magnesium sulphate | §7 | ✅ *(unreviewed)* |
-| Shock index · obstetric shock index | §5 | ✅ *(unreviewed)* |
-| Blood-loss calculator | §6 | ✅ *(unreviewed)* |
+| BMI · pre-pregnancy BMI | §4 | ✅ *(WHO **and** Asia-Pacific thresholds)* |
+| BSA · ideal, adjusted, lean body weight | §4 | ✅ |
+| Pregnancy weight gain (IOM 2009) | §4 | ✅ |
+| MAP · pulse pressure | §5 | ✅ |
+| Shock index · modified · obstetric | §5 | ✅ |
+| Blood-loss calculator | §6 | ✅ |
+| Magnesium sulphate | §7 | ✅ |
 | Tranexamic acid | §6 | ✅ *(within PPH)* |
-| BMI · pre-pregnancy BMI | §4 | ⬜ |
-| Pregnancy weight gain (IOM) | §4 | ⬜ |
-| BSA | §4 | ⬜ |
-| MAP · pulse pressure | §5 | ⬜ |
-| Ganzoni iron deficit | §9 | ⬜ |
-| Insulin dose | §8 | ⬜ |
-| Creatinine clearance | §24 | ⬜ |
-| VTE risk (RCOG GTG 37a) | §24 | ⬜ |
-| APGAR | §12 | ⬜ |
+| Insulin total daily dose · basal-bolus · correction | §8 | ✅ |
+| Ganzoni iron deficit · IV iron · transfusion volume | §9 | ✅ |
+| EFW | §10 | ✅ |
+| Bishop score | §11 | ✅ |
+| APGAR | §12 | ✅ |
+| VTE risk (RCOG GTG 37a) | §12, §24 | ✅ |
+| Creatinine clearance · eGFR | §24 | ✅ |
 
-*Beyond §64 but already built:* USG parameters (CRL, Hadlock biometry, AFI/DVP)
-and the ultrasound scan guide §14 ✅ · GDM screening DIPSI/IADPSG §8 ✅
+*Beyond §64 but built:* USG parameters — CRL, Hadlock biometry, AFI/DVP §14 ✅ ·
+ultrasound scan guide §14 ✅ · GDM screening DIPSI/IADPSG §8 ✅
 
 ### 1B · Emergency algorithms — **all 11 built, plus AFE**
 
@@ -154,7 +154,8 @@ harmful action kills more reliably than the omitted one.
 | Pritchard magnesium sulphate regimen | ✅ |
 | MTP Act 2021 — limits, Rule 3B categories, Medical Board | ✅ |
 | PCPNDT Act — Form F, §4(3) indications, penalties | ✅ |
-| Anemia Mukt Bharat — grading, Ganzoni, IV iron pathways | ⬜ |
+| Anemia Mukt Bharat — grading, Ganzoni, IV iron pathways | ✅ |
+| Asia-Pacific BMI thresholds (ICMR) — obesity at 25, not 30 | ✅ |
 | FOGSI GCPRs, ICOG guidelines | ⬜ |
 | LaQshya · SUMAN · JSY / JSSK | ⬜ |
 | NACO syndromic STI management | ⬜ |
@@ -199,9 +200,10 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. Fourteen items now fall
-under §63 — the twelve emergency algorithms, magnesium sulphate and the PPH
-calculator, plus both statutes. All are marked *unreviewed*, carry a banner on
+Clinical author and reviewer: **Dr Sunil Mulgund**. Seventeen items now fall
+under §63 — the twelve emergency algorithms, magnesium sulphate, the PPH
+calculator, both statutes, and the three carrying drug or anticoagulation
+dosing (insulin, IV iron, VTE prophylaxis). All are marked *unreviewed*, carry a banner on
 the screen itself, and appear in the drawer's review queue. They need a
 signed-off pass before store launch.
 

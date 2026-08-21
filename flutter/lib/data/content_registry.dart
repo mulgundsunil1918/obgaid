@@ -5,6 +5,14 @@ import '../models/staging.dart';
 import 'staging_data.dart';
 import '../screens/calculators/dating_screen.dart';
 import '../screens/calculators/usg_params_screen.dart';
+import '../screens/calculators/anthropometry_screen.dart';
+import '../screens/calculators/weight_gain_screen.dart';
+import '../screens/calculators/haemodynamics_screen.dart';
+import '../screens/calculators/anaemia_screen.dart';
+import '../screens/calculators/insulin_screen.dart';
+import '../screens/calculators/creatinine_screen.dart';
+import '../screens/calculators/vte_risk_screen.dart';
+import '../screens/calculators/apgar_screen.dart';
 import '../screens/calculators/efw_screen.dart';
 import '../screens/calculators/bishop_screen.dart';
 import '../screens/calculators/dipsi_screen.dart';
@@ -86,10 +94,20 @@ class ContentRegistry {
         Icons.emergency_outlined, _algoTorsion),
     // Specified but not yet built — the pathway is visible before the node is.
     ContentLink('ctg', 'CTG interpretation', Icons.monitor_heart_outlined, null),
-    ContentLink('anaemia', 'Anaemia & Ganzoni iron deficit',
-        Icons.water_drop_outlined, null),
-    ContentLink('insulin', 'Insulin dosing in pregnancy',
-        Icons.medication_outlined, null),
+    ContentLink('anaemia', 'Anaemia & iron', Icons.water_drop_outlined,
+        _anaemiaS),
+    ContentLink('insulin', 'Insulin in pregnancy',
+        Icons.medication_outlined, _insulinS),
+    ContentLink('anthropometry', 'Maternal anthropometry',
+        Icons.straighten_outlined, _anthroS),
+    ContentLink('weight-gain', 'Gestational weight gain',
+        Icons.monitor_weight_outlined, _weightGainS),
+    ContentLink('haemodynamics', 'Obstetric haemodynamics',
+        Icons.favorite_outline, _haemoS),
+    ContentLink('creatinine', 'Renal function',
+        Icons.medical_information_outlined, _creatinineS),
+    ContentLink('vte-risk', 'VTE risk', Icons.healing_outlined, _vteS),
+    ContentLink('apgar', 'Apgar score', Icons.child_care_outlined, _apgarS),
     ContentLink('induction', 'Induction of labour', Icons.timeline_outlined, null),
     ContentLink('blood-products', 'Blood products & massive transfusion',
         Icons.bloodtype_outlined, null),
@@ -544,6 +562,156 @@ class ContentRegistry {
             'nothing'),
       ],
     ),
+    // ── Tier 1A calculators (spec §4, §5, §8, §9, §12, §24) ──────────────
+    'anthropometry': ContentMeta(
+      id: 'anthropometry',
+      title: 'Maternal anthropometry',
+      category: 'Obstetrics · Anthropometry',
+      sourceOrg: 'WHO / ICMR',
+      sourceTitle: 'WHO Technical Report 894; WHO Expert Consultation on '
+          'Asian BMI, Lancet 2004;363:157; Mosteller NEJM 1987; Devine 1974',
+      year: 2004,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('weight-gain', 'Pre-pregnancy BMI sets the gain target'),
+        Related('vte-risk', 'BMI 30 scores 1 and BMI 40 scores 2'),
+        Related('gdm', 'Raised BMI is a leading risk factor for GDM'),
+      ],
+    ),
+    'weight-gain': ContentMeta(
+      id: 'weight-gain',
+      title: 'Gestational weight gain',
+      category: 'Obstetrics · Anthropometry',
+      sourceOrg: 'Institute of Medicine',
+      sourceTitle: 'Weight Gain During Pregnancy: Reexamining the Guidelines',
+      year: 2009,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('anthropometry', 'Where the pre-pregnancy BMI comes from'),
+        Related('efw', 'Poor gain and fetal growth restriction travel together'),
+        Related('gdm', 'Excessive gain raises the risk of GDM and macrosomia'),
+      ],
+    ),
+    'haemodynamics': ContentMeta(
+      id: 'haemodynamics',
+      title: 'Obstetric haemodynamics',
+      category: 'Obstetrics · Haemodynamics',
+      sourceOrg: 'RCOG / BJOG',
+      sourceTitle: 'Nathan HL et al. Shock index in postpartum haemorrhage, '
+          'BJOG 2015;122:268; Le Bas A et al. Int J Gynecol Obstet 2014',
+      year: 2015,
+      evidence: EvidenceLevel.observational,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-pph', 'Where a rising shock index should take you'),
+        Related('algo-severe-htn', 'When the pressure is the problem rather '
+            'than the perfusion'),
+        Related('pph', 'Blood loss against estimated blood volume'),
+      ],
+    ),
+    'anaemia': ContentMeta(
+      id: 'anaemia',
+      title: 'Anaemia & iron',
+      category: 'Obstetrics · Haematology',
+      sourceOrg: 'WHO / Anemia Mukt Bharat / FOGSI',
+      sourceTitle: 'WHO haemoglobin thresholds WHO/NMH/NHD/MNM/11.1; Anemia '
+          'Mukt Bharat Operational Guidelines; Ganzoni 1970',
+      year: 2018,
+      evidence: EvidenceLevel.nationalGuideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'Antenatal anaemia is what makes a survivable '
+            'loss fatal'),
+        Related('pph', 'Blood volume and proportion lost'),
+        Related('blood-products', 'When iron is too slow and she needs blood'),
+      ],
+    ),
+    'insulin': ContentMeta(
+      id: 'insulin',
+      title: 'Insulin in pregnancy',
+      category: 'Obstetrics · Diabetes',
+      sourceOrg: 'NICE / ACOG / ADA',
+      sourceTitle: 'NICE NG3; ACOG Practice Bulletins 190 and 201; ADA '
+          'Standards of Care',
+      year: 2020,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('gdm', 'The diagnosis that brings her here'),
+        Related('efw', 'Serial growth scans for macrosomia'),
+        Related('algo-shoulder-dystocia', 'What poor control risks at delivery'),
+      ],
+    ),
+    'creatinine': ContentMeta(
+      id: 'creatinine',
+      title: 'Renal function in pregnancy',
+      category: 'Obstetrics · Maternal medicine',
+      sourceOrg: 'Cockcroft & Gault / CKD-EPI / RCOG',
+      sourceTitle: 'Nephron 1976;16:31; Inker LA et al. NEJM 2021;385:1737; '
+          'Wiles K et al. BMC Nephrol 2019;20:401',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-severe-htn', 'A rising creatinine is a severe feature'),
+        Related('mgso4', 'Magnesium is cleared entirely by the kidney — '
+            'impairment changes the maintenance dose'),
+      ],
+    ),
+    'vte-risk': ContentMeta(
+      id: 'vte-risk',
+      title: 'VTE risk assessment',
+      category: 'Obstetrics · Thromboprophylaxis',
+      sourceOrg: 'RCOG',
+      sourceTitle: 'Green-top Guideline 37a — Reducing the Risk of Venous '
+          'Thromboembolism during Pregnancy and the Puerperium',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('anthropometry', 'BMI contributes 1 or 2 points'),
+        Related('algo-pph', 'Haemorrhage and transfusion each add a point, and '
+            'she needs prophylaxis once bleeding stops'),
+      ],
+    ),
+    'apgar': ContentMeta(
+      id: 'apgar',
+      title: 'Apgar score',
+      category: 'Neonatal',
+      sourceOrg: 'ACOG / AAP',
+      sourceTitle: 'Committee Opinion 644 — The Apgar Score; Apgar V, Curr '
+          'Res Anesth Analg 1953;32:260',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-shoulder-dystocia', 'Where the neonatal assessment '
+            'after a difficult birth belongs'),
+        Related('algo-cord-prolapse', 'Cord gases and encephalopathy '
+            'assessment after acute hypoxia'),
+      ],
+    ),
   };
 }
 
@@ -574,6 +742,15 @@ Widget _algoShoulder(BuildContext _) => _a('algo-shoulder-dystocia');
 Widget _algoCord(BuildContext _) => _a('algo-cord-prolapse');
 Widget _algoEctopic(BuildContext _) => _a('algo-ectopic');
 Widget _algoTorsion(BuildContext _) => _a('algo-ovarian-torsion');
+
+Widget _anthroS(BuildContext _) => const AnthropometryScreen();
+Widget _weightGainS(BuildContext _) => const WeightGainScreen();
+Widget _haemoS(BuildContext _) => const HaemodynamicsScreen();
+Widget _anaemiaS(BuildContext _) => const AnaemiaScreen();
+Widget _insulinS(BuildContext _) => const InsulinScreen();
+Widget _creatinineS(BuildContext _) => const CreatinineScreen();
+Widget _vteS(BuildContext _) => const VteRiskScreen();
+Widget _apgarS(BuildContext _) => const ApgarScreen();
 
 Widget _a(String id) =>
     AlgorithmScreen(algorithm: AlgorithmRegistry.byId(id)!);

@@ -64,8 +64,17 @@ void main() {
 
   group('§63 — mandatory medical review', () {
     test('high-risk content is flagged as such', () {
-      // Emergency algorithms, drug dosing and statute are named in §63.
-      for (final id in ['mgso4', 'pph', 'mtp-act', 'pcpndt-act']) {
+      // Emergency algorithms, drug dosing, anticoagulation and statute are all
+      // named in §63.
+      for (final id in [
+        'mgso4',
+        'pph',
+        'mtp-act',
+        'pcpndt-act',
+        'insulin',
+        'anaemia',
+        'vte-risk',
+      ]) {
         expect(ContentRegistry.metaFor(id)!.highRisk, isTrue,
             reason: '$id falls under §63 and must be marked highRisk');
       }
@@ -174,6 +183,14 @@ void main() {
 }
 
 const _allMetaIds = [
+  'anthropometry',
+  'weight-gain',
+  'haemodynamics',
+  'anaemia',
+  'insulin',
+  'creatinine',
+  'vte-risk',
+  'apgar',
   'algo-pph',
   'algo-abruption',
   'algo-uterine-rupture',
