@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 class BishopScreen extends StatefulWidget {
   const BishopScreen({super.key});
@@ -114,6 +116,7 @@ class _BishopScreenState extends State<BishopScreen> {
               'induction at term. It predicts less well in nulliparas, where a '
               'ripening agent is often reasonable even at intermediate scores.',
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('bishop')!),
       ],
     );
   }

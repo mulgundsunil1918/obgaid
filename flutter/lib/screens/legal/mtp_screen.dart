@@ -7,6 +7,7 @@ class MtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LegalScreen(
+      contentId: 'mtp-act',
       title: 'MTP Act',
       act: 'Medical Termination of Pregnancy (Amendment) Act, 2021',
       sources: [

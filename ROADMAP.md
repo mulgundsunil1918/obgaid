@@ -1,110 +1,197 @@
 # ObgAid — Roadmap
 
-Tracking document. Status markers: ✅ done · 🔨 in progress · ⬜ pending
+Restructured on 2026-08-21 to follow **[`docs/CONTENT_SPEC.md`](docs/CONTENT_SPEC.md)**,
+which is now the authoritative content plan. Section references below (§) point
+into that document.
 
-**Live preview:** https://mulgundsunil1918.github.io/obgaid/ · **App:** https://mulgundsunil1918.github.io/obgaid/app/
+Status: ✅ done · 🔨 in progress · ⬜ pending
 
-Legend for **Ship**: what a user can actually *do* once the sub-phase lands.
-
----
-
-## Phase 0 — Foundation
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 0.1 | Identity lock — `com.obgaid.obgaid` on **both** Android + iOS | Irreversible IDs correct before first upload | ✅ |
-| 0.2 | Flutter scaffold, pubspec, package rename | App compiles | ✅ |
-| 0.3 | Theme system — M3 light/dark, ObgAid palette, typography | Own visual identity, not PediAid navy |✅ |
-| 0.4 | App shell — home, module grid, search, drawer | Navigable app |✅ |
-| 0.5 | Tool registry + shared calc widgets (input, result, reference note) | Adding a calculator is ~1 file |✅ |
-| 0.6 | GitHub Pages preview pipeline (web → `/app/`, landing → `/`) | **You can click through every build** |✅ |
-| 0.7 | Repo hygiene — README, CLAUDE.md, .gitignore, licence | Future sessions have context |✅ |
-
-## Phase 1 — Obstetric core *(the day-one useful slice)*
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 1.1 | **Dating & GA** — EDD by LMP/Naegele + cycle adjust, USG redating, IVF dating, current GA, trimester | The single most-used OBG tool |✅ |
-| 1.2 | **Fetal biometry** — EFW (Hadlock 1–4), EFW percentile (Hadlock 1991), SGA/LGA flags | Scan-room workhorse |✅ |
-| 1.3 | **Labour** — Bishop score, WHO Labour Care Guide 2020, VBAC success (MFMU) | Labour-room decisions |✅ |
-| 1.4 | **Hypertensive disorders** — PE severity, MgSO4 Pritchard/Zuspan/Sibai, toxicity monitoring + antidote, antihypertensive ladder | Eclampsia-grade emergency reference |✅ |
-| 1.5 | **GDM** — DIPSI *(India)*, IADPSG, glycaemic targets, insulin initiation | India differentiator #1 |✅ |
-| 1.6 | **PPH** — shock index, EBL % blood volume, E-MOTIVE 2023 bundle, uterotonic ladder, TXA | Leading cause of maternal death |✅ |
-| 1.8 | **Ultrasound** — GA from CRL (Robinson–Fleming) and Hadlock biometry, AFI/DVP, plus a guide to all eight scans in pregnancy | Scan-room reference | ✅ |
-| 1.7 | **Anaemia** — WHO/AMB grading, Ganzoni iron deficit, IV iron regimens | India differentiator #4 | ⬜ |
-
-## Phase 2 — Obstetric advanced
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 2.1 | Doppler — UA PI/RI, MCA PSV (Mari), CPR, DV: percentiles + interpretation | ⬜ |
-| 2.2 | Liquor — AFI & DVP percentiles, oligo/polyhydramnios | ⬜ |
-| 2.3 | Isoimmunisation — Kleihauer-Betke, anti-D dosing, MCA-PSV MoM | ⬜ |
-| 2.4 | Preterm — cervical length, fFN, progesterone, ACS timing, MgSO4 neuroprotection, tocolysis | ⬜ |
-| 2.5 | Aneuploidy screening — combined/quad, NIPT with likelihood ratios, NT/nasal bone | ⬜ |
-| 2.6 | Multiple pregnancy — chorionicity, TTTS Quintero, sFGR classification | ⬜ |
-| 2.7 | Medical disorders — thyroid trimester ranges, cholestasis, VTE (GTG 37a), mWHO cardiac | ⬜ |
-| 2.8 | MEOWS obstetric early warning + maternal sepsis | ⬜ |
-
-## Phase 3 — Gynaecology
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 3.1 | **Onco-gyn staging** — FIGO cervical 2018, endometrial 2023, ovarian 2014, vulvar 2021, GTN + WHO score | Highest-value gynae content | ✅ *(shipped early)* |
-| 3.2 | Adnexal mass — RMI, IOTA simple rules, O-RADS, ROMA, endometrial thickness | ⬜ |
-| 3.3 | Structural — FIGO leiomyoma 0–8, rASRM endometriosis, ENZIAN, POP-Q | ⬜ |
-| 3.4 | Reproductive endocrine — Rotterdam PCOS, Ferriman-Gallwey, HOMA-IR, PALM-COEIN, PBAC | ⬜ |
-| 3.5 | Infertility — AMH/AFC reserve, POSEIDON, Bologna, WHO 2021 semen reference | ⬜ |
-| 3.6 | Contraception — WHO MEC wheel, missed-pill rules, EC, Pearl index | ⬜ |
-| 3.7 | Menopause — STRAW+10, MRS/Greene, MHT eligibility, FRAX | ⬜ |
-| 3.8 | Infection — Amsel, Nugent, PID, NACO syndromic STI | ⬜ |
-
-## Phase 4 — Reference library *(the moat)*
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 4.1 | **India legal** — MTP Act 2021 amendment, PCPNDT Act + Form F | Nothing foreign carries this | ✅ *(shipped early)* |
-| 4.2 | **India programmes** — Anemia Mukt Bharat, LaQshya, SUMAN, JSY/JSSK | ⬜ |
-| 4.3 | Guidelines — FOGSI GCPR, ICOG, RCOG Green-top, ACOG, NICE, WHO | ⬜ |
-| 4.4 | Lab normals in pregnancy (trimester-specific) | ⬜ |
-| 4.5 | Emergency algorithms — eclampsia, PPH, shoulder dystocia, cord prolapse, AFE, maternal collapse | ⬜ |
-| 4.6 | Scores hub + global search | ⬜ |
-
-## Phase 5 — Formulary
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 5.1 | Pregnancy drug safety — PLLR narrative format (**not** deprecated FDA letter categories) | ⬜ |
-| 5.2 | Lactation safety — LactMed-style | ⬜ |
-| 5.3 | Common obstetric & gynae drug dosing | ⬜ |
-| 5.4 | Formulary search + bookmarks | ⬜ |
-
-## Phase 6 — Platform integration *(inherit PediAid's backend)*
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 6.1 | Backend `app` discriminator migration — one Fastify+Postgres serves both apps | No second stack to pay for | ⬜ |
-| 6.2 | SSO handoff with PediAid — one login, both apps | ⬜ |
-| 6.3 | Bookmarks, recents, saved | ⬜ |
-| 6.4 | Academics / CME scoped to OBG | ⬜ |
-| 6.5 | Push notifications | ⬜ |
-| 6.6 | `aid_core` shared package extraction *(decided here, not earlier)* | ⬜ |
-
-## Phase 7 — Launch
-
-| # | Sub-phase | Ship | Status |
-|---|---|---|---|
-| 7.1 | Icon, splash, feature graphic, screenshots | ⬜ |
-| 7.2 | Landing site + privacy policy | ⬜ |
-| 7.3 | Play Console — data safety, content rating, listing | ⬜ |
-| 7.4 | App Store Connect — listing, review notes | ⬜ |
-| 7.5 | Keystore + signing, Codemagic CI | ⬜ |
-| 7.6 | Store submission | ⬜ |
+**Live preview:** https://mulgundsunil1918.github.io/obgaid/ ·
+**App:** https://mulgundsunil1918.github.io/obgaid/app/
 
 ---
 
-## Clinical authorship
+## What the spec changed
 
-Content authored and reviewed by **Dr Sunil Mulgund** (as of 2026-08-21).
-A named OBG consultant co-author remains desirable before store launch (Phase 7)
-for the same credibility PediAid carries — revisit at 7.3.
+The specification supersedes the phase ordering this roadmap previously used.
+Three things it forces:
+
+1. **Build order is bedside frequency, not subject area.** The spec's Tier 1
+   (§64) is what a clinician reaches for most often. Measured against it, the
+   first build got the ordering partly wrong — five FIGO staging systems
+   shipped (Tier 3, §66) while none of the eleven Tier 1 emergency algorithms
+   exist. Staging is good content in the wrong slot.
+2. **Content is a versioned record, not a screen.** §62 requires every clinical
+   item to carry an ID, author, medical reviewer, source organisation and
+   title, publication year, version, evidence level, created/reviewed/next-review
+   dates, and a status. Nothing built so far carries any of this.
+3. **Interconnection is the product** (§68). "The application should function as
+   a single searchable clinical knowledge system" — every item linking to its
+   related tools, drugs, algorithms, guidelines and trials. Screens currently
+   have no notion of a related item.
+
+Points 2 and 3 are architecture, not content. Both get exponentially more
+expensive to retrofit as the library grows toward 100+ tools, so they come
+before any further content. That is Tier 0 below.
+
+---
+
+## Tier 0 — Architecture prerequisites *(new; blocks further content)*
+
+| # | Sub-phase | Why it must come first | Status |
+|---|---|---|---|
+| 0.1 | Identity lock — `com.obgaid.obgaid` both platforms | Irreversible after first upload | ✅ |
+| 0.2 | Flutter scaffold, theme, app shell mirroring PediAid | — | ✅ |
+| 0.3 | Tool registry, shared calculator widgets, global search | — | ✅ |
+| 0.4 | GitHub Pages preview pipeline (analyze + test gate the deploy) | — | ✅ |
+| 0.5 | **Content metadata model** — §62 record on every clinical item | Retrofitting 100+ items later is the expensive path | ⬜ |
+| 0.6 | **Interconnection graph** — `relatedIds` + a Related block on every screen | §68 calls this "the core of OBG-Aid" | ⬜ |
+| 0.7 | **Review-status gate** — §63 high-risk items marked and surfaced | PPH, eclampsia, MgSO₄ and drug doses already shipped **unreviewed** | ⬜ |
+| 0.8 | Evidence-level tagging per §61 hierarchy | Makes "traceable to a source" machine-checkable | ⬜ |
+
+## Tier 1 — Bedside essentials *(spec §64)*
+
+### 1A · Calculators — 18 named in §64
+
+| Tool | Spec § | Status |
+|---|---|---|
+| Gestational age · EDD | §3 | ✅ |
+| Bishop score | §11 | ✅ |
+| EFW | §10 | ✅ |
+| Magnesium sulphate | §7 | ✅ *(unreviewed)* |
+| Shock index · obstetric shock index | §5 | ✅ *(unreviewed)* |
+| Blood-loss calculator | §6 | ✅ *(unreviewed)* |
+| Tranexamic acid | §6 | ✅ *(within PPH)* |
+| BMI · pre-pregnancy BMI | §4 | ⬜ |
+| Pregnancy weight gain (IOM) | §4 | ⬜ |
+| BSA | §4 | ⬜ |
+| MAP · pulse pressure | §5 | ⬜ |
+| Ganzoni iron deficit | §9 | ⬜ |
+| Insulin dose | §8 | ⬜ |
+| Creatinine clearance | §24 | ⬜ |
+| VTE risk (RCOG GTG 37a) | §24 | ⬜ |
+| APGAR | §12 | ⬜ |
+
+*Beyond §64 but already built:* USG parameters (CRL, Hadlock biometry, AFI/DVP)
+and the ultrasound scan guide §14 ✅ · GDM screening DIPSI/IADPSG §8 ✅
+
+### 1B · Emergency algorithms — 11 named in §64, **none built**
+
+| Algorithm | Spec § | Status |
+|---|---|---|
+| Postpartum haemorrhage | §20 | 🔨 *(bundle + uterotonics exist; algorithm does not)* |
+| Eclampsia | §20 | ⬜ |
+| Severe hypertension | §20 | ⬜ |
+| Maternal collapse | §20 | ⬜ |
+| Obstetric sepsis | §20 | ⬜ |
+| Shoulder dystocia | §20 | ⬜ |
+| Cord prolapse | §20 | ⬜ |
+| Uterine rupture | §20 | ⬜ |
+| Placental abruption | §20 | ⬜ |
+| Ectopic pregnancy | §19 | ⬜ |
+| Ovarian torsion | §43 | ⬜ |
+
+### 1C · High-value reference — 9 named in §64
+
+| Topic | Spec § | Status |
+|---|---|---|
+| CTG interpretation | §13 | ⬜ |
+| Fetal growth restriction | §10 | ⬜ |
+| PPROM | §17 | ⬜ |
+| Preterm labour | §17 | ⬜ |
+| Induction of labour | §26 | ⬜ |
+| VBAC / TOLAC | §28 | ⬜ |
+| Caesarean section | §27 | ⬜ |
+| GDM | §8 | ✅ |
+| Rh-negative pregnancy | §23 | ⬜ |
+
+## Tier 2 — Depth *(spec §65)*
+
+| Module | Spec § | Status |
+|---|---|---|
+| Full drug formulary | §44, §45 | ⬜ |
+| Pregnancy & lactation safety (PLLR, not FDA letters) | §46 | ⬜ |
+| Maternal medicine — cardiac, renal, endocrine, neuro, rheum, ID | §24 | ⬜ |
+| Fetal medicine — anomalies, genetic screening, fetal therapy | §25 | ⬜ |
+| Infertility & reproductive medicine, IVF, OHSS | §36, §37 | ⬜ |
+| PCOS · endometriosis · adenomyosis · fibroids | §33–35, §32 | ⬜ |
+| Contraception (WHO MEC) | §38 | ⬜ |
+| Menopause | §39 | ⬜ |
+| Urogynaecology | §40 | ⬜ |
+| Gynaecological pathology | §48 | ⬜ |
+| Ultrasound reference — full trimester-by-trimester | §14–16 | 🔨 *(guide + parameters done)* |
+| Laboratory reference, pregnancy-specific ranges | §47 | ⬜ |
+| Maternal immunisation | §50 | ⬜ |
+
+## Tier 3 — Scholarship *(spec §66)*
+
+| Module | Spec § | Status |
+|---|---|---|
+| Gynaecological oncology — FIGO staging × 5 | §41 | ✅ *(shipped ahead of tier)* |
+| Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ⬜ |
+| Landmark trials | §53 | ⬜ |
+| Complete guideline library | §54 | ⬜ |
+| Guideline change tracker | §55 | ⬜ |
+| Advanced fetal medicine | §25 | ⬜ |
+| Surgical procedures reference | §57 | ⬜ |
+| Never Again — clinical safety cases | §56 | ⬜ |
+| Academic / examination content | §59 | ⬜ |
+| Patient counselling library | §58 | ⬜ |
+| Quick reference tables | §60 | ⬜ |
+
+## India-specific content *(not a spec tier — ObgAid's differentiator)*
+
+| Item | Status |
+|---|---|
+| DIPSI — single-step non-fasting GDM screening | ✅ |
+| Pritchard magnesium sulphate regimen | ✅ |
+| MTP Act 2021 — limits, Rule 3B categories, Medical Board | ✅ |
+| PCPNDT Act — Form F, §4(3) indications, penalties | ✅ |
+| Anemia Mukt Bharat — grading, Ganzoni, IV iron pathways | ⬜ |
+| FOGSI GCPRs, ICOG guidelines | ⬜ |
+| LaQshya · SUMAN · JSY / JSSK | ⬜ |
+| NACO syndromic STI management | ⬜ |
+
+## Platform *(after content; PediAid's backend, not a second one)*
+
+| # | Sub-phase | Status |
+|---|---|---|
+| P.1 | Backend `app` discriminator — one Fastify+Postgres serves both apps | ⬜ |
+| P.2 | SSO handoff with PediAid — one login, both apps | ⬜ |
+| P.3 | Bookmarks, recents, saved | ⬜ |
+| P.4 | Academics / CME scoped to OBG | ⬜ |
+| P.5 | Push notifications | ⬜ |
+| P.6 | `aid_core` shared package extraction | ⬜ |
+
+## Launch
+
+| # | Sub-phase | Status |
+|---|---|---|
+| L.1 | Icon, splash, feature graphic, screenshots | ⬜ |
+| L.2 | Landing site + privacy policy | 🔨 *(preview site live)* |
+| L.3 | Play Console — data safety, content rating, listing | ⬜ |
+| L.4 | App Store Connect — listing, review notes | ⬜ |
+| L.5 | Keystore + signing, Codemagic CI | ⬜ |
+| L.6 | Store submission | ⬜ |
+
+---
+
+## Content governance *(spec §61–63)*
+
+Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
+
+- **Never invent** (§61) — drug doses, trial results, guideline recommendations,
+  statistics, staging criteria, reference ranges, publication details. Every
+  clinical claim traceable to a named source.
+- **Evidence hierarchy** (§61) — current professional guidelines, then national
+  guidelines, then systematic reviews, then RCTs, then observational studies,
+  then reference texts.
+- **Mandatory medical review** (§63) — drug doses and interactions, pregnancy
+  and lactation safety, every emergency algorithm, PPH, eclampsia, severe
+  hypertension, sepsis, maternal resuscitation, blood products, anticoagulation,
+  cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
+  vaccination schedules.
+
+Clinical author and reviewer: **Dr Sunil Mulgund**. Items already shipped that
+fall under §63 — magnesium sulphate, PPH — are marked *unreviewed* above and
+need a signed-off review pass before store launch.

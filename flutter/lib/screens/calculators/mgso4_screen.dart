@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 enum MgRegimen { pritchard, zuspan, sibai }
 
@@ -145,6 +147,7 @@ class _MgSo4ScreenState extends State<MgSo4Screen> {
               'It is not an antihypertensive — severe hypertension needs '
               'labetalol, nifedipine or hydralazine alongside it.',
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('mgso4')!),
       ],
     );
   }

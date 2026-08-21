@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 enum GdmCriteria { dipsi, iadpsg }
 
@@ -184,6 +186,7 @@ class _DipsiScreenState extends State<DipsiScreen> {
               'IADPSG is used by many tertiary and academic units. Record which '
               'criterion was applied in the notes.',
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('gdm')!),
       ],
     );
   }

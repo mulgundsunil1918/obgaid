@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 /// Estimated fetal weight by the Hadlock regressions, with a percentile from
 /// the Hadlock 1991 in-utero growth reference.
@@ -216,6 +218,7 @@ class _EfwScreenState extends State<EfwScreen> {
               'specific standard matters — both are planned for Phase 2. '
               'Ultrasound EFW carries a typical error of ±10–15%.',
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('efw')!),
       ],
     );
   }

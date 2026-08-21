@@ -17,6 +17,8 @@ import '../hubs/never_again_hub.dart';
 import '../hubs/academics_hub.dart';
 import '../hubs/cme_hub.dart';
 import '../search/app_search_delegate.dart';
+import '../governance/review_queue_screen.dart';
+import '../../data/content_registry.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -344,6 +346,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          ListTile(
+            leading: const Icon(Icons.fact_check_outlined),
+            title: const Text('Clinical review queue'),
+            subtitle: Text(
+                '${ContentRegistry.awaitingReview.length} awaiting sign-off'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const ReviewQueueScreen()));
+            },
+          ),
+          const Divider(),
           for (final item in const [
             ('Settings', Icons.settings_outlined),
             ('Account', Icons.person_outline),

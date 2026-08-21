@@ -7,6 +7,7 @@ class PcpndtScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LegalScreen(
+      contentId: 'pcpndt-act',
       title: 'PCPNDT Act',
       act: 'Pre-Conception & Pre-Natal Diagnostic Techniques Act, 1994 (as amended 2003)',
       sources: [

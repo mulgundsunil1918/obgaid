@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 /// Postpartum haemorrhage — shock index, blood-volume loss, and the E-MOTIVE
 /// bundle.
@@ -180,6 +182,7 @@ class _PphScreenState extends State<PphScreen> {
                 'predicts adverse outcome; ≥ 1.7 severe.',
           ],
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('pph')!),
       ],
     );
   }

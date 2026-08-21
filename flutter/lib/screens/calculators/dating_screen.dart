@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 enum DatingMode { lmp, scan, ivf }
 
@@ -312,6 +314,7 @@ class _DatingScreenState extends State<DatingScreen> {
               'date a pregnancy. Once an EDD is established by the earliest '
               'adequate scan, it should not be changed by later scans.',
         ),
+        ContentFooter(meta: ContentRegistry.metaFor('dating')!),
       ],
     );
   }

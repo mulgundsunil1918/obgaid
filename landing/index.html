@@ -176,38 +176,68 @@
 <section>
   <div class="wrap">
     <h2>Roadmap</h2>
-    <h3>Every phase, and where the build actually is</h3>
-    <p class="lede">Status is updated with each push, so this table and the
-      build above never drift apart.</p>
+    <h3>Built to the content specification</h3>
+    <p class="lede">The plan now follows
+      <a href="https://github.com/mulgundsunil1918/obgaid/blob/main/docs/CONTENT_SPEC.md">the
+      OBG-Aid Content Specification</a> — 68 sections, 30 modules, 100+ tools,
+      with its own Tier 1/2/3 build order by bedside frequency. Section
+      references below point into it.</p>
+
+    <div class="note" style="margin-bottom:26px"><strong>What the spec
+      corrected.</strong> Measured against Tier 1, the first build got the
+      ordering partly wrong: five FIGO staging systems shipped (Tier 3, §66)
+      while none of the eleven Tier 1 emergency algorithms exist. Good content,
+      wrong slot. The spec also requires two things nothing built so far had —
+      a versioned content record on every item (§62) and an interconnection
+      graph (§68). Both are now in, because retrofitting either across 100+
+      tools is the expensive path.</div>
+
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
+        <thead><tr><th>Tier</th><th>Scope</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td class="phase">0.1</td><td>Identity lock — <code>com.obgaid.obgaid</code> on both platforms</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.2</td><td>Flutter scaffold, package rename</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.3</td><td>Theme — M3 light/dark, ObgAid teal identity</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.4</td><td>App shell — home, module grid, quick access, drawer, search</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.5</td><td>Tool registry + shared calculator widgets</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.6</td><td>GitHub Pages preview pipeline</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">0.7</td><td>Repo hygiene — README, CLAUDE.md, licence</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.1</td><td>Dating &amp; GA — LMP, scan, IVF, ACOG 700 redating</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.2</td><td>Fetal biometry — Hadlock EFW with centile</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.3</td><td>Labour — Bishop score</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.4</td><td>Hypertensive disorders — MgSO<sub>4</sub> regimens</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.5</td><td>GDM — DIPSI and IADPSG</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.6</td><td>PPH — shock index, E-MOTIVE</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.8</td><td>Ultrasound — parameters and scan guide</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">3.1</td><td>Tumour staging — five FIGO systems</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">4.1</td><td>Indian statute — MTP Act, PCPNDT Act</td><td class="st done">✅ Done</td></tr>
-          <tr><td class="phase">1.7</td><td>Anaemia — WHO/AMB grading, Ganzoni, IV iron</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">2</td><td>Obstetric advanced — Doppler, isoimmunisation, preterm, screening, twins, medical disorders, MEOWS</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">3</td><td>Gynaecology — adnexal mass, structural, endocrine, infertility, contraception, menopause, infection</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">4</td><td>Reference library — FOGSI, RCOG, ACOG, NICE, WHO, AMB, LaQshya, emergency algorithms</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">5</td><td>Formulary — pregnancy and lactation safety (PLLR)</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">6</td><td>Platform — shared backend, SSO, Never Again, Academics, CME, push</td><td class="st todo">Pending</td></tr>
-          <tr><td class="phase">7</td><td>Launch — icon, listings, data safety, signing, submission</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">0</td><td><strong>Architecture</strong> — identity lock, shell, registry, preview pipeline</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.5</td><td>Content metadata model — §62 record on every item</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.6</td><td>Interconnection graph — §68 related links with stated reasons</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.7</td><td>Review-status gate — §63 high-risk queue, enforced in CI</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1A</td><td><strong>Tier 1 calculators</strong> §64 — 7 of 18 built (dating, EFW, Bishop, MgSO₄, shock index, blood loss, TXA)</td><td class="st wip">7 / 18</td></tr>
+          <tr><td class="phase">1B</td><td><strong>Tier 1 emergency algorithms</strong> §20 — eclampsia, severe hypertension, maternal collapse, sepsis, shoulder dystocia, cord prolapse, uterine rupture, abruption, ectopic, ovarian torsion</td><td class="st todo">0 / 11</td></tr>
+          <tr><td class="phase">1C</td><td><strong>Tier 1 reference</strong> §64 — CTG, FGR, PPROM, preterm labour, induction, VBAC, caesarean, Rh-negative</td><td class="st wip">1 / 9</td></tr>
+          <tr><td class="phase">2</td><td><strong>Tier 2</strong> §65 — formulary, pregnancy/lactation safety, maternal medicine, fetal medicine, infertility, PCOS, endometriosis, fibroids, contraception, menopause, urogynaecology, pathology, lab reference</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">3</td><td><strong>Tier 3</strong> §66 — landmark trials, guideline library, change tracker, gynae oncology, procedures, Never Again, academic content, counselling</td><td class="st wip">Staging done</td></tr>
+          <tr><td class="phase">IN</td><td><strong>India-specific</strong> — DIPSI ✅ · Pritchard ✅ · MTP Act ✅ · PCPNDT ✅ · Anemia Mukt Bharat, FOGSI GCPR, LaQshya, NACO pending</td><td class="st wip">4 / 8</td></tr>
+          <tr><td class="phase">P</td><td><strong>Platform</strong> — PediAid's backend via an app discriminator, SSO, bookmarks, Academics, CME, push</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">L</td><td><strong>Launch</strong> — icon, listings, data safety, signing, submission</td><td class="st todo">Pending</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Governance</h2>
+    <h3>The spec's rules, enforced by the build</h3>
+    <p class="lede">§61 says never invent a dose, a trial result, a reference
+      range or a staging criterion, and make every claim traceable. §63 names
+      eighteen categories that cannot be published without a clinician's
+      sign-off. Those are rules in a document until something checks them —
+      so twelve tests now do, and a failing check blocks the deploy.</p>
+    <div class="grid">
+      <div class="card"><h4>Every item is a versioned record</h4>
+        <p>ID, author, medical reviewer, source organisation and title,
+        publication year, version, evidence level, created and next-review
+        dates, status. Rendered at the foot of every clinical screen.</p></div>
+      <div class="card"><h4>Nothing is an island</h4>
+        <p>Every item declares what it connects to <em>and why</em> — the
+        reason belongs to the edge. Dating links to the MTP Act because the
+        20 and 24-week limits turn entirely on accurate dating. A test fails
+        if any link dangles.</p></div>
+      <div class="card"><h4>Unreviewed content says so</h4>
+        <p>Magnesium sulphate and PPH are on the §63 list and no clinician has
+        signed them off yet. Every such screen carries a banner saying exactly
+        that, and the drawer holds a review queue. A silent gap is the
+        dangerous kind.</p></div>
     </div>
   </div>
 </section>

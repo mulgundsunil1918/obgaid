@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../widgets/calc_widgets.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 enum UsgMode { crl, biometry, liquor }
 
@@ -68,6 +70,7 @@ class _UsgParamsScreenState extends State<UsgParamsScreen> {
         if (_mode == UsgMode.crl) ..._crlBody(),
         if (_mode == UsgMode.biometry) ..._biometryBody(),
         if (_mode == UsgMode.liquor) ..._liquorBody(),
+        ContentFooter(meta: ContentRegistry.metaFor('usg')!),
       ],
     );
   }

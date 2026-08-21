@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/reference_note.dart';
+import '../../widgets/content_footer.dart';
+import '../../data/content_registry.dart';
 
 class LegalSection {
   const LegalSection(this.heading, this.points, {this.warn = false});
@@ -21,8 +23,10 @@ class LegalScreen extends StatelessWidget {
     required this.act,
     required this.sections,
     required this.sources,
+    required this.contentId,
   });
 
+  final String contentId;
   final String title;
   final String act;
   final List<LegalSection> sections;
@@ -78,6 +82,7 @@ class LegalScreen extends StatelessWidget {
           ),
           ...sections.map((s) => _SectionBlock(section: s)),
           ReferenceNote(sources: sources),
+          ContentFooter(meta: ContentRegistry.metaFor(contentId)!),
         ],
       ),
     );

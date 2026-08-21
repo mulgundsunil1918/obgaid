@@ -8,8 +8,10 @@ Guidance for Claude Code working in this repository.
 Standalone sibling to **PediAid** (`/Users/sunil/pediaid`), which is live on
 both stores and is the reference architecture for everything here.
 
-Read `PLAN.md` for the product thesis and `ROADMAP.md` for phase status before
-starting anything structural.
+**`docs/CONTENT_SPEC.md` is the authoritative content plan** — 68 sections, 30
+modules, 100+ tools, with its own Tier 1/2/3 build order. Read it before adding
+any clinical content. `PLAN.md` holds the product thesis; `ROADMAP.md` tracks
+status against the spec's tiers.
 
 ## Hard constraints
 
@@ -70,6 +72,30 @@ lib/
 register it in `data/tool_registry.dart`. Home quick-access, the calculators
 hub and global search all read from the registry, so one registration surfaces
 it everywhere.
+
+## Content governance — enforced in CI
+
+`test/content_governance_test.dart` enforces the specification's own rules. A
+failure blocks the Pages deploy. Do not weaken these to make a change land.
+
+- **§62 versioning.** Every clinical item needs a `ContentMeta` in
+  `data/content_registry.dart`: id, author, medical reviewer, source
+  organisation and title, year, semver version, evidence level, created and
+  next-review dates, status.
+- **§68 interconnection.** Every item declares `related` edges, and every edge
+  states *why* — the reason belongs to the edge, not the target. No item may be
+  an island; no edge may dangle. Links to unbuilt content are fine and render
+  as "soon", which keeps the intended clinical pathway visible before every
+  node on it exists.
+- **§63 mandatory review.** Drug doses, emergency algorithms, PPH, eclampsia,
+  severe hypertension, sepsis, blood products, anticoagulation, oncology and
+  fertility dosing, fetal therapy and vaccination schedules must be
+  `highRisk: true`, carry a `nextReview` date, and cannot reach
+  `ContentStatus.published` without a `reviewer`. Unreviewed high-risk screens
+  show a banner and appear in the drawer's review queue.
+- **§61 never invent.** Doses, trial results, guideline recommendations,
+  statistics, staging criteria, reference ranges and publication details are
+  transcribed from a named source or not written at all.
 
 ## Clinical content rules
 
