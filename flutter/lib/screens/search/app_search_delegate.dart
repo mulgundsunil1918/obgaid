@@ -3,6 +3,8 @@ import '../../data/tool_registry.dart';
 import '../../data/staging_data.dart';
 import '../../data/algorithm_registry.dart';
 import '../../data/topic_registry.dart';
+import '../../data/drug_registry.dart';
+import '../formulary/drug_screen.dart';
 import '../topics/topic_screen.dart';
 import '../algorithms/algorithm_screen.dart';
 import '../../models/tool.dart';
@@ -36,6 +38,7 @@ class AppSearchDelegate extends SearchDelegate<void> {
     final tools = ToolRegistry.search(query);
     final algos = AlgorithmRegistry.search(query);
     final topics = TopicRegistry.search(query);
+    final drugs = DrugRegistry.search(query);
     final needle = query.trim().toLowerCase();
     final systems = needle.isEmpty
         ? kStagingSystems
@@ -45,7 +48,11 @@ class AppSearchDelegate extends SearchDelegate<void> {
                 s.edition.toLowerCase().contains(needle))
             .toList();
 
-    if (tools.isEmpty && systems.isEmpty && algos.isEmpty && topics.isEmpty) {
+    if (tools.isEmpty &&
+        systems.isEmpty &&
+        algos.isEmpty &&
+        topics.isEmpty &&
+        drugs.isEmpty) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -118,6 +125,25 @@ class AppSearchDelegate extends SearchDelegate<void> {
                 close(context, null);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => TopicScreen(topic: t)));
+              },
+            )),
+        if (drugs.isNotEmpty)
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 18, 16, 6),
+            child: Text('FORMULARY',
+                style: TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.8)),
+          ),
+        ...drugs.map((d) => ListTile(
+              leading: const Icon(Icons.medication_outlined),
+              title: Text(d.generic),
+              subtitle: Text(d.drugClass, maxLines: 2),
+              onTap: () {
+                close(context, null);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => DrugScreen(drug: d)));
               },
             )),
         if (systems.isNotEmpty)

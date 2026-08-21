@@ -28,6 +28,8 @@ import '../screens/legal/pcpndt_screen.dart';
 import '../screens/staging/staging_screen.dart';
 import '../screens/topics/topic_screen.dart';
 import 'topic_registry.dart';
+import 'drug_registry.dart';
+import '../screens/formulary/drug_screen.dart';
 import '../screens/algorithms/algorithm_screen.dart';
 import 'algorithm_registry.dart';
 
@@ -147,6 +149,8 @@ class ContentRegistry {
     ContentLink('apgar', 'Apgar score', Icons.child_care_outlined, _apgarS),
     ContentLink('induction', 'Induction of labour', Icons.timeline_outlined,
         _tInduction),
+    ContentLink('formulary', 'Drug formulary', Icons.medication_outlined,
+        _formulary),
     ContentLink('blood-products', 'Blood products & massive transfusion',
         Icons.bloodtype_outlined, null),
     ContentLink('fgr', 'Fetal growth restriction', Icons.trending_down, _tFgr),
@@ -1131,6 +1135,29 @@ class ContentRegistry {
             'with risk factors'),
       ],
     ),
+    // ── Tier 2 formulary (spec §44–46) ───────────────────────────────────
+    'formulary': ContentMeta(
+      id: 'formulary',
+      title: 'Drug formulary',
+      category: 'Formulary · Obstetrics & gynaecology',
+      sourceOrg: 'RCOG / NICE / WHO / LactMed',
+      sourceTitle: 'Green-top Guidelines 52, 37a, 10(A), 74; NICE NG133, NG25, '
+          'NG207; WHO PPH recommendations; NIH LactMed database',
+      year: 2023,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'Where the uterotonic ladder is actually used'),
+        Related('algo-eclampsia', 'Magnesium regimens in context'),
+        Related('algo-severe-htn', 'Choosing between labetalol, nifedipine '
+            'and hydralazine'),
+        Related('vte-risk', 'Enoxaparin dosing follows the risk score'),
+        Related('pcos', 'Letrozole is first-line for ovulation induction'),
+      ],
+    ),
   };
 }
 
@@ -1192,6 +1219,9 @@ Widget _tAdeno(BuildContext _) => _t('adenomyosis');
 Widget _tContraception(BuildContext _) => _t('contraception');
 Widget _tMenopause(BuildContext _) => _t('menopause');
 Widget _tUrogynae(BuildContext _) => _t('urogynaecology');
+
+Widget _formulary(BuildContext _) =>
+    DrugScreen(drug: DrugRegistry.byId('oxytocin')!);
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
 

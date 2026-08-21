@@ -4,6 +4,7 @@ import 'package:obgaid_app/data/tool_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
+import 'package:obgaid_app/data/drug_registry.dart';
 import 'package:obgaid_app/models/content_meta.dart';
 
 /// Enforces the content specification's rules in CI rather than by memory.
@@ -213,6 +214,65 @@ void main() {
     });
   });
 
+  group('§45/§46 — formulary entries', () {
+    test('every drug carries at least one dose', () {
+      for (final d in DrugRegistry.all) {
+        expect(d.doses, isNotEmpty, reason: '${d.id} has no dosing');
+        for (final dose in d.doses) {
+          expect(dose.indication.trim(), isNotEmpty);
+          expect(dose.dose.trim(), isNotEmpty,
+              reason: '${d.id} has a dose block with no dose');
+        }
+      }
+    });
+
+    test('every drug states pregnancy AND lactation information', () {
+      for (final d in DrugRegistry.all) {
+        expect(d.pregnancy.summary.trim(), isNotEmpty,
+            reason: '${d.id} has no pregnancy information — §45 requires it');
+        expect(d.lactation.summary.trim(), isNotEmpty,
+            reason: '${d.id} has no lactation information — §45 requires it');
+      }
+    });
+
+    test('no drug uses a bare SAFE / UNSAFE label', () {
+      // §46: "Avoid simplistic SAFE / UNSAFE labels when the evidence is more
+      // nuanced." In pregnancy and lactation it almost always is.
+      final banned = RegExp(r'\b(SAFE|UNSAFE)\b');
+      for (final d in DrugRegistry.all) {
+        for (final text in [
+          d.pregnancy.summary,
+          d.lactation.summary,
+          ...d.pregnancy.points,
+          ...d.lactation.points,
+        ]) {
+          expect(banned.hasMatch(text), isFalse,
+              reason: '${d.id} uses a bare SAFE/UNSAFE label: "$text"');
+        }
+      }
+    });
+
+    test('every drug names its contraindications and references', () {
+      for (final d in DrugRegistry.all) {
+        expect(d.contraindications, isNotEmpty,
+            reason: '${d.id} lists no contraindications');
+        expect(d.references, isNotEmpty, reason: '${d.id} cites no source');
+      }
+    });
+
+    test('drug ids are unique and reachable from a group', () {
+      final ids = DrugRegistry.all.map((d) => d.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'duplicate drug id');
+      final grouped = <String>{
+        for (final list in DrugRegistry.byGroup.values)
+          for (final d in list) d.id,
+      };
+      for (final d in DrugRegistry.all) {
+        expect(grouped, contains(d.id), reason: '${d.id} sits in no group');
+      }
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -230,6 +290,7 @@ void main() {
 }
 
 const _allMetaIds = [
+  'formulary',
   'pcos-assessment',
   'adnexal-mass',
   'popq',

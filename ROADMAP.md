@@ -121,8 +121,8 @@ action block: these are read over hours, not seconds.
 
 | Module | Spec § | Status |
 |---|---|---|
-| Full drug formulary | §44, §45 | ⬜ |
-| Pregnancy & lactation safety (PLLR, not FDA letters) | §46 | ⬜ |
+| Drug formulary — §45 record on every entry | §44, §45 | 🔨 *(14 core drugs; antibiotics, hormones, oncology pending)* |
+| Pregnancy & lactation safety — narrative, no SAFE/UNSAFE labels | §46 | 🔨 *(on all 14; enforced in CI)* |
 | Maternal medicine — cardiac, renal, endocrine, neuro, rheum, ID | §24 | ⬜ |
 | Fetal medicine — anomalies, genetic screening, fetal therapy | §25 | ⬜ |
 | Infertility & reproductive medicine, IVF, OHSS | §36, §37 | ⬜ |
@@ -206,13 +206,15 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. Twenty-six items now fall
+Clinical author and reviewer: **Dr Sunil Mulgund**. Twenty-seven items now fall
 under §63 — the twelve emergency algorithms, magnesium sulphate, the PPH
 calculator, both statutes, the three carrying drug or anticoagulation dosing
 (insulin, IV iron, VTE prophylaxis), and six reference topics carrying dosing
 or intrapartum decision thresholds (CTG, PPROM, preterm labour, induction,
 caesarean, Rh-negative), and three gynaecology topics carrying drug or
-eligibility decisions (PCOS, contraception, menopause). All are marked *unreviewed*, carry a banner on
+eligibility decisions (PCOS, contraception, menopause), and the formulary —
+which is the single largest block of §63 content in the specification and the
+one where a review pass matters most. All are marked *unreviewed*, carry a banner on
 the screen itself, and appear in the drawer's review queue. They need a
 signed-off pass before store launch.
 

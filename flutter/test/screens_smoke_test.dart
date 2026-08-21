@@ -4,6 +4,8 @@ import 'package:obgaid_app/data/tool_registry.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
+import 'package:obgaid_app/data/drug_registry.dart';
+import 'package:obgaid_app/screens/formulary/drug_screen.dart';
 import 'package:obgaid_app/screens/topics/topic_screen.dart';
 import 'package:obgaid_app/screens/algorithms/algorithm_screen.dart';
 import 'package:obgaid_app/screens/staging/staging_screen.dart';
@@ -49,6 +51,16 @@ void main() {
     for (final topic in TopicRegistry.all) {
       testWidgets(topic.id, (tester) async {
         await tester.pumpWidget(wrap(TopicScreen(topic: topic)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every drug page renders', () {
+    for (final drug in DrugRegistry.all) {
+      testWidgets(drug.id, (tester) async {
+        await tester.pumpWidget(wrap(DrugScreen(drug: drug)));
         await tester.pump();
         expect(tester.takeException(), isNull);
       });
