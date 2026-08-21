@@ -4,6 +4,8 @@ import '../legal/mtp_screen.dart';
 import '../legal/pcpndt_screen.dart';
 import '../../data/topic_registry.dart';
 import '../topics/topic_screen.dart';
+import '../reference/lab_reference_screen.dart';
+import '../reference/immunisation_screen.dart';
 
 class ReferenceHub extends StatelessWidget {
   const ReferenceHub({super.key});
@@ -60,6 +62,23 @@ class ReferenceHub extends StatelessWidget {
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
           ),
+        HubTile(
+          title: 'Laboratory reference',
+          subtitle: 'Trimester-specific ranges — and the four that catch '
+              'people out',
+          icon: Icons.science_outlined,
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const LabReferenceScreen())),
+        ),
+        HubTile(
+          title: 'Maternal immunisation',
+          subtitle: 'Preconception, pregnancy and postpartum — with the '
+              'country and year on every recommendation',
+          icon: Icons.vaccines_outlined,
+          badge: 'India',
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const ImmunisationScreen())),
+        ),
         const SizedBox(height: 18),
         const ComingSoon(phase: 'Phase 4', items: [
           'FOGSI Good Clinical Practice Recommendations — the full set',

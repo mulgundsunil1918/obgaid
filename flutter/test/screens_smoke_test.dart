@@ -6,6 +6,8 @@ import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
 import 'package:obgaid_app/data/drug_registry.dart';
 import 'package:obgaid_app/screens/formulary/drug_screen.dart';
+import 'package:obgaid_app/screens/reference/lab_reference_screen.dart';
+import 'package:obgaid_app/screens/reference/immunisation_screen.dart';
 import 'package:obgaid_app/screens/topics/topic_screen.dart';
 import 'package:obgaid_app/screens/algorithms/algorithm_screen.dart';
 import 'package:obgaid_app/screens/staging/staging_screen.dart';
@@ -65,6 +67,19 @@ void main() {
         expect(tester.takeException(), isNull);
       });
     }
+  });
+
+  group('reference screens render', () {
+    testWidgets('lab reference', (tester) async {
+      await tester.pumpWidget(wrap(const LabReferenceScreen()));
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+    testWidgets('maternal immunisation', (tester) async {
+      await tester.pumpWidget(wrap(const ImmunisationScreen()));
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
   });
 
   group('every staging system renders', () {

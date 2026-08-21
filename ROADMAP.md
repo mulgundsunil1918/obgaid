@@ -123,18 +123,18 @@ action block: these are read over hours, not seconds.
 |---|---|---|
 | Drug formulary — §45 record on every entry | §44, §45 | 🔨 *(14 core drugs; antibiotics, hormones, oncology pending)* |
 | Pregnancy & lactation safety — narrative, no SAFE/UNSAFE labels | §46 | 🔨 *(on all 14; enforced in CI)* |
-| Maternal medicine — cardiac, renal, endocrine, neuro, rheum, ID | §24 | ⬜ |
-| Fetal medicine — anomalies, genetic screening, fetal therapy | §25 | ⬜ |
-| Infertility & reproductive medicine, IVF, OHSS | §36, §37 | ⬜ |
+| Maternal medicine — cardiac (mWHO), thyroid, epilepsy, autoimmune, infection, renal | §24 | ✅ |
+| Fetal medicine — screening, diagnosis, TTTS/IUT/fetal therapy | §25 | ✅ |
+| Infertility, IVF & OHSS — WHO 2021 semen criteria, OHSS staging | §36, §37 | ✅ |
 | PCOS · endometriosis · adenomyosis · fibroids | §32–35 | ✅ |
 | Contraception (WHO MEC · Antara · Chhaya) | §38 | ✅ |
 | Menopause · POI | §39 | ✅ |
 | Urogynaecology · obstetric fistula | §40 | ✅ |
-| Gynaecological pathology | §48 | ⬜ |
+| Gynaecological pathology | §48 | ⬜ *(only Tier 2 module not started)* |
 | Ultrasound reference — full trimester-by-trimester | §14–16 | 🔨 *(guide + parameters done)* |
 | Gynaecology calculators — Ferriman-Gallwey, HOMA-IR, RMI/IOTA/O-RADS, POP-Q, PALM-COEIN, PBAC | §31, §35, §40, §42 | ✅ |
-| Laboratory reference, pregnancy-specific ranges | §47 | ⬜ |
-| Maternal immunisation | §50 | ⬜ |
+| Laboratory reference — trimester-specific ranges | §47 | ✅ |
+| Maternal immunisation — country/org/year/source on every entry | §50 | ✅ |
 
 ## Tier 3 — Scholarship *(spec §66)*
 
@@ -206,7 +206,7 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. Twenty-seven items now fall
+Clinical author and reviewer: **Dr Sunil Mulgund**. 33 items now fall
 under §63 — the twelve emergency algorithms, magnesium sulphate, the PPH
 calculator, both statutes, the three carrying drug or anticoagulation dosing
 (insulin, IV iron, VTE prophylaxis), and six reference topics carrying dosing
@@ -214,7 +214,8 @@ or intrapartum decision thresholds (CTG, PPROM, preterm labour, induction,
 caesarean, Rh-negative), and three gynaecology topics carrying drug or
 eligibility decisions (PCOS, contraception, menopause), and the formulary —
 which is the single largest block of §63 content in the specification and the
-one where a review pass matters most. All are marked *unreviewed*, carry a banner on
+one where a review pass matters most — joined now by OHSS, maternal medicine,
+fetal medicine and immunisation. All are marked *unreviewed*, carry a banner on
 the screen itself, and appear in the drawer's review queue. They need a
 signed-off pass before store launch.
 

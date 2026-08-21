@@ -5,6 +5,9 @@ import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
 import 'package:obgaid_app/data/drug_registry.dart';
+import 'package:obgaid_app/data/vaccines.dart';
+import 'package:obgaid_app/data/lab_reference.dart';
+import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
 
 /// Enforces the content specification's rules in CI rather than by memory.
@@ -273,6 +276,71 @@ void main() {
     });
   });
 
+  group('§50 — every vaccine recommendation is attributable', () {
+    test('country, organisation, year, schedule and source are all present',
+        () {
+      for (final entry in kVaccines.entries) {
+        for (final v in entry.value) {
+          expect(v.country.trim(), isNotEmpty, reason: '${v.vaccine}: country');
+          expect(v.organisation.trim(), isNotEmpty,
+              reason: '${v.vaccine}: organisation');
+          expect(v.year, greaterThan(2000), reason: '${v.vaccine}: year');
+          expect(v.schedule.trim(), isNotEmpty,
+              reason: '${v.vaccine}: schedule');
+          expect(v.source.trim(), isNotEmpty, reason: '${v.vaccine}: source');
+          expect(v.timing.trim(), isNotEmpty, reason: '${v.vaccine}: timing');
+        }
+      }
+    });
+
+    test('every stage carries at least one recommendation', () {
+      for (final stage in VaccineStage.values) {
+        expect(kVaccines[stage], isNotNull,
+            reason: '${stage.label} has no entries');
+        expect(kVaccines[stage]!, isNotEmpty,
+            reason: '${stage.label} has no entries');
+      }
+    });
+
+    test('live vaccines appear in the contraindicated stage', () {
+      final contraindicated = kVaccines[VaccineStage.contraindicated]!;
+      expect(contraindicated.any((v) => v.live), isTrue,
+          reason: 'Live vaccines must be listed as contraindicated in '
+              'pregnancy');
+      // No live vaccine may sit under "during pregnancy".
+      for (final v in kVaccines[VaccineStage.pregnancy]!) {
+        expect(v.live, isFalse,
+            reason: '${v.vaccine} is marked live but listed for use during '
+                'pregnancy');
+      }
+    });
+  });
+
+  group('§47 — laboratory ranges', () {
+    test('every analyte carries all four ranges and a unit', () {
+      for (final panel in kLabPanels) {
+        expect(panel.analytes, isNotEmpty, reason: '${panel.name} is empty');
+        for (final a in panel.analytes) {
+          expect(a.unit.trim(), isNotEmpty, reason: '${a.name}: unit');
+          expect(a.nonPregnant.trim(), isNotEmpty,
+              reason: '${a.name}: non-pregnant range');
+          expect(a.first.trim(), isNotEmpty, reason: '${a.name}: first');
+          expect(a.second.trim(), isNotEmpty, reason: '${a.name}: second');
+          expect(a.third.trim(), isNotEmpty, reason: '${a.name}: third');
+        }
+      }
+    });
+
+    test('analyte names are unique across panels', () {
+      final names = [
+        for (final p in kLabPanels)
+          for (final a in p.analytes) a.name
+      ];
+      expect(names.toSet().length, names.length,
+          reason: 'duplicate analyte name');
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -290,6 +358,12 @@ void main() {
 }
 
 const _allMetaIds = [
+  'infertility',
+  'ohss',
+  'maternal-medicine',
+  'fetal-medicine',
+  'lab-reference',
+  'immunisation',
   'formulary',
   'pcos-assessment',
   'adnexal-mass',

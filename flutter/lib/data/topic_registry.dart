@@ -4,8 +4,19 @@ import 'topics/preterm_topics.dart';
 import 'topics/labour_topics.dart';
 import 'topics/gynae_topics.dart';
 import 'topics/womens_health_topics.dart';
+import 'topics/fertility_topics.dart';
+import 'topics/medicine_topics.dart';
 
-enum TopicGroup { monitoring, preterm, labour, immunology, gynaecology, womensHealth }
+enum TopicGroup {
+  monitoring,
+  preterm,
+  labour,
+  immunology,
+  gynaecology,
+  womensHealth,
+  reproductive,
+  medicine
+}
 
 extension TopicGroupInfo on TopicGroup {
   String get label => switch (this) {
@@ -15,6 +26,8 @@ extension TopicGroupInfo on TopicGroup {
         TopicGroup.immunology => 'Immunology',
         TopicGroup.gynaecology => 'Gynaecology',
         TopicGroup.womensHealth => 'Women\'s health across the lifespan',
+        TopicGroup.reproductive => 'Reproductive medicine',
+        TopicGroup.medicine => 'Maternal & fetal medicine',
       };
 }
 
@@ -35,6 +48,8 @@ class TopicRegistry {
       kMenopauseTopic,
       kUrogynaeTopic,
     ],
+    TopicGroup.reproductive: [kInfertilityTopic, kOhssTopic],
+    TopicGroup.medicine: [kMaternalMedicineTopic, kFetalMedicineTopic],
   };
 
   static List<ClinicalTopic> get all =>

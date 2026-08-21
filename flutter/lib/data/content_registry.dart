@@ -30,6 +30,8 @@ import '../screens/topics/topic_screen.dart';
 import 'topic_registry.dart';
 import 'drug_registry.dart';
 import '../screens/formulary/drug_screen.dart';
+import '../screens/reference/lab_reference_screen.dart';
+import '../screens/reference/immunisation_screen.dart';
 import '../screens/algorithms/algorithm_screen.dart';
 import 'algorithm_registry.dart';
 
@@ -120,8 +122,18 @@ class ContentRegistry {
     ContentLink('menopause', 'Menopause', Icons.article_outlined, _tMenopause),
     ContentLink('urogynaecology', 'Urogynaecology', Icons.article_outlined,
         _tUrogynae),
+    ContentLink('infertility', 'Infertility', Icons.article_outlined,
+        _tInfertility),
+    ContentLink('ohss', 'IVF & OHSS', Icons.article_outlined, _tOhss),
+    ContentLink('maternal-medicine', 'Maternal medicine',
+        Icons.article_outlined, _tMatMed),
+    ContentLink('fetal-medicine', 'Fetal medicine', Icons.article_outlined,
+        _tFetMed),
+    ContentLink('lab-reference', 'Laboratory reference',
+        Icons.science_outlined, _labRef),
+    ContentLink('immunisation', 'Maternal immunisation',
+        Icons.vaccines_outlined, _immunisation),
     // Specified, not yet built.
-    ContentLink('infertility', 'Infertility', Icons.article_outlined, null),
     ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
         null),
     ContentLink('aub', 'Abnormal uterine bleeding — PALM-COEIN',
@@ -1158,6 +1170,132 @@ class ContentRegistry {
         Related('pcos', 'Letrozole is first-line for ovulation induction'),
       ],
     ),
+    // ── Tier 2 remainder (spec §24, §25, §36, §37, §47, §50) ─────────────
+    'infertility': ContentMeta(
+      id: 'infertility',
+      title: 'Infertility',
+      category: 'Gynaecology · Reproductive medicine',
+      sourceOrg: 'NICE / WHO / ESHRE',
+      sourceTitle: 'NICE CG156; WHO Laboratory Manual for the Examination and '
+          'Processing of Human Semen, 6th edition 2021; POSEIDON criteria',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('pcos', 'The commonest cause of anovulatory infertility'),
+        Related('ohss', 'Where stimulation goes next, and what it risks'),
+        Related('endometriosis', 'Surgery, the fertility index, and when to go '
+            'straight to IVF'),
+        Related('ovarian-reserve', 'AMH and antral follicle count in detail'),
+      ],
+    ),
+    'ohss': ContentMeta(
+      id: 'ohss',
+      title: 'IVF and ovarian hyperstimulation syndrome',
+      category: 'Gynaecology · Reproductive medicine',
+      sourceOrg: 'RCOG / ESHRE',
+      sourceTitle: 'Green-top Guideline 5 — Management of Ovarian '
+          'Hyperstimulation Syndrome; ESHRE guideline on ovarian stimulation',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('infertility', 'The evaluation that precedes stimulation'),
+        Related('vte-risk', 'Thromboprophylaxis is mandatory in severe OHSS'),
+        Related('pcos', 'The dominant risk factor'),
+        Related('formulary', 'Enoxaparin and cabergoline dosing'),
+      ],
+    ),
+    'maternal-medicine': ContentMeta(
+      id: 'maternal-medicine',
+      title: 'Maternal medicine',
+      category: 'Obstetrics · Maternal medicine',
+      sourceOrg: 'ESC / ATA / RCOG / NICE',
+      sourceTitle: 'ESC Guidelines on cardiovascular disease in pregnancy '
+          '2018; ATA thyroid in pregnancy guidelines; NICE NG217; RCOG '
+          'Green-top 39',
+      year: 2018,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('lab-reference', 'Trimester-specific ranges for every test '
+            'named here'),
+        Related('creatinine', 'Why a normal creatinine is not normal'),
+        Related('algo-maternal-collapse', 'Cardiac disease is the leading '
+            'indirect cause of maternal death'),
+        Related('formulary', 'Which drugs continue and which must stop'),
+      ],
+    ),
+    'fetal-medicine': ContentMeta(
+      id: 'fetal-medicine',
+      title: 'Fetal medicine',
+      category: 'Obstetrics · Fetal medicine',
+      sourceOrg: 'ISUOG / RCOG / NHS FASP',
+      sourceTitle: 'ISUOG Practice Guidelines; RCOG Green-top 8; MOMS trial '
+          'NEJM 2011;364:993; Senat MV et al. NEJM 2004;351:136',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('usg-guide', 'The scans at which these findings appear'),
+        Related('rh-negative', 'Intrauterine transfusion for fetal anaemia'),
+        Related('mtp-act', 'Termination beyond 24 weeks needs Medical Board '
+            'approval — start early'),
+        Related('fgr', 'The commonest reason for fetal medicine referral'),
+      ],
+    ),
+    'lab-reference': ContentMeta(
+      id: 'lab-reference',
+      title: 'Laboratory reference in pregnancy',
+      category: 'Reference · Laboratory',
+      sourceOrg: 'Obstetrics & Gynecology / ATA / RCOG',
+      sourceTitle: 'Abbassi-Ghanavati M et al. Pregnancy and laboratory '
+          'studies: a reference table for clinicians. Obstet Gynecol '
+          '2009;114:1326',
+      year: 2009,
+      evidence: EvidenceLevel.referenceText,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-pph', 'Fibrinogen below 2 g/L predicts severe '
+            'haemorrhage — and 2.5 is already low at term'),
+        Related('creatinine', 'Renal function in detail'),
+        Related('maternal-medicine', 'The conditions these results point to'),
+        Related('anaemia', 'Haemoglobin and ferritin thresholds'),
+      ],
+    ),
+    'immunisation': ContentMeta(
+      id: 'immunisation',
+      title: 'Maternal immunisation',
+      category: 'Reference · Immunisation',
+      sourceOrg: 'MoHFW Government of India / WHO / ACOG / CDC',
+      sourceTitle: 'National Immunization Schedule India; WHO position papers; '
+          'ACOG Committee Opinions 718 and 741; CDC ACIP',
+      year: 2024,
+      evidence: EvidenceLevel.nationalGuideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('contraception', 'Live vaccines postpartum need contraception '
+            'for 4 weeks'),
+        Related('maternal-medicine', 'Influenza and varicella are more severe '
+            'in pregnancy'),
+      ],
+    ),
   };
 }
 
@@ -1211,6 +1349,13 @@ Widget _cAub(BuildContext _) => const AubScreen();
 Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _cPopq(BuildContext _) => const PopQScreen();
+
+Widget _tInfertility(BuildContext _) => _t('infertility');
+Widget _tOhss(BuildContext _) => _t('ohss');
+Widget _tMatMed(BuildContext _) => _t('maternal-medicine');
+Widget _tFetMed(BuildContext _) => _t('fetal-medicine');
+Widget _labRef(BuildContext _) => const LabReferenceScreen();
+Widget _immunisation(BuildContext _) => const ImmunisationScreen();
 
 Widget _tPcos(BuildContext _) => _t('pcos');
 Widget _tFibroids(BuildContext _) => _t('fibroids');
