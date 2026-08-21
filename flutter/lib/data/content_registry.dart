@@ -13,6 +13,10 @@ import '../screens/calculators/insulin_screen.dart';
 import '../screens/calculators/creatinine_screen.dart';
 import '../screens/calculators/vte_risk_screen.dart';
 import '../screens/calculators/apgar_screen.dart';
+import '../screens/calculators/pcos_assessment_screen.dart';
+import '../screens/calculators/adnexal_mass_screen.dart';
+import '../screens/calculators/popq_screen.dart';
+import '../screens/calculators/aub_screen.dart';
 import '../screens/calculators/efw_screen.dart';
 import '../screens/calculators/bishop_screen.dart';
 import '../screens/calculators/dipsi_screen.dart';
@@ -104,6 +108,29 @@ class ContentRegistry {
         _tCaesarean),
     ContentLink('rh-negative', 'Rh-negative pregnancy', Icons.article_outlined,
         _tRh),
+    ContentLink('pcos', 'PCOS', Icons.article_outlined, _tPcos),
+    ContentLink('fibroids', 'Fibroids', Icons.article_outlined, _tFibroids),
+    ContentLink('endometriosis', 'Endometriosis', Icons.article_outlined,
+        _tEndo),
+    ContentLink('adenomyosis', 'Adenomyosis', Icons.article_outlined, _tAdeno),
+    ContentLink('contraception', 'Contraception', Icons.article_outlined,
+        _tContraception),
+    ContentLink('menopause', 'Menopause', Icons.article_outlined, _tMenopause),
+    ContentLink('urogynaecology', 'Urogynaecology', Icons.article_outlined,
+        _tUrogynae),
+    // Specified, not yet built.
+    ContentLink('infertility', 'Infertility', Icons.article_outlined, null),
+    ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
+        null),
+    ContentLink('aub', 'Abnormal uterine bleeding — PALM-COEIN',
+        Icons.female_outlined, _cAub),
+    ContentLink('pcos-assessment', 'PCOS assessment', Icons.female_outlined,
+        _cPcosAssess),
+    ContentLink('adnexal-mass', 'Adnexal mass', Icons.female_outlined,
+        _cAdnexal),
+    ContentLink('popq', 'POP-Q', Icons.female_outlined, _cPopq),
+    ContentLink('hyperplasia', 'Endometrial hyperplasia',
+        Icons.article_outlined, null),
     ContentLink('anaemia', 'Anaemia & iron', Icons.water_drop_outlined,
         _anaemiaS),
     ContentLink('insulin', 'Insulin in pregnancy',
@@ -889,6 +916,221 @@ class ContentRegistry {
             'otherwise'),
       ],
     ),
+    // ── Tier 2 gynaecology (spec §32–35, §38–40) ─────────────────────────
+    'pcos': ContentMeta(
+      id: 'pcos',
+      title: 'PCOS',
+      category: 'Gynaecology · Reproductive endocrine',
+      sourceOrg: 'International PCOS Network / ESHRE / ASRM',
+      sourceTitle: 'International Evidence-Based Guideline for the Assessment '
+          'and Management of PCOS 2023; Legro RS et al. NEJM 2014;371:119',
+      year: 2023,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('anthropometry', 'BMI and South Asian waist thresholds drive '
+            'the metabolic assessment'),
+        Related('gdm', 'Screen every pregnancy, early and again at 24–28 weeks'),
+        Related('infertility', 'Ovulation induction pathway'),
+        Related('hyperplasia', 'Chronic anovulation means unopposed oestrogen'),
+      ],
+    ),
+    'fibroids': ContentMeta(
+      id: 'fibroids',
+      title: 'Fibroids',
+      category: 'Gynaecology · Structural',
+      sourceOrg: 'FIGO / NICE / ACOG',
+      sourceTitle: 'Munro MG et al. FIGO leiomyoma subclassification, Int J '
+          'Gynecol Obstet 2011;113:3; NICE NG88; ACOG Practice Bulletin 228',
+      year: 2011,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('adenomyosis', 'The diagnosis most often confused with this '
+            'one on ultrasound'),
+        Related('aub', 'Where fibroids sit in the PALM-COEIN system'),
+        Related('anaemia', 'Heavy bleeding is why she is anaemic'),
+      ],
+    ),
+    'endometriosis': ContentMeta(
+      id: 'endometriosis',
+      title: 'Endometriosis',
+      category: 'Gynaecology · Structural',
+      sourceOrg: 'ESHRE / NICE',
+      sourceTitle: 'ESHRE Endometriosis Guideline 2022; NICE NG73',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('adenomyosis', 'The two coexist often enough to look for both'),
+        Related('infertility', 'Endometriosis Fertility Index and ART'),
+        Related('ovarian-reserve', 'Cystectomy costs ovarian cortex'),
+      ],
+    ),
+    'adenomyosis': ContentMeta(
+      id: 'adenomyosis',
+      title: 'Adenomyosis',
+      category: 'Gynaecology · Structural',
+      sourceOrg: 'MUSA consensus / NICE',
+      sourceTitle: 'Van den Bosch T et al. MUSA consensus, Ultrasound Obstet '
+          'Gynecol 2015;46:284; NICE NG88',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('fibroids', 'Telling the two apart changes the operation'),
+        Related('endometriosis', 'Frequently coexist'),
+        Related('aub', 'A common cause of heavy menstrual bleeding'),
+      ],
+    ),
+    'contraception': ContentMeta(
+      id: 'contraception',
+      title: 'Contraception',
+      category: 'Gynaecology · Family planning',
+      sourceOrg: 'WHO / FSRH / MoHFW Government of India',
+      sourceTitle: 'WHO Medical Eligibility Criteria 5th edition; FSRH '
+          'guidance; Antara and Chhaya programme guidelines',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('menopause', 'Contraception is still needed through the '
+            'perimenopause'),
+        Related('pcos', 'The combined pill does double duty for cycle control '
+            'and hyperandrogenism'),
+        Related('vte-risk', 'Oestrogen and thrombosis risk'),
+      ],
+    ),
+    'menopause': ContentMeta(
+      id: 'menopause',
+      title: 'Menopause',
+      category: 'Gynaecology · Midlife health',
+      sourceOrg: 'NICE / BMS / NAMS',
+      sourceTitle: 'NICE NG23; British Menopause Society consensus statements; '
+          'NAMS 2022 Hormone Therapy Position Statement; ESHRE POI guideline',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('urogynaecology', 'Vaginal oestrogen treats urgency and '
+            'recurrent infection as well as dryness'),
+        Related('contraception', 'Still required until 12 months of '
+            'amenorrhoea over 50, or 24 months under 50'),
+        Related('vte-risk', 'Why transdermal is preferred where risk exists'),
+      ],
+    ),
+    'urogynaecology': ContentMeta(
+      id: 'urogynaecology',
+      title: 'Urogynaecology',
+      category: 'Gynaecology · Urogynaecology',
+      sourceOrg: 'NICE / IUGA / ICS / WHO',
+      sourceTitle: 'NICE NG123; Bump RC et al. POP-Q, Am J Obstet Gynecol '
+          '1996;175:10; WHO obstetric fistula guiding principles',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('menopause', 'Vaginal oestrogen underpins much of this'),
+        Related('caesarean', 'Timely operative delivery is what prevents '
+            'obstetric fistula'),
+      ],
+    ),
+    'pcos-assessment': ContentMeta(
+      id: 'pcos-assessment',
+      title: 'PCOS assessment — Ferriman-Gallwey & HOMA-IR',
+      category: 'Gynaecology · Reproductive endocrine',
+      sourceOrg: 'International PCOS Network',
+      sourceTitle: 'Ferriman D, Gallwey JD. J Clin Endocrinol Metab '
+          '1961;21:1440; Matthews DR et al. Diabetologia 1985;28:412; '
+          'International PCOS Guideline 2023',
+      year: 2023,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('pcos', 'The diagnostic criteria these scores feed'),
+        Related('anthropometry', 'BMI and waist circumference complete the '
+            'metabolic picture'),
+        Related('gdm', 'An OGTT, not HOMA-IR, is what the guideline asks for'),
+      ],
+    ),
+    'adnexal-mass': ContentMeta(
+      id: 'adnexal-mass',
+      title: 'Adnexal mass risk assessment',
+      category: 'Gynaecology · Oncology',
+      sourceOrg: 'RCOG / IOTA / ACR',
+      sourceTitle: 'Jacobs I et al. RMI, BJOG 1990;97:922; Timmerman D et al. '
+          'IOTA simple rules, UOG 2008;31:681; Andreotti RF et al. O-RADS, '
+          'Radiology 2020;294:168',
+      year: 2020,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('figo-ovary-2014', 'Staging once malignancy is confirmed'),
+        Related('endometriosis', 'An endometrioma raises CA-125 and confounds '
+            'the RMI'),
+        Related('algo-ovarian-torsion', 'A mass over 5 cm is the main risk '
+            'factor for torsion'),
+      ],
+    ),
+    'popq': ContentMeta(
+      id: 'popq',
+      title: 'POP-Q staging',
+      category: 'Gynaecology · Urogynaecology',
+      sourceOrg: 'IUGA / ICS',
+      sourceTitle: 'Bump RC et al. Am J Obstet Gynecol 1996;175:10; NICE NG123',
+      year: 1996,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('urogynaecology', 'What to do with the stage once you have it'),
+        Related('menopause', 'Vaginal oestrogen alongside a pessary prevents '
+            'erosion'),
+      ],
+    ),
+    'aub': ContentMeta(
+      id: 'aub',
+      title: 'Abnormal uterine bleeding',
+      category: 'Gynaecology · Menstrual disorders',
+      sourceOrg: 'FIGO / NICE',
+      sourceTitle: 'Munro MG et al. PALM-COEIN, Int J Gynecol Obstet '
+          '2011;113:3, revised 2018; Higham JM et al. PBAC, BJOG 1990;97:734; '
+          'NICE NG88',
+      year: 2018,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('fibroids', 'The L of PALM-COEIN'),
+        Related('adenomyosis', 'The A'),
+        Related('anaemia', 'Check haemoglobin and ferritin in everyone'),
+        Related('hyperplasia', 'Sample the endometrium over 45, or younger '
+            'with risk factors'),
+      ],
+    ),
   };
 }
 
@@ -937,6 +1179,19 @@ Widget _tInduction(BuildContext _) => _t('induction');
 Widget _tVbac(BuildContext _) => _t('vbac');
 Widget _tCaesarean(BuildContext _) => _t('caesarean');
 Widget _tRh(BuildContext _) => _t('rh-negative');
+
+Widget _cAub(BuildContext _) => const AubScreen();
+Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
+Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
+Widget _cPopq(BuildContext _) => const PopQScreen();
+
+Widget _tPcos(BuildContext _) => _t('pcos');
+Widget _tFibroids(BuildContext _) => _t('fibroids');
+Widget _tEndo(BuildContext _) => _t('endometriosis');
+Widget _tAdeno(BuildContext _) => _t('adenomyosis');
+Widget _tContraception(BuildContext _) => _t('contraception');
+Widget _tMenopause(BuildContext _) => _t('menopause');
+Widget _tUrogynae(BuildContext _) => _t('urogynaecology');
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
 

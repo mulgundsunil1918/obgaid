@@ -230,6 +230,17 @@ void main() {
 }
 
 const _allMetaIds = [
+  'pcos-assessment',
+  'adnexal-mass',
+  'popq',
+  'aub',
+  'pcos',
+  'fibroids',
+  'endometriosis',
+  'adenomyosis',
+  'contraception',
+  'menopause',
+  'urogynaecology',
   'ctg',
   'fgr',
   'pprom',

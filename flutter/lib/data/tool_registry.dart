@@ -15,6 +15,10 @@ import '../screens/calculators/insulin_screen.dart';
 import '../screens/calculators/creatinine_screen.dart';
 import '../screens/calculators/vte_risk_screen.dart';
 import '../screens/calculators/apgar_screen.dart';
+import '../screens/calculators/pcos_assessment_screen.dart';
+import '../screens/calculators/adnexal_mass_screen.dart';
+import '../screens/calculators/popq_screen.dart';
+import '../screens/calculators/aub_screen.dart';
 
 /// Single source of truth for every working tool. Home quick-access, the
 /// calculators hub and global search all read from here, so a tool added once
@@ -102,6 +106,35 @@ class ToolRegistry {
       builder: _apgar,
     ),
     Tool(
+      id: 'pcos-assessment',
+      name: 'PCOS assessment',
+      blurb: 'Ferriman-Gallwey hirsutism score · HOMA-IR insulin resistance',
+      module: ToolModule.gynaecology,
+      builder: _pcosAssess,
+      indiaSpecific: true,
+    ),
+    Tool(
+      id: 'adnexal-mass',
+      name: 'Adnexal mass',
+      blurb: 'RMI · IOTA simple rules · O-RADS categories',
+      module: ToolModule.gynaecology,
+      builder: _adnexal,
+    ),
+    Tool(
+      id: 'popq',
+      name: 'POP-Q',
+      blurb: 'Pelvic organ prolapse quantification and staging',
+      module: ToolModule.gynaecology,
+      builder: _popq,
+    ),
+    Tool(
+      id: 'aub',
+      name: 'Abnormal uterine bleeding',
+      blurb: 'PALM-COEIN classification · PBAC blood loss score',
+      module: ToolModule.gynaecology,
+      builder: _aub,
+    ),
+    Tool(
       id: 'bishop',
       name: 'Bishop score',
       blurb: 'Induction favourability · ripening threshold',
@@ -169,3 +202,7 @@ Widget _insulin(BuildContext _) => const InsulinScreen();
 Widget _creatinine(BuildContext _) => const CreatinineScreen();
 Widget _vte(BuildContext _) => const VteRiskScreen();
 Widget _apgar(BuildContext _) => const ApgarScreen();
+Widget _pcosAssess(BuildContext _) => const PcosAssessmentScreen();
+Widget _adnexal(BuildContext _) => const AdnexalMassScreen();
+Widget _popq(BuildContext _) => const PopQScreen();
+Widget _aub(BuildContext _) => const AubScreen();

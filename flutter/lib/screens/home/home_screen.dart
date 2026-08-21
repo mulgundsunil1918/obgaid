@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         _FeatureDef(
           'Clinical Topics',
-          'CTG · FGR · preterm · induction · VBAC · LSCS',
+          'CTG · preterm · PCOS · fibroids · menopause',
           Icons.article_rounded,
           const Color(0xFF00695C),
           () => _open(context, () => const TopicsHub()),

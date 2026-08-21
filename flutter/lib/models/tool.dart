@@ -12,6 +12,7 @@ enum ToolModule {
   haematology,
   maternalMedicine,
   neonatal,
+  gynaecology,
   haemorrhage
 }
 
@@ -25,6 +26,7 @@ extension ToolModuleInfo on ToolModule {
         ToolModule.haematology => 'Anaemia & haematology',
         ToolModule.maternalMedicine => 'Maternal medicine',
         ToolModule.neonatal => 'Neonatal',
+        ToolModule.gynaecology => 'Gynaecology',
         ToolModule.labour => 'Labour',
         ToolModule.hypertensive => 'Hypertensive disorders',
         ToolModule.diabetes => 'Diabetes in pregnancy',
@@ -40,6 +42,7 @@ extension ToolModuleInfo on ToolModule {
         ToolModule.haematology => Icons.water_drop_outlined,
         ToolModule.maternalMedicine => Icons.medical_information_outlined,
         ToolModule.neonatal => Icons.child_care_outlined,
+        ToolModule.gynaecology => Icons.female_outlined,
         ToolModule.labour => Icons.timeline_outlined,
         ToolModule.hypertensive => Icons.warning_amber_outlined,
         ToolModule.diabetes => Icons.water_drop_outlined,
