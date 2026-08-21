@@ -11,6 +11,8 @@ import 'package:obgaid_app/screens/reference/immunisation_screen.dart';
 import 'package:obgaid_app/data/trial_registry.dart';
 import 'package:obgaid_app/screens/academics/trial_screen.dart';
 import 'package:obgaid_app/data/safety_cases.dart';
+import 'package:obgaid_app/data/counselling.dart';
+import 'package:obgaid_app/screens/counselling/counselling_screen.dart';
 import 'package:obgaid_app/screens/safety/safety_case_screen.dart';
 import 'package:obgaid_app/screens/reference/guidelines_screen.dart';
 import 'package:obgaid_app/screens/reference/change_tracker_screen.dart';
@@ -79,6 +81,16 @@ void main() {
     for (final trial in TrialRegistry.all) {
       testWidgets(trial.id, (tester) async {
         await tester.pumpWidget(wrap(TrialScreen(trial: trial)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every counselling guide renders', () {
+    for (final g in kCounsellingGuides) {
+      testWidgets(g.id, (tester) async {
+        await tester.pumpWidget(wrap(CounsellingScreen(guide: g)));
         await tester.pump();
         expect(tester.takeException(), isNull);
       });

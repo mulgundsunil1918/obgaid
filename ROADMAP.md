@@ -149,9 +149,9 @@ action block: these are read over hours, not seconds.
 | Advanced fetal medicine | §25 | ⬜ |
 | Procedures reference — §57 field structure | §57 | 🔨 *(3 procedures)* |
 | Never Again — anonymised safety cases | §56 | 🔨 *(4 cases; submission needs the backend)* |
-| Academic / examination content | §59 | ⬜ |
-| Patient counselling library | §58 | ⬜ |
-| Quick reference tables | §60 | ⬜ |
+| Academic / examination content | §59 | ⬜ *(not started)* |
+| Patient counselling — clinician checklists with actual wording | §58 | 🔨 *(5 guides)* |
+| Quick reference tables | §60 | ⬜ *(not started)* |
 
 ## India-specific content *(not a spec tier — ObgAid's differentiator)*
 

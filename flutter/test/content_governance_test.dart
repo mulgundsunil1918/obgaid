@@ -9,6 +9,7 @@ import 'package:obgaid_app/data/vaccines.dart';
 import 'package:obgaid_app/data/trial_registry.dart';
 import 'package:obgaid_app/data/safety_cases.dart';
 import 'package:obgaid_app/data/guidelines.dart';
+import 'package:obgaid_app/data/counselling.dart';
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -446,6 +447,33 @@ void main() {
     test('the change tracker is not empty', () {
       final total = kGuidelines.fold<int>(0, (n, g) => n + g.changes.length);
       expect(total, greaterThan(0));
+    });
+  });
+
+  group('§58 — counselling guides', () {
+    test('every guide covers points, wording, red flags and sources', () {
+      for (final g in kCounsellingGuides) {
+        expect(g.cover, isNotEmpty, reason: '${g.id}: nothing to cover');
+        expect(g.saferWording, isNotEmpty,
+            reason: '${g.id}: no wording examples — §58 asks for '
+                'patient-friendly language, not a topic list');
+        expect(g.redFlags, isNotEmpty, reason: '${g.id}: no red flags');
+        expect(g.sources, isNotEmpty, reason: '${g.id}: no source');
+      }
+    });
+
+    test('wording examples give both the poor and the better phrasing', () {
+      for (final g in kCounsellingGuides) {
+        for (final w in g.saferWording) {
+          expect(w.$1.trim(), isNotEmpty, reason: '${g.id}: missing "instead"');
+          expect(w.$2.trim(), isNotEmpty, reason: '${g.id}: missing "say"');
+        }
+      }
+    });
+
+    test('guide ids are unique', () {
+      final ids = kCounsellingGuides.map((g) => g.id).toList();
+      expect(ids.toSet().length, ids.length);
     });
   });
 

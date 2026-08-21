@@ -8,6 +8,7 @@ import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
 import '../hubs/topics_hub.dart';
+import '../counselling/counselling_screen.dart';
 import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
 import '../hubs/staging_scores_hub.dart';
@@ -106,6 +107,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.menu_book_rounded,
           const Color(0xFF283593),
           () => _open(context, () => const ReferenceHub()),
+        ),
+        _FeatureDef(
+          'Counselling',
+          'What to say — and what not to',
+          Icons.record_voice_over_rounded,
+          const Color(0xFF00838F),
+          () => _open(context, () => const CounsellingHub()),
         ),
         _FeatureDef(
           'Never Again',
