@@ -7,6 +7,7 @@ import '../../data/tool_registry.dart';
 import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
+import '../hubs/topics_hub.dart';
 import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
 import '../hubs/staging_scores_hub.dart';
@@ -56,6 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.graphic_eq_rounded,
           const Color(0xFF1565C0),
           () => _open(context, () => const UltrasoundHub()),
+        ),
+        _FeatureDef(
+          'Clinical Topics',
+          'CTG · FGR · preterm · induction · VBAC · LSCS',
+          Icons.article_rounded,
+          const Color(0xFF00695C),
+          () => _open(context, () => const TopicsHub()),
         ),
         _FeatureDef(
           'Tumour Staging',

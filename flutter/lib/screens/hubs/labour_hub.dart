@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../data/tool_registry.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/topic_registry.dart';
+import '../topics/topic_screen.dart';
 
 class LabourHub extends StatelessWidget {
   const LabourHub({super.key});
@@ -30,15 +32,25 @@ class LabourHub extends StatelessWidget {
           onTap: () => Navigator.push(
               context, MaterialPageRoute(builder: pph.builder)),
         ),
+        const SizedBox(height: 6),
+        for (final t in [
+          ...TopicRegistry.byGroup[TopicGroup.labour]!,
+          ...TopicRegistry.byGroup[TopicGroup.monitoring]!,
+          ...TopicRegistry.byGroup[TopicGroup.preterm]!,
+        ])
+          HubTile(
+            title: t.name,
+            subtitle: t.subtitle,
+            icon: Icons.article_outlined,
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
+          ),
         const SizedBox(height: 18),
-        const ComingSoon(phase: 'Phase 1.3 – 2', items: [
+        const ComingSoon(phase: 'Tier 2', items: [
           'WHO Labour Care Guide 2020 — full interactive chart',
-          'Induction of labour — agent selection, dosing, monitoring',
-          'Augmentation — oxytocin regimens, hyperstimulation management',
+          'Augmentation — oxytocin regimens and arrest disorders',
           'VBAC success prediction (MFMU model)',
-          'Shoulder dystocia — HELPERR drill',
-          'Cord prolapse and maternal collapse algorithms',
-          'Cardiotocograph interpretation (NICE / FIGO categories)',
+          'Operative vaginal delivery — forceps and vacuum',
           'Cord blood gas interpretation',
         ]),
       ],

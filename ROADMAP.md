@@ -98,19 +98,24 @@ harmful action kills more reliably than the omitted one.
 | Ectopic pregnancy | §19 | ✅ |
 | Ovarian torsion | §43 | ✅ |
 
-### 1C · High-value reference — 9 named in §64
+### 1C · High-value reference — **all 9 built**
+
+Structured reference topics, each opening on a key-numbers block rather than an
+action block: these are read over hours, not seconds.
 
 | Topic | Spec § | Status |
 |---|---|---|
-| CTG interpretation | §13 | ⬜ |
-| Fetal growth restriction | §10 | ⬜ |
-| PPROM | §17 | ⬜ |
-| Preterm labour | §17 | ⬜ |
-| Induction of labour | §26 | ⬜ |
-| VBAC / TOLAC | §28 | ⬜ |
-| Caesarean section | §27 | ⬜ |
+| CTG interpretation | §13 | ✅ *(NICE and FIGO presented separately, per §13)* |
+| Fetal growth restriction | §10 | ✅ |
+| PPROM | §17 | ✅ |
+| Preterm labour | §17 | ✅ |
+| Induction of labour | §26 | ✅ |
+| VBAC / TOLAC | §28 | ✅ |
+| Caesarean section | §27 | ✅ |
 | GDM | §8 | ✅ |
-| Rh-negative pregnancy | §23 | ⬜ |
+| Rh-negative pregnancy | §23 | ✅ |
+
+**Tier 1 is complete.**
 
 ## Tier 2 — Depth *(spec §65)*
 
@@ -200,10 +205,12 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. Seventeen items now fall
+Clinical author and reviewer: **Dr Sunil Mulgund**. Twenty-three items now fall
 under §63 — the twelve emergency algorithms, magnesium sulphate, the PPH
-calculator, both statutes, and the three carrying drug or anticoagulation
-dosing (insulin, IV iron, VTE prophylaxis). All are marked *unreviewed*, carry a banner on
+calculator, both statutes, the three carrying drug or anticoagulation dosing
+(insulin, IV iron, VTE prophylaxis), and six reference topics carrying dosing
+or intrapartum decision thresholds (CTG, PPROM, preterm labour, induction,
+caesarean, Rh-negative). All are marked *unreviewed*, carry a banner on
 the screen itself, and appear in the drawer's review queue. They need a
 signed-off pass before store launch.
 

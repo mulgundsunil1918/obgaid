@@ -3,6 +3,7 @@ import 'package:obgaid_app/data/content_registry.dart';
 import 'package:obgaid_app/data/tool_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
+import 'package:obgaid_app/data/topic_registry.dart';
 import 'package:obgaid_app/models/content_meta.dart';
 
 /// Enforces the content specification's rules in CI rather than by memory.
@@ -166,6 +167,52 @@ void main() {
     });
   });
 
+  group('§52 — reference topic structure', () {
+    test('every topic leads with key numbers', () {
+      for (final t in TopicRegistry.all) {
+        expect(t.keyFacts, isNotEmpty,
+            reason: '${t.id} has no key-facts block — a reference topic should '
+                'open on the numbers someone came to look up');
+      }
+    });
+
+    test('every topic has substantive sections', () {
+      for (final t in TopicRegistry.all) {
+        expect(t.sections.length, greaterThanOrEqualTo(4),
+            reason: '${t.id} has only ${t.sections.length} sections');
+        for (final s in t.sections) {
+          expect(s.steps, isNotEmpty,
+              reason: '${t.id} section "${s.title}" is empty');
+        }
+      }
+    });
+
+    test('every topic cites its sources', () {
+      for (final t in TopicRegistry.all) {
+        expect(t.sources, isNotEmpty, reason: '${t.id} cites no source');
+      }
+    });
+
+    test('every topic has a content record', () {
+      for (final t in TopicRegistry.all) {
+        expect(ContentRegistry.metaFor(t.id), isNotNull,
+            reason: '${t.id} has no §62 content record');
+      }
+    });
+
+    test('topic ids are unique and reachable from a group', () {
+      final ids = TopicRegistry.all.map((t) => t.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'duplicate topic id');
+      final grouped = <String>{
+        for (final list in TopicRegistry.byGroup.values)
+          for (final t in list) t.id,
+      };
+      for (final t in TopicRegistry.all) {
+        expect(grouped, contains(t.id), reason: '${t.id} sits in no group');
+      }
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -183,6 +230,14 @@ void main() {
 }
 
 const _allMetaIds = [
+  'ctg',
+  'fgr',
+  'pprom',
+  'preterm-labour',
+  'induction',
+  'vbac',
+  'caesarean',
+  'rh-negative',
   'anthropometry',
   'weight-gain',
   'haemodynamics',

@@ -22,6 +22,8 @@ import '../screens/guides/usg_guide_screen.dart';
 import '../screens/legal/mtp_screen.dart';
 import '../screens/legal/pcpndt_screen.dart';
 import '../screens/staging/staging_screen.dart';
+import '../screens/topics/topic_screen.dart';
+import 'topic_registry.dart';
 import '../screens/algorithms/algorithm_screen.dart';
 import 'algorithm_registry.dart';
 
@@ -93,7 +95,15 @@ class ContentRegistry {
     ContentLink('algo-ovarian-torsion', 'Ovarian torsion',
         Icons.emergency_outlined, _algoTorsion),
     // Specified but not yet built — the pathway is visible before the node is.
-    ContentLink('ctg', 'CTG interpretation', Icons.monitor_heart_outlined, null),
+    ContentLink('ctg', 'CTG interpretation', Icons.monitor_heart_outlined, _tCtg),
+    ContentLink('pprom', 'PPROM', Icons.article_outlined, _tPprom),
+    ContentLink('preterm-labour', 'Preterm labour', Icons.article_outlined,
+        _tPreterm),
+    ContentLink('vbac', 'VBAC / TOLAC', Icons.article_outlined, _tVbac),
+    ContentLink('caesarean', 'Caesarean section', Icons.article_outlined,
+        _tCaesarean),
+    ContentLink('rh-negative', 'Rh-negative pregnancy', Icons.article_outlined,
+        _tRh),
     ContentLink('anaemia', 'Anaemia & iron', Icons.water_drop_outlined,
         _anaemiaS),
     ContentLink('insulin', 'Insulin in pregnancy',
@@ -108,10 +118,11 @@ class ContentRegistry {
         Icons.medical_information_outlined, _creatinineS),
     ContentLink('vte-risk', 'VTE risk', Icons.healing_outlined, _vteS),
     ContentLink('apgar', 'Apgar score', Icons.child_care_outlined, _apgarS),
-    ContentLink('induction', 'Induction of labour', Icons.timeline_outlined, null),
+    ContentLink('induction', 'Induction of labour', Icons.timeline_outlined,
+        _tInduction),
     ContentLink('blood-products', 'Blood products & massive transfusion',
         Icons.bloodtype_outlined, null),
-    ContentLink('fgr', 'Fetal growth restriction', Icons.trending_down, null),
+    ContentLink('fgr', 'Fetal growth restriction', Icons.trending_down, _tFgr),
     ContentLink('doppler', 'Doppler indices', Icons.graphic_eq_outlined, null),
     ContentLink('endometrial-thickness', 'Endometrial thickness thresholds',
         Icons.straighten_outlined, null),
@@ -712,6 +723,172 @@ class ContentRegistry {
             'assessment after acute hypoxia'),
       ],
     ),
+    // ── Tier 1C reference topics (spec §10, §13, §17, §23, §26–28) ───────
+    'ctg': ContentMeta(
+      id: 'ctg',
+      title: 'CTG interpretation',
+      category: 'Obstetrics · Fetal monitoring',
+      sourceOrg: 'NICE / FIGO',
+      sourceTitle: 'NICE NG229 Fetal monitoring in labour; FIGO consensus '
+          'guidelines on intrapartum fetal monitoring, Int J Gynecol Obstet '
+          '2015;131:13',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-cord-prolapse', 'Sudden bradycardia after membrane '
+            'rupture'),
+        Related('algo-uterine-rupture', 'The other cause of abrupt, '
+            'unexplained bradycardia'),
+        Related('fgr', 'Where a suspicious trace and a small fetus meet'),
+        Related('induction', 'Continuous monitoring is mandatory once '
+            'oxytocin is running'),
+      ],
+    ),
+    'fgr': ContentMeta(
+      id: 'fgr',
+      title: 'Fetal growth restriction',
+      category: 'Obstetrics · Fetal growth',
+      sourceOrg: 'RCOG / ISUOG',
+      sourceTitle: 'Green-top Guideline 31; Gordijn SJ et al. Delphi consensus '
+          'definition, UOG 2016;48:333; TRUFFLE, Lancet 2015;385:2162',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      related: [
+        Related('efw', 'The measurement that starts the conversation'),
+        Related('doppler', 'The indices that decide when to deliver'),
+        Related('preterm-labour', 'Steroids and neuroprotection before an '
+            'early delivery'),
+        Related('ctg', 'Surveillance while she is monitored'),
+      ],
+    ),
+    'pprom': ContentMeta(
+      id: 'pprom',
+      title: 'Preterm prelabour rupture of membranes',
+      category: 'Obstetrics · Preterm birth',
+      sourceOrg: 'RCOG / NICE',
+      sourceTitle: 'Green-top Guideline 73; NICE NG25; ORACLE I, Lancet '
+          '2001;357:979; PPROMT, Lancet 2016;387:444',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('preterm-labour', 'Steroids, neuroprotection and transfer'),
+        Related('algo-sepsis', 'Where chorioamnionitis becomes maternal sepsis'),
+        Related('algo-cord-prolapse', 'A high presenting part with ruptured '
+            'membranes'),
+      ],
+    ),
+    'preterm-labour': ContentMeta(
+      id: 'preterm-labour',
+      title: 'Preterm labour',
+      category: 'Obstetrics · Preterm birth',
+      sourceOrg: 'NICE / RCOG',
+      sourceTitle: 'NICE NG25; Green-top 1B; ORACLE II, Lancet 2001;357:989 '
+          'and 7-year follow-up 2008;372:1319',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('mgso4', 'Neuroprotection uses a different regimen from '
+            'eclampsia prophylaxis'),
+        Related('pprom', 'The commonest antecedent'),
+        Related('fgr', 'Where prematurity is iatrogenic and planned'),
+      ],
+    ),
+    'induction': ContentMeta(
+      id: 'induction',
+      title: 'Induction of labour',
+      category: 'Obstetrics · Labour',
+      sourceOrg: 'NICE / ACOG / WHO',
+      sourceTitle: 'NICE NG207; ACOG Practice Bulletin 107; ARRIVE trial, '
+          'NEJM 2018;379:513',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('bishop', 'The score that chooses the method'),
+        Related('vbac', 'Induction of a scarred uterus changes the rules'),
+        Related('ctg', 'Continuous monitoring once oxytocin is running'),
+        Related('algo-pph', 'A long induction fatigues the myometrium'),
+      ],
+    ),
+    'vbac': ContentMeta(
+      id: 'vbac',
+      title: 'VBAC / TOLAC',
+      category: 'Obstetrics · Labour',
+      sourceOrg: 'RCOG / ACOG',
+      sourceTitle: 'Green-top Guideline 45; ACOG Practice Bulletin 205; '
+          'Landon MB et al. NEJM 2004;351:2581',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-uterine-rupture', 'The risk that governs the whole '
+            'discussion'),
+        Related('induction', 'Mechanical methods only, and no prostaglandins'),
+        Related('caesarean', 'The alternative she is choosing between'),
+        Related('ctg', 'Continuous monitoring is mandatory'),
+      ],
+    ),
+    'caesarean': ContentMeta(
+      id: 'caesarean',
+      title: 'Caesarean section',
+      category: 'Obstetrics · Operative',
+      sourceOrg: 'NICE / RCOG / ACOG',
+      sourceTitle: 'NICE NG192; Green-top 27a; CORONIS, Lancet 2013;382:234; '
+          'Robson classification',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('vte-risk', 'Every caesarean scores, and needs prophylaxis'),
+        Related('vbac', 'What a repeat caesarean is weighed against'),
+        Related('algo-pph', 'Haemorrhage is the commonest complication'),
+        Related('algo-uterine-rupture', 'The scar this operation leaves'),
+      ],
+    ),
+    'rh-negative': ContentMeta(
+      id: 'rh-negative',
+      title: 'Rh-negative pregnancy',
+      category: 'Obstetrics · Immunology',
+      sourceOrg: 'RCOG / NICE',
+      sourceTitle: 'Green-top Guidelines 22 and 65; NICE TA156; Mari G et al. '
+          'NEJM 2000;342:9',
+      year: 2014,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-abruption', 'A sensitising event needing a Kleihauer'),
+        Related('algo-ectopic', 'Anti-D is required after surgical management'),
+        Related('doppler', 'MCA peak systolic velocity for fetal anaemia'),
+        Related('ctg', 'A sinusoidal trace means fetal anaemia until proven '
+            'otherwise'),
+      ],
+    ),
   };
 }
 
@@ -751,6 +928,17 @@ Widget _insulinS(BuildContext _) => const InsulinScreen();
 Widget _creatinineS(BuildContext _) => const CreatinineScreen();
 Widget _vteS(BuildContext _) => const VteRiskScreen();
 Widget _apgarS(BuildContext _) => const ApgarScreen();
+
+Widget _tCtg(BuildContext _) => _t('ctg');
+Widget _tFgr(BuildContext _) => _t('fgr');
+Widget _tPprom(BuildContext _) => _t('pprom');
+Widget _tPreterm(BuildContext _) => _t('preterm-labour');
+Widget _tInduction(BuildContext _) => _t('induction');
+Widget _tVbac(BuildContext _) => _t('vbac');
+Widget _tCaesarean(BuildContext _) => _t('caesarean');
+Widget _tRh(BuildContext _) => _t('rh-negative');
+
+Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
 
 Widget _a(String id) =>
     AlgorithmScreen(algorithm: AlgorithmRegistry.byId(id)!);

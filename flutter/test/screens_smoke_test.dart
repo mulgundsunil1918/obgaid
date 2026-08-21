@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:obgaid_app/data/tool_registry.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
+import 'package:obgaid_app/data/topic_registry.dart';
+import 'package:obgaid_app/screens/topics/topic_screen.dart';
 import 'package:obgaid_app/screens/algorithms/algorithm_screen.dart';
 import 'package:obgaid_app/screens/staging/staging_screen.dart';
 import 'package:obgaid_app/theme/app_theme.dart';
@@ -37,6 +39,16 @@ void main() {
       testWidgets(algo.id, (tester) async {
         await tester
             .pumpWidget(wrap(AlgorithmScreen(algorithm: algo)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every clinical topic renders', () {
+    for (final topic in TopicRegistry.all) {
+      testWidgets(topic.id, (tester) async {
+        await tester.pumpWidget(wrap(TopicScreen(topic: topic)));
         await tester.pump();
         expect(tester.takeException(), isNull);
       });

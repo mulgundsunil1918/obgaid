@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../widgets/hub_widgets.dart';
 import '../legal/mtp_screen.dart';
 import '../legal/pcpndt_screen.dart';
+import '../../data/topic_registry.dart';
+import '../topics/topic_screen.dart';
 
 class ReferenceHub extends StatelessWidget {
   const ReferenceHub({super.key});
@@ -40,6 +42,24 @@ class ReferenceHub extends StatelessWidget {
           onTap: () => Navigator.push(
               context, MaterialPageRoute(builder: (_) => const PcpndtScreen())),
         ),
+        const SizedBox(height: 14),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text('CLINICAL REFERENCE',
+              style: TextStyle(
+                  fontSize: 10.5,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.8,
+                  color: Theme.of(context).colorScheme.primary)),
+        ),
+        for (final t in TopicRegistry.byGroup[TopicGroup.immunology]!)
+          HubTile(
+            title: t.name,
+            subtitle: t.subtitle,
+            icon: Icons.article_outlined,
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
+          ),
         const SizedBox(height: 18),
         const ComingSoon(phase: 'Phase 4', items: [
           'FOGSI Good Clinical Practice Recommendations — the full set',
