@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:obgaid_app/data/content_registry.dart';
 import 'package:obgaid_app/data/tool_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
+import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/models/content_meta.dart';
 
 /// Enforces the content specification's rules in CI rather than by memory.
@@ -103,6 +104,59 @@ void main() {
     });
   });
 
+  group('§52 — algorithm structure', () {
+    test('every algorithm has immediate actions above the fold', () {
+      for (final a in AlgorithmRegistry.all) {
+        expect(a.immediate, isNotEmpty,
+            reason: '${a.id} has no "do this now" block — in an emergency '
+                'nobody scrolls');
+      }
+    });
+
+    test('every algorithm covers recognition through follow-up', () {
+      for (final a in AlgorithmRegistry.all) {
+        expect(a.sections.length, greaterThanOrEqualTo(5),
+            reason: '${a.id} has only ${a.sections.length} sections; §52 '
+                'requires recognition, assessment, investigations, '
+                'differential, treatment, escalation, definitive treatment, '
+                'monitoring and follow-up');
+      }
+    });
+
+    test('every algorithm cites its sources', () {
+      for (final a in AlgorithmRegistry.all) {
+        expect(a.sources, isNotEmpty, reason: '${a.id} cites no source');
+      }
+    });
+
+    test('every algorithm has a content record and is high-risk', () {
+      for (final a in AlgorithmRegistry.all) {
+        final m = ContentRegistry.metaFor(a.id);
+        expect(m, isNotNull, reason: '${a.id} has no §62 content record');
+        expect(m!.highRisk, isTrue,
+            reason: '${a.id} is an emergency algorithm — §63 makes it '
+                'high-risk by definition');
+      }
+    });
+
+    test('algorithm ids are unique', () {
+      final ids = AlgorithmRegistry.all.map((a) => a.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'duplicate algorithm id');
+    });
+
+    test('every algorithm is reachable from the emergency hub', () {
+      final grouped = <String>{
+        for (final list in AlgorithmRegistry.byGroup.values)
+          for (final a in list) a.id,
+      };
+      for (final a in AlgorithmRegistry.all) {
+        expect(grouped, contains(a.id),
+            reason: '${a.id} exists but sits in no group, so no one can find '
+                'it');
+      }
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -120,6 +174,18 @@ void main() {
 }
 
 const _allMetaIds = [
+  'algo-pph',
+  'algo-abruption',
+  'algo-uterine-rupture',
+  'algo-eclampsia',
+  'algo-severe-htn',
+  'algo-maternal-collapse',
+  'algo-afe',
+  'algo-sepsis',
+  'algo-shoulder-dystocia',
+  'algo-cord-prolapse',
+  'algo-ectopic',
+  'algo-ovarian-torsion',
   'dating',
   'usg',
   'usg-guide',

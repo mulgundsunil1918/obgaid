@@ -14,6 +14,8 @@ import '../screens/guides/usg_guide_screen.dart';
 import '../screens/legal/mtp_screen.dart';
 import '../screens/legal/pcpndt_screen.dart';
 import '../screens/staging/staging_screen.dart';
+import '../screens/algorithms/algorithm_screen.dart';
+import 'algorithm_registry.dart';
 
 /// A resolved graph node — what a related link points at.
 class ContentLink {
@@ -59,9 +61,30 @@ class ContentRegistry {
         Icons.biotech_outlined, _endometrium),
     ContentLink('figo-ovary-2014', 'Ovarian carcinoma — FIGO 2014',
         Icons.biotech_outlined, _ovary),
+    ContentLink('algo-pph', 'PPH algorithm', Icons.emergency_outlined, _algoPph),
+    ContentLink('algo-abruption', 'Placental abruption',
+        Icons.emergency_outlined, _algoAbruption),
+    ContentLink('algo-uterine-rupture', 'Uterine rupture',
+        Icons.emergency_outlined, _algoRupture),
+    ContentLink('algo-eclampsia', 'Eclampsia', Icons.emergency_outlined,
+        _algoEclampsia),
+    ContentLink('algo-severe-htn', 'Severe hypertension',
+        Icons.emergency_outlined, _algoSevereHtn),
+    ContentLink('algo-maternal-collapse', 'Maternal collapse',
+        Icons.emergency_outlined, _algoCollapse),
+    ContentLink('algo-afe', 'Amniotic fluid embolism',
+        Icons.emergency_outlined, _algoAfe),
+    ContentLink('algo-sepsis', 'Obstetric sepsis', Icons.emergency_outlined,
+        _algoSepsis),
+    ContentLink('algo-shoulder-dystocia', 'Shoulder dystocia',
+        Icons.emergency_outlined, _algoShoulder),
+    ContentLink('algo-cord-prolapse', 'Cord prolapse',
+        Icons.emergency_outlined, _algoCord),
+    ContentLink('algo-ectopic', 'Ectopic pregnancy', Icons.emergency_outlined,
+        _algoEctopic),
+    ContentLink('algo-ovarian-torsion', 'Ovarian torsion',
+        Icons.emergency_outlined, _algoTorsion),
     // Specified but not yet built — the pathway is visible before the node is.
-    ContentLink('severe-htn', 'Severe hypertension', Icons.emergency_outlined, null),
-    ContentLink('eclampsia', 'Eclampsia algorithm', Icons.emergency_outlined, null),
     ContentLink('ctg', 'CTG interpretation', Icons.monitor_heart_outlined, null),
     ContentLink('anaemia', 'Anaemia & Ganzoni iron deficit',
         Icons.water_drop_outlined, null),
@@ -220,10 +243,10 @@ class ContentRegistry {
       status: ContentStatus.draft,
       highRisk: true,
       related: [
-        Related('eclampsia', 'The algorithm this drug sits inside'),
-        Related('severe-htn', 'Magnesium is not an antihypertensive — severe '
-            'hypertension needs its own treatment alongside'),
-        Related('pph', 'Magnesium relaxes the uterus and raises atony risk'),
+        Related('algo-eclampsia', 'The algorithm this drug sits inside'),
+        Related('algo-severe-htn', 'Magnesium is not an antihypertensive — '
+            'severe hypertension needs its own treatment alongside'),
+        Related('algo-pph', 'Magnesium relaxes the uterus and raises atony risk'),
       ],
     ),
     'pph': ContentMeta(
@@ -239,6 +262,7 @@ class ContentRegistry {
       status: ContentStatus.draft,
       highRisk: true,
       related: [
+        Related('algo-pph', 'The full algorithm — 4 Ts, escalation, surgery'),
         Related('blood-products', 'Transfusion and massive transfusion protocol'),
         Related('mgso4', 'Magnesium given for pre-eclampsia worsens atony'),
         Related('anaemia', 'Antenatal anaemia is what makes a given loss lethal'),
@@ -282,6 +306,244 @@ class ContentRegistry {
         Related('mtp-act', 'The two statutes are read together in practice'),
       ],
     ),
+    // ── Tier 1B emergency algorithms (spec §19, §20, §43) ────────────────
+    // Every one of these is on the §63 mandatory-review list by definition:
+    // they are emergency algorithms carrying drug doses.
+    'algo-pph': ContentMeta(
+      id: 'algo-pph',
+      title: 'Postpartum haemorrhage algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'WHO / RCOG / ACOG / FOGSI',
+      sourceTitle: 'E-MOTIVE trial NEJM 2023; WOMAN trial Lancet 2017; '
+          'Green-top 52; Practice Bulletin 183',
+      year: 2023,
+      evidence: EvidenceLevel.rct,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('pph', 'Shock index and proportion of blood volume lost'),
+        Related('mgso4', 'Magnesium relaxes the uterus — it worsens atony'),
+        Related('algo-abruption', 'Abruption causes both the bleeding and the '
+            'coagulopathy'),
+        Related('blood-products', 'Massive transfusion ratios and targets'),
+      ],
+    ),
+    'algo-abruption': ContentMeta(
+      id: 'algo-abruption',
+      title: 'Placental abruption algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG / FOGSI',
+      sourceTitle: 'Green-top Guideline 63 — Antepartum Haemorrhage',
+      year: 2011,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'Atony plus coagulopathy makes PPH near-inevitable'),
+        Related('algo-severe-htn', 'Pre-eclampsia is a leading risk factor'),
+        Related('pph', 'Quantify the loss you cannot see'),
+      ],
+    ),
+    'algo-uterine-rupture': ContentMeta(
+      id: 'algo-uterine-rupture',
+      title: 'Uterine rupture algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG / ACOG / FOGSI',
+      sourceTitle: 'Green-top Guideline 45 — Birth After Previous Caesarean '
+          'Birth; Practice Bulletin 205',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('bishop', 'Induction of a scarred uterus is the modifiable '
+            'risk factor'),
+        Related('ctg', 'An abnormal trace is the earliest sign'),
+        Related('algo-pph', 'Haemorrhage control after delivery'),
+      ],
+    ),
+    'algo-eclampsia': ContentMeta(
+      id: 'algo-eclampsia',
+      title: 'Eclampsia algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG / NICE / WHO / FOGSI',
+      sourceTitle: 'Magpie Trial Lancet 2002; Green-top 10(A); NICE NG133',
+      year: 2002,
+      evidence: EvidenceLevel.rct,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('mgso4', 'Regimens, monitoring and the toxicity ladder'),
+        Related('algo-severe-htn', 'Magnesium stops the fits; it does not '
+            'lower the pressure'),
+        Related('algo-maternal-collapse', 'Where the seizure does not stop or '
+            'she does not wake'),
+      ],
+    ),
+    'algo-severe-htn': ContentMeta(
+      id: 'algo-severe-htn',
+      title: 'Severe hypertension algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'NICE / ACOG / RCOG',
+      sourceTitle: 'NICE NG133; ACOG Practice Bulletin 222 and Committee '
+          'Opinion 767',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('mgso4', 'When seizure prophylaxis is indicated alongside'),
+        Related('algo-eclampsia', 'What this is trying to prevent'),
+        Related('dating', 'Delivery thresholds are gestation-dependent'),
+      ],
+    ),
+    'algo-maternal-collapse': ContentMeta(
+      id: 'algo-maternal-collapse',
+      title: 'Maternal collapse algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'Resuscitation Council UK / AHA / RCOG',
+      sourceTitle: 'Cardiac Arrest in Pregnancy, Circulation 2015;132:1747; '
+          'Green-top Guideline 56',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-afe', 'A leading cause, and the hardest to recognise'),
+        Related('algo-pph', 'Haemorrhage is the commonest cause of all'),
+        Related('algo-eclampsia', 'Seizure and intracranial haemorrhage'),
+        Related('mgso4', 'Magnesium toxicity is a reversible cause — calcium '
+            'gluconate is the antidote'),
+      ],
+    ),
+    'algo-afe': ContentMeta(
+      id: 'algo-afe',
+      title: 'Amniotic fluid embolism algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'SMFM / RCOG',
+      sourceTitle: 'SMFM Clinical Guideline 9, Am J Obstet Gynecol '
+          '2016;215:B16; Green-top Guideline 56',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-maternal-collapse', 'The resuscitation this sits inside'),
+        Related('algo-pph', 'The coagulopathy presents as unstoppable bleeding'),
+        Related('blood-products', 'Empirical 1:1:1 before the results return'),
+      ],
+    ),
+    'algo-sepsis': ContentMeta(
+      id: 'algo-sepsis',
+      title: 'Obstetric sepsis algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG / NICE / Surviving Sepsis Campaign',
+      sourceTitle: 'Green-top 64a and 64b; NICE NG51; Surviving Sepsis '
+          'Campaign 2021',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-maternal-collapse', 'Where septic shock becomes arrest'),
+        Related('algo-pph', 'Sepsis and haemorrhage look alike early, and '
+            'often coexist'),
+      ],
+    ),
+    'algo-shoulder-dystocia': ContentMeta(
+      id: 'algo-shoulder-dystocia',
+      title: 'Shoulder dystocia algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG / ACOG',
+      sourceTitle: 'Green-top Guideline 42; ACOG Practice Bulletin 178',
+      year: 2012,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('efw', 'Macrosomia raises the risk, though most cases occur in '
+            'normally grown babies'),
+        Related('gdm', 'Diabetes is the strongest modifiable risk factor'),
+        Related('algo-pph', 'Haemorrhage after dystocia should be anticipated, '
+            'not awaited'),
+      ],
+    ),
+    'algo-cord-prolapse': ContentMeta(
+      id: 'algo-cord-prolapse',
+      title: 'Cord prolapse algorithm',
+      category: 'Obstetrics · Emergency',
+      sourceOrg: 'RCOG',
+      sourceTitle: 'Green-top Guideline 50 — Umbilical Cord Prolapse',
+      year: 2014,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('ctg', 'Sudden bradycardia after membrane rupture is the '
+            'presentation'),
+        Related('algo-uterine-rupture', 'The other cause of abrupt, '
+            'unexplained bradycardia'),
+      ],
+    ),
+    'algo-ectopic': ContentMeta(
+      id: 'algo-ectopic',
+      title: 'Ectopic pregnancy algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'NICE / RCOG / ACOG',
+      sourceTitle: 'NICE NG126; Green-top Guideline 21; ACOG Practice '
+          'Bulletin 193',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ovarian-torsion', 'The other diagnosis behind sudden '
+            'unilateral pelvic pain'),
+        Related('usg', 'Transvaginal findings and the discriminatory zone'),
+        Related('dating', 'Where an intrauterine pregnancy is confirmed instead'),
+      ],
+    ),
+    'algo-ovarian-torsion': ContentMeta(
+      id: 'algo-ovarian-torsion',
+      title: 'Ovarian torsion algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / ACOG',
+      sourceTitle: 'Green-top Guideline 62; ACOG Committee Opinion 783',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ectopic', 'Exclude it first — the pregnancy test comes '
+            'before the scan'),
+        Related('usg', 'The scan findings, and why normal Doppler proves '
+            'nothing'),
+      ],
+    ),
   };
 }
 
@@ -299,6 +561,22 @@ Widget _cervix(BuildContext _) => StagingScreen(system: _system('figo-cervix-201
 Widget _endometrium(BuildContext _) =>
     StagingScreen(system: _system('figo-endometrium-2023'));
 Widget _ovary(BuildContext _) => StagingScreen(system: _system('figo-ovary-2014'));
+
+Widget _algoPph(BuildContext _) => _a('algo-pph');
+Widget _algoAbruption(BuildContext _) => _a('algo-abruption');
+Widget _algoRupture(BuildContext _) => _a('algo-uterine-rupture');
+Widget _algoEclampsia(BuildContext _) => _a('algo-eclampsia');
+Widget _algoSevereHtn(BuildContext _) => _a('algo-severe-htn');
+Widget _algoCollapse(BuildContext _) => _a('algo-maternal-collapse');
+Widget _algoAfe(BuildContext _) => _a('algo-afe');
+Widget _algoSepsis(BuildContext _) => _a('algo-sepsis');
+Widget _algoShoulder(BuildContext _) => _a('algo-shoulder-dystocia');
+Widget _algoCord(BuildContext _) => _a('algo-cord-prolapse');
+Widget _algoEctopic(BuildContext _) => _a('algo-ectopic');
+Widget _algoTorsion(BuildContext _) => _a('algo-ovarian-torsion');
+
+Widget _a(String id) =>
+    AlgorithmScreen(algorithm: AlgorithmRegistry.byId(id)!);
 
 StagingSystem _system(String id) =>
     kStagingSystems.firstWhere((s) => s.id == id);

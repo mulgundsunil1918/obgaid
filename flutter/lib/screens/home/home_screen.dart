@@ -6,6 +6,7 @@ import '../../theme/theme_provider.dart';
 import '../../data/tool_registry.dart';
 import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
+import '../hubs/emergency_hub.dart';
 import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
 import '../hubs/staging_scores_hub.dart';
@@ -34,6 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<_FeatureDef> _cards(BuildContext context) => [
+        _FeatureDef(
+          'Emergencies',
+          'PPH · eclampsia · collapse · sepsis · dystocia',
+          Icons.emergency_rounded,
+          const Color(0xFFB3261E),
+          () => _open(context, () => const EmergencyHub()),
+          highlight: true,
+        ),
         _FeatureDef(
           'Calculators & Tools',
           'Obstetric & gynae · bedside tools',
@@ -89,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.menu_book_rounded,
           const Color(0xFF283593),
           () => _open(context, () => const ReferenceHub()),
-          highlight: true,
         ),
         _FeatureDef(
           'Never Again',

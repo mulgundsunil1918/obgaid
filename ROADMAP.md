@@ -44,9 +44,9 @@ before any further content. That is Tier 0 below.
 | 0.2 | Flutter scaffold, theme, app shell mirroring PediAid | — | ✅ |
 | 0.3 | Tool registry, shared calculator widgets, global search | — | ✅ |
 | 0.4 | GitHub Pages preview pipeline (analyze + test gate the deploy) | — | ✅ |
-| 0.5 | **Content metadata model** — §62 record on every clinical item | Retrofitting 100+ items later is the expensive path | ⬜ |
-| 0.6 | **Interconnection graph** — `relatedIds` + a Related block on every screen | §68 calls this "the core of OBG-Aid" | ⬜ |
-| 0.7 | **Review-status gate** — §63 high-risk items marked and surfaced | PPH, eclampsia, MgSO₄ and drug doses already shipped **unreviewed** | ⬜ |
+| 0.5 | **Content metadata model** — §62 record on every clinical item | Retrofitting 100+ items later is the expensive path | ✅ |
+| 0.6 | **Interconnection graph** — `related` edges + a Related block on every screen | §68 calls this "the core of OBG-Aid" | ✅ |
+| 0.7 | **Review-status gate** — §63 high-risk items marked and surfaced | Enforced in CI; 14 items now queued for sign-off | ✅ |
 | 0.8 | Evidence-level tagging per §61 hierarchy | Makes "traceable to a source" machine-checkable | ⬜ |
 
 ## Tier 1 — Bedside essentials *(spec §64)*
@@ -75,21 +75,28 @@ before any further content. That is Tier 0 below.
 *Beyond §64 but already built:* USG parameters (CRL, Hadlock biometry, AFI/DVP)
 and the ultrasound scan guide §14 ✅ · GDM screening DIPSI/IADPSG §8 ✅
 
-### 1B · Emergency algorithms — 11 named in §64, **none built**
+### 1B · Emergency algorithms — **all 11 built, plus AFE**
+
+Each follows §52's ten-part structure, and opens on a red "do this now" block
+because in a real emergency nobody scrolls. Explicit *do-not* steps render as
+their own kind of step — fundal pressure in dystocia, fluid loading in
+eclampsia, oophorectomy on appearance in torsion — because in obstetrics the
+harmful action kills more reliably than the omitted one.
 
 | Algorithm | Spec § | Status |
 |---|---|---|
-| Postpartum haemorrhage | §20 | 🔨 *(bundle + uterotonics exist; algorithm does not)* |
-| Eclampsia | §20 | ⬜ |
-| Severe hypertension | §20 | ⬜ |
-| Maternal collapse | §20 | ⬜ |
-| Obstetric sepsis | §20 | ⬜ |
-| Shoulder dystocia | §20 | ⬜ |
-| Cord prolapse | §20 | ⬜ |
-| Uterine rupture | §20 | ⬜ |
-| Placental abruption | §20 | ⬜ |
-| Ectopic pregnancy | §19 | ⬜ |
-| Ovarian torsion | §43 | ⬜ |
+| Postpartum haemorrhage | §20 | ✅ |
+| Placental abruption | §20 | ✅ |
+| Uterine rupture | §20 | ✅ |
+| Eclampsia | §20 | ✅ |
+| Severe hypertension | §20 | ✅ |
+| Maternal collapse | §20 | ✅ |
+| Amniotic fluid embolism | §20 | ✅ *(in §20, beyond §64's eleven)* |
+| Obstetric sepsis | §20 | ✅ |
+| Shoulder dystocia | §20 | ✅ |
+| Cord prolapse | §20 | ✅ |
+| Ectopic pregnancy | §19 | ✅ |
+| Ovarian torsion | §43 | ✅ |
 
 ### 1C · High-value reference — 9 named in §64
 
@@ -192,6 +199,12 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. Items already shipped that
-fall under §63 — magnesium sulphate, PPH — are marked *unreviewed* above and
-need a signed-off review pass before store launch.
+Clinical author and reviewer: **Dr Sunil Mulgund**. Fourteen items now fall
+under §63 — the twelve emergency algorithms, magnesium sulphate and the PPH
+calculator, plus both statutes. All are marked *unreviewed*, carry a banner on
+the screen itself, and appear in the drawer's review queue. They need a
+signed-off pass before store launch.
+
+Author and reviewer are currently the same person, so the queue cannot clear on
+its own terms. Either a second clinician signs off, or self-review is recorded
+explicitly as the standard — that is a decision for launch, not for now.
