@@ -133,6 +133,10 @@ class ContentRegistry {
         Icons.science_outlined, _labRef),
     ContentLink('immunisation', 'Maternal immunisation',
         Icons.vaccines_outlined, _immunisation),
+    ContentLink('pathology', 'Pathology reference', Icons.article_outlined,
+        _tPathology),
+    ContentLink('imaging', 'Imaging reference', Icons.article_outlined,
+        _tImaging),
     // Specified, not yet built.
     ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
         null),
@@ -1296,6 +1300,46 @@ class ContentRegistry {
             'in pregnancy'),
       ],
     ),
+    'pathology': ContentMeta(
+      id: 'pathology',
+      title: 'Pathology reference',
+      category: 'Reference · Pathology',
+      sourceOrg: 'WHO / Bethesda / RCOG',
+      sourceTitle: 'WHO Classification of Tumours: Female Genital Tumours 5th '
+          'edition 2020; Bethesda System 3rd edition 2015; RCOG Green-top 67',
+      year: 2020,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('adnexal-mass', 'Risk stratification before the histology '
+            'exists'),
+        Related('figo-endometrium-2023', 'Molecular classification is now part '
+            'of the stage'),
+        Related('aub', 'When to sample the endometrium'),
+        Related('hyperplasia', 'Managing what the report says'),
+      ],
+    ),
+    'imaging': ContentMeta(
+      id: 'imaging',
+      title: 'Imaging reference',
+      category: 'Reference · Imaging',
+      sourceOrg: 'ACOG / RCOG / ACR',
+      sourceTitle: 'ACOG Committee Opinion 723 — Diagnostic Imaging During '
+          'Pregnancy and Lactation; Ray JG et al. JAMA 2016;316:952',
+      year: 2017,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('usg-guide', 'The obstetric scans in detail'),
+        Related('pcpndt-act', 'Form F applies to every prenatal scan'),
+        Related('maternal-medicine', 'Imaging a pregnant woman with suspected '
+            'pulmonary embolism'),
+      ],
+    ),
   };
 }
 
@@ -1350,6 +1394,8 @@ Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _cPopq(BuildContext _) => const PopQScreen();
 
+Widget _tPathology(BuildContext _) => _t('pathology');
+Widget _tImaging(BuildContext _) => _t('imaging');
 Widget _tInfertility(BuildContext _) => _t('infertility');
 Widget _tOhss(BuildContext _) => _t('ohss');
 Widget _tMatMed(BuildContext _) => _t('maternal-medicine');

@@ -8,6 +8,8 @@ import 'package:obgaid_app/data/drug_registry.dart';
 import 'package:obgaid_app/screens/formulary/drug_screen.dart';
 import 'package:obgaid_app/screens/reference/lab_reference_screen.dart';
 import 'package:obgaid_app/screens/reference/immunisation_screen.dart';
+import 'package:obgaid_app/data/trial_registry.dart';
+import 'package:obgaid_app/screens/academics/trial_screen.dart';
 import 'package:obgaid_app/screens/topics/topic_screen.dart';
 import 'package:obgaid_app/screens/algorithms/algorithm_screen.dart';
 import 'package:obgaid_app/screens/staging/staging_screen.dart';
@@ -63,6 +65,16 @@ void main() {
     for (final drug in DrugRegistry.all) {
       testWidgets(drug.id, (tester) async {
         await tester.pumpWidget(wrap(DrugScreen(drug: drug)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every trial renders', () {
+    for (final trial in TrialRegistry.all) {
+      testWidgets(trial.id, (tester) async {
+        await tester.pumpWidget(wrap(TrialScreen(trial: trial)));
         await tester.pump();
         expect(tester.takeException(), isNull);
       });

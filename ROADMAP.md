@@ -115,7 +115,7 @@ action block: these are read over hours, not seconds.
 | GDM | §8 | ✅ |
 | Rh-negative pregnancy | §23 | ✅ |
 
-**Tier 1 is complete.**
+**Tier 1 is complete. Tier 2 is complete.**
 
 ## Tier 2 — Depth *(spec §65)*
 
@@ -130,8 +130,9 @@ action block: these are read over hours, not seconds.
 | Contraception (WHO MEC · Antara · Chhaya) | §38 | ✅ |
 | Menopause · POI | §39 | ✅ |
 | Urogynaecology · obstetric fistula | §40 | ✅ |
-| Gynaecological pathology | §48 | ⬜ *(only Tier 2 module not started)* |
+| Gynaecological pathology | §48 | ✅ |
 | Ultrasound reference — full trimester-by-trimester | §14–16 | 🔨 *(guide + parameters done)* |
+| Imaging reference — CT/MRI in pregnancy, contrast, modality choice | §49 | ✅ |
 | Gynaecology calculators — Ferriman-Gallwey, HOMA-IR, RMI/IOTA/O-RADS, POP-Q, PALM-COEIN, PBAC | §31, §35, §40, §42 | ✅ |
 | Laboratory reference — trimester-specific ranges | §47 | ✅ |
 | Maternal immunisation — country/org/year/source on every entry | §50 | ✅ |
@@ -142,7 +143,7 @@ action block: these are read over hours, not seconds.
 |---|---|---|
 | Gynaecological oncology — FIGO staging × 5 | §41 | ✅ *(shipped ahead of tier)* |
 | Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ⬜ |
-| Landmark trials | §53 | ⬜ |
+| Landmark trials — full §53 record on each | §53 | 🔨 *(13 trials)* |
 | Complete guideline library | §54 | ⬜ |
 | Guideline change tracker | §55 | ⬜ |
 | Advanced fetal medicine | §25 | ⬜ |

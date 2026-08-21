@@ -6,6 +6,7 @@ import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
 import 'package:obgaid_app/data/drug_registry.dart';
 import 'package:obgaid_app/data/vaccines.dart';
+import 'package:obgaid_app/data/trial_registry.dart';
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -341,6 +342,40 @@ void main() {
     });
   });
 
+  group('§53 — landmark trial records', () {
+    test('every trial states a result and a takeaway', () {
+      for (final t in TrialRegistry.all) {
+        expect(t.results, isNotEmpty, reason: '${t.id} has no results');
+        expect(t.takeaway.trim(), isNotEmpty, reason: '${t.id}: takeaway');
+        expect(t.guidelineImpact.trim(), isNotEmpty,
+            reason: '${t.id}: guideline impact');
+      }
+    });
+
+    test('every trial names journal, year, setting and sample size', () {
+      for (final t in TrialRegistry.all) {
+        expect(t.journal.trim(), isNotEmpty, reason: '${t.id}: journal');
+        expect(t.year, greaterThan(1950), reason: '${t.id}: year');
+        expect(t.setting.trim(), isNotEmpty, reason: '${t.id}: setting');
+        expect(t.sampleSize.trim(), isNotEmpty, reason: '${t.id}: sample size');
+      }
+    });
+
+    test('every trial carries limitations', () {
+      // §53 asks for limitations alongside the result. A trial presented
+      // without them invites overreach.
+      for (final t in TrialRegistry.all) {
+        expect(t.limitations, isNotEmpty,
+            reason: '${t.id} lists no limitations');
+      }
+    });
+
+    test('trial ids and acronyms are unique', () {
+      final ids = TrialRegistry.all.map((t) => t.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'duplicate trial id');
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -358,6 +393,8 @@ void main() {
 }
 
 const _allMetaIds = [
+  'pathology',
+  'imaging',
   'infertility',
   'ohss',
   'maternal-medicine',
