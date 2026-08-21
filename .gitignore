@@ -1,0 +1,29 @@
+.DS_Store
+*.swp
+
+# Flutter / Dart
+flutter/.dart_tool/
+flutter/.flutter-plugins
+flutter/.flutter-plugins-dependencies
+flutter/build/
+flutter/.pub-cache/
+flutter/.pub/
+**/generated_plugin_registrant.dart
+
+# Android
+flutter/android/.gradle/
+flutter/android/local.properties
+flutter/android/key.properties
+*.jks
+*.keystore
+
+# iOS / macOS
+flutter/ios/Pods/
+flutter/ios/.symlinks/
+flutter/ios/Flutter/Flutter.framework
+flutter/ios/Flutter/Flutter.podspec
+flutter/ios/Flutter/ephemeral/
+**/xcuserdata/
+
+# Build output
+_site/

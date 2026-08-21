@@ -1,0 +1,69 @@
+name: Build & deploy preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: flutter
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: flutter
+        run: flutter analyze
+
+      - name: Test
+        working-directory: flutter
+        run: flutter test
+
+      # base-href must match the Pages path the app is served from:
+      # https://<user>.github.io/obgaid/app/
+      - name: Build web
+        working-directory: flutter
+        run: flutter build web --release --base-href /obgaid/app/
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r landing/* _site/
+          mkdir -p _site/app
+          cp -r flutter/build/web/* _site/app/
+          # Pages serves 404.html for unknown paths; send them to the landing page.
+          cp landing/index.html _site/404.html
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

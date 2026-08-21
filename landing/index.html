@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ObgAid — Obstetrics &amp; Gynaecology Reference</title>
+<meta name="description" content="ObgAid — an India-first obstetrics and gynaecology clinical reference. Build preview and roadmap.">
+<style>
+  :root{
+    --teal:#0D5C55; --teal-deep:#063D38; --teal-light:#1A8078;
+    --clay:#C2603C; --ink:#0F1513; --muted:#5B6B68;
+    --bg:#F6F8F7; --card:#FFFFFF; --line:#E2E8E6;
+    --good:#1B7F5C; --watch:#B8860B; --pending:#94A5A1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0F1513; --card:#17201E; --line:#25322F; --ink:#E8EFED; --muted:#93A5A1; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;
+    padding:64px 0 56px;position:relative;overflow:hidden}
+  header::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 78% 18%,rgba(255,255,255,.16),transparent 46%)}
+  header .wrap{position:relative;z-index:1}
+  .brand{font-size:46px;font-weight:800;letter-spacing:-.5px;margin:0}
+  .tag{font-size:17px;opacity:.92;margin:10px 0 0;max-width:620px}
+  .pills{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.18);border-radius:20px;padding:5px 13px;
+    font-size:11.5px;font-weight:700;letter-spacing:.4px}
+  .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;background:#fff;color:var(--teal);text-decoration:none;
+    padding:13px 24px;border-radius:10px;font-weight:700;font-size:14.5px;
+    transition:transform .15s ease, box-shadow .15s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+  .btn.ghost{background:rgba(255,255,255,.14);color:#fff;
+    border:1px solid rgba(255,255,255,.45)}
+  section{padding:52px 0}
+  h2{font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--teal);margin:0 0 8px}
+  h3{font-size:25px;font-weight:800;margin:0 0 16px;letter-spacing:-.3px}
+  p.lede{font-size:16px;color:var(--muted);max-width:720px;margin:0 0 28px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h4{margin:0 0 6px;font-size:15px;font-weight:700}
+  .card p{margin:0;font-size:13.5px;color:var(--muted)}
+  .badge{display:inline-block;background:rgba(255,153,51,.18);color:#9A5000;
+    font-size:10px;font-weight:800;letter-spacing:.3px;padding:2px 7px;
+    border-radius:5px;margin-left:7px;vertical-align:2px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  th{text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.7px;
+    text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);
+    white-space:nowrap}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .st{font-weight:700;font-size:11.5px;white-space:nowrap}
+  .st.done{color:var(--good)} .st.wip{color:var(--watch)} .st.todo{color:var(--pending)}
+  .phase{font-weight:800;color:var(--teal);white-space:nowrap}
+  .idbox{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:4px 18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  .idrow{display:flex;justify-content:space-between;gap:18px;padding:11px 0;
+    border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .idrow:last-child{border-bottom:none}
+  .idrow span:first-child{color:var(--muted);font-family:inherit}
+  .idrow span:last-child{font-weight:600}
+  footer{background:var(--teal-deep);color:rgba(255,255,255,.75);padding:34px 0;font-size:13px}
+  footer a{color:#fff}
+  .note{background:rgba(194,96,60,.09);border-left:3px solid var(--clay);
+    border-radius:0 10px 10px 0;padding:14px 18px;font-size:13.5px;margin-top:22px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1 class="brand">ObgAid</h1>
+    <p class="tag">An India-first obstetrics &amp; gynaecology clinical reference.
+      Sibling to <strong>PediAid</strong> — together, the whole continuum from
+      booking visit to newborn.</p>
+    <div class="pills">
+      <span class="pill">FOGSI</span><span class="pill">ICOG</span>
+      <span class="pill">RCOG</span><span class="pill">ACOG</span>
+      <span class="pill">NICE</span><span class="pill">WHO</span>
+      <span class="pill">FIGO</span>
+    </div>
+    <div class="cta">
+      <a class="btn" href="app/">Open the live build →</a>
+      <a class="btn ghost" href="https://github.com/mulgundsunil1918/obgaid">Source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Why this exists</h2>
+    <h3>Nobody has built the India-first OBG reference</h3>
+    <p class="lede">The app stores carry a dozen single-purpose "OB wheel"
+      calculators and one protocol app. None of them carry the material that
+      Indian practice actually turns on. That gap is the whole thesis — the
+      same one PediAid walked into.</p>
+    <div class="grid">
+      <div class="card"><h4>DIPSI<span class="badge">India</span></h4>
+        <p>India screens for GDM with a single-step 75 g load given irrespective
+        of the last meal. Every imported app has only IADPSG.</p></div>
+      <div class="card"><h4>PCPNDT Act<span class="badge">India</span></h4>
+        <p>Form F, Section 4(3) indications, and the penalties. The commonest
+        reason a sonologist is prosecuted is clerical, not clinical.</p></div>
+      <div class="card"><h4>MTP Act 2021<span class="badge">India</span></h4>
+        <p>The 20/24-week limits, the seven Rule 3B categories, Medical Board
+        composition. Legally critical and constantly confused.</p></div>
+      <div class="card"><h4>Anemia Mukt Bharat<span class="badge">India</span></h4>
+        <p>Ganzoni iron deficit and IV iron pathways. Anaemia is the dominant
+        Indian obstetric problem.</p></div>
+      <div class="card"><h4>Pritchard MgSO<sub>4</sub><span class="badge">India</span></h4>
+        <p>The regimen that works without an infusion pump — which is where
+        most Indian eclampsia is actually treated.</p></div>
+      <div class="card"><h4>Current editions</h4>
+        <p>WHO Labour Care Guide has replaced the partograph. FIGO endometrial
+        staging changed in 2023. FDA pregnancy letters are gone. Half the
+        competing apps are wrong on these.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Live now</h2>
+    <h3>What you can click through today</h3>
+    <p class="lede">Everything below is built and working in the preview build.
+      Open it on a phone — the layout is the one that ships.</p>
+    <div class="grid">
+      <div class="card"><h4>Dating &amp; gestational age</h4>
+        <p>EDD by LMP with cycle correction, by scan, and by IVF transfer.
+        Current GA, term category, and ACOG Committee Opinion 700 redating
+        cross-check.</p></div>
+      <div class="card"><h4>Ultrasound parameters</h4>
+        <p>GA from CRL (Robinson–Fleming) and from Hadlock biometry with a
+        four-parameter composite. AFI and deepest vertical pocket.</p></div>
+      <div class="card"><h4>Ultrasound guide</h4>
+        <p>Eight scans — viability, dating/NT, anomaly, growth, Doppler,
+        cervical length, fetal echo, biophysical profile. When, what is
+        measured, what you are looking for.</p></div>
+      <div class="card"><h4>Estimated fetal weight</h4>
+        <p>Hadlock 1–4, selected automatically from the biometry entered, with
+        a growth centile from the Hadlock 1991 reference and SGA/LGA flags.</p></div>
+      <div class="card"><h4>Bishop score</h4>
+        <p>Induction favourability with the ripening threshold and what to do
+        at each band.</p></div>
+      <div class="card"><h4>GDM screening<span class="badge">India</span></h4>
+        <p>DIPSI and IADPSG side by side, with the translation between them
+        made explicit. Glycaemic targets once diagnosed.</p></div>
+      <div class="card"><h4>Magnesium sulphate<span class="badge">India</span></h4>
+        <p>Pritchard, Zuspan and Sibai. Pre-dose safety checks that actually
+        gate the answer, the toxicity ladder, and the antidote.</p></div>
+      <div class="card"><h4>Postpartum haemorrhage</h4>
+        <p>Shock index, proportion of blood volume lost, the E-MOTIVE 2023
+        bundle, and the uterotonic ladder with its contraindications.</p></div>
+      <div class="card"><h4>FIGO staging × 5</h4>
+        <p>Cervical 2018, endometrial 2023, ovarian 2014, vulvar 2021, and GTN
+        with the WHO prognostic score — each with a note on what changed.</p></div>
+      <div class="card"><h4>MTP &amp; PCPNDT<span class="badge">India</span></h4>
+        <p>Both statutes, summarised for clinical reference with a
+        verify-the-current-text banner. Quoted, never paraphrased into
+        advice.</p></div>
+    </div>
+    <div class="note"><strong>Frontend first.</strong> Nothing here talks to a
+      server yet — every calculation runs on the device. Auth, bookmarks,
+      Never Again, Academics and CME arrive in Phase 6, on PediAid's existing
+      backend rather than a second one.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Roadmap</h2>
+    <h3>Every phase, and where the build actually is</h3>
+    <p class="lede">Status is updated with each push, so this table and the
+      build above never drift apart.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="phase">0.1</td><td>Identity lock — <code>com.obgaid.obgaid</code> on both platforms</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.2</td><td>Flutter scaffold, package rename</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.3</td><td>Theme — M3 light/dark, ObgAid teal identity</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.4</td><td>App shell — home, module grid, quick access, drawer, search</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.5</td><td>Tool registry + shared calculator widgets</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.6</td><td>GitHub Pages preview pipeline</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">0.7</td><td>Repo hygiene — README, CLAUDE.md, licence</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.1</td><td>Dating &amp; GA — LMP, scan, IVF, ACOG 700 redating</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.2</td><td>Fetal biometry — Hadlock EFW with centile</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.3</td><td>Labour — Bishop score</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.4</td><td>Hypertensive disorders — MgSO<sub>4</sub> regimens</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.5</td><td>GDM — DIPSI and IADPSG</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.6</td><td>PPH — shock index, E-MOTIVE</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.8</td><td>Ultrasound — parameters and scan guide</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">3.1</td><td>Tumour staging — five FIGO systems</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">4.1</td><td>Indian statute — MTP Act, PCPNDT Act</td><td class="st done">✅ Done</td></tr>
+          <tr><td class="phase">1.7</td><td>Anaemia — WHO/AMB grading, Ganzoni, IV iron</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">2</td><td>Obstetric advanced — Doppler, isoimmunisation, preterm, screening, twins, medical disorders, MEOWS</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">3</td><td>Gynaecology — adnexal mass, structural, endocrine, infertility, contraception, menopause, infection</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">4</td><td>Reference library — FOGSI, RCOG, ACOG, NICE, WHO, AMB, LaQshya, emergency algorithms</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">5</td><td>Formulary — pregnancy and lactation safety (PLLR)</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">6</td><td>Platform — shared backend, SSO, Never Again, Academics, CME, push</td><td class="st todo">Pending</td></tr>
+          <tr><td class="phase">7</td><td>Launch — icon, listings, data safety, signing, submission</td><td class="st todo">Pending</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Identity</h2>
+    <h3>Locked, and locked identically</h3>
+    <p class="lede">PediAid shipped <code>com.pediaid.pediaid</code> on Android
+      and <code>app.pediaid.pediaid</code> on iOS. That mismatch is permanent.
+      Flutter's own scaffold reproduced exactly the same divergence here — it
+      was caught and corrected before any upload exists.</p>
+    <div class="idbox">
+      <div class="idrow"><span>Android applicationId</span><span>com.obgaid.obgaid</span></div>
+      <div class="idrow"><span>iOS bundle identifier</span><span>com.obgaid.obgaid</span></div>
+      <div class="idrow"><span>Flutter package</span><span>obgaid_app</span></div>
+      <div class="idrow"><span>Store name (29/30)</span><span>ObgAid-Obstetrics&amp;Gynaecology</span></div>
+      <div class="idrow"><span>Category</span><span>Medical · 18+ · Free</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong style="color:#fff">ObgAid</strong> — clinical decision support for
+    qualified healthcare professionals. Every calculation and threshold must be
+    verified against current guidelines and the patient in front of you before
+    any treatment decision.
+    <br><br>
+    Content authored by Dr Sunil Mulgund ·
+    <a href="https://github.com/mulgundsunil1918/obgaid">github.com/mulgundsunil1918/obgaid</a>
+  </div>
+</footer>
+
+</body>
+</html>
