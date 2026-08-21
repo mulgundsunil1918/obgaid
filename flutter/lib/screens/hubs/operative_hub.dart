@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
+import '../../data/topic_registry.dart';
 import '../../widgets/hub_widgets.dart';
+import '../topics/topic_screen.dart';
 
 class OperativeHub extends StatelessWidget {
   const OperativeHub({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const HubScaffold(
+    final procedures = TopicRegistry.byGroup[TopicGroup.procedures] ?? [];
+    return HubScaffold(
       title: 'Operative',
-      subtitle: 'Obstetric & gynaecological procedures',
-      intro: 'Procedure references, peri-operative protocols and surgical '
-          'checklists — the things you want on a phone in a scrub room.',
+      subtitle: '${procedures.length} procedures',
+      intro: 'Procedure references structured to the specification: '
+          'indications, contraindications, preparation, equipment, steps, '
+          'complications, aftercare, and what to document.',
       children: [
-        ComingSoon(phase: 'Phase 2 – 3', items: [
-          'Caesarean section — classification (Robson), technique notes, '
-              'complications',
-          'Instrumental delivery — forceps and vacuum: prerequisites, '
-              'contraindications, sequential-instrument rules',
-          'Perineal repair — OASIS classification and repair technique',
-          'B-Lynch and other compression sutures',
-          'Stepwise uterine devascularisation and internal iliac ligation',
-          'Peripartum hysterectomy',
-          'Manual removal of placenta; morbidly adherent placenta planning',
-          'Cervical cerclage — McDonald, Shirodkar, indications and timing',
+        ...procedures.map((t) => HubTile(
+              title: t.name,
+              subtitle: t.subtitle,
+              icon: Icons.medical_services_outlined,
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
+            )),
+        const SizedBox(height: 18),
+        const ComingSoon(phase: 'Tier 3 continued', items: [
+          'Caesarean section — technique, the impacted head, accreta spectrum',
+          'Assisted vaginal delivery — forceps and vacuum',
+          'Manual removal of placenta and uterine exploration',
+          'Perineal and OASIS repair',
+          'B-Lynch and stepwise devascularisation',
+          'Cervical cerclage',
+          'Colposcopy and cervical excision',
+          'Hysteroscopy — distension media and fluid deficit thresholds',
+          'Diagnostic laparoscopy and entry techniques',
           'ERAS for gynaecological surgery',
-          'WHO surgical safety checklist, adapted for obstetrics',
-          'Laparoscopic entry techniques and complication management',
-          'Hysteroscopy — distension media, fluid deficit thresholds',
         ]),
       ],
     );

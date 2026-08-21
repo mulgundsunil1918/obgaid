@@ -7,6 +7,8 @@ import 'package:obgaid_app/data/topic_registry.dart';
 import 'package:obgaid_app/data/drug_registry.dart';
 import 'package:obgaid_app/data/vaccines.dart';
 import 'package:obgaid_app/data/trial_registry.dart';
+import 'package:obgaid_app/data/safety_cases.dart';
+import 'package:obgaid_app/data/guidelines.dart';
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -376,6 +378,77 @@ void main() {
     });
   });
 
+  group('§56 — Never Again safety cases', () {
+    test('every case has a timeline, learning points and sources', () {
+      for (final c in kSafetyCases) {
+        expect(c.timeline, isNotEmpty, reason: '${c.id} has no timeline');
+        expect(c.whatWentWrong, isNotEmpty, reason: '${c.id}: what went wrong');
+        expect(c.warningSigns, isNotEmpty, reason: '${c.id}: warning signs');
+        expect(c.correctResponse, isNotEmpty,
+            reason: '${c.id}: correct response');
+        expect(c.prevention, isNotEmpty, reason: '${c.id}: prevention');
+        expect(c.learningPoints, isNotEmpty,
+            reason: '${c.id}: learning points');
+        expect(c.sources, isNotEmpty, reason: '${c.id} cites no source');
+      }
+    });
+
+    test('no case carries anything resembling an identifier', () {
+      // §56 is absolute: never include identifiable patient information.
+      // Names, hospital numbers and dates of birth are the shapes to catch.
+      final identifierish = RegExp(
+          r'(hospital number|MRN|NHS number|date of birth|\bDOB\b)',
+          caseSensitive: false);
+      for (final c in kSafetyCases) {
+        final blob = [
+          c.presentation,
+          c.criticalEvent,
+          ...c.timeline.map((t) => t.$2),
+          ...c.whatWentWrong,
+          ...c.contributingFactors,
+        ].join(' ');
+        expect(identifierish.hasMatch(blob), isFalse,
+            reason: '${c.id} contains something identifier-shaped');
+      }
+    });
+
+    test('case ids are unique', () {
+      final ids = kSafetyCases.map((c) => c.id).toList();
+      expect(ids.toSet().length, ids.length, reason: 'duplicate case id');
+    });
+  });
+
+  group('§54/§55 — guidelines and change tracker', () {
+    test('every guideline names organisation, date and source', () {
+      for (final g in kGuidelines) {
+        expect(g.organisation.trim(), isNotEmpty, reason: '${g.id}: org');
+        expect(g.published.trim(), isNotEmpty, reason: '${g.id}: published');
+        expect(g.source.trim(), isNotEmpty, reason: '${g.id}: source');
+        expect(g.keyRecommendations, isNotEmpty,
+            reason: '${g.id}: recommendations');
+      }
+    });
+
+    test('every change record states previous, now, what and why', () {
+      for (final g in kGuidelines) {
+        for (final c in g.changes) {
+          expect(c.previous.trim(), isNotEmpty, reason: '${g.id}: previous');
+          expect(c.now.trim(), isNotEmpty, reason: '${g.id}: now');
+          expect(c.whatChanged.trim(), isNotEmpty,
+              reason: '${g.id}: what changed');
+          expect(c.whyItMatters.trim(), isNotEmpty,
+              reason: '${g.id}: why it matters');
+          expect(c.source.trim(), isNotEmpty, reason: '${g.id}: change source');
+        }
+      }
+    });
+
+    test('the change tracker is not empty', () {
+      final total = kGuidelines.fold<int>(0, (n, g) => n + g.changes.length);
+      expect(total, greaterThan(0));
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -393,6 +466,9 @@ void main() {
 }
 
 const _allMetaIds = [
+  'proc-balloon',
+  'proc-iucd',
+  'proc-endometrial-biopsy',
   'pathology',
   'imaging',
   'infertility',

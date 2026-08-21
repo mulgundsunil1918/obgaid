@@ -137,6 +137,12 @@ class ContentRegistry {
         _tPathology),
     ContentLink('imaging', 'Imaging reference', Icons.article_outlined,
         _tImaging),
+    ContentLink('proc-balloon', 'Intrauterine balloon tamponade',
+        Icons.medical_services_outlined, _tBalloon),
+    ContentLink('proc-iucd', 'IUCD insertion & removal',
+        Icons.medical_services_outlined, _tIucd),
+    ContentLink('proc-endometrial-biopsy', 'Endometrial sampling',
+        Icons.medical_services_outlined, _tBiopsy),
     // Specified, not yet built.
     ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
         null),
@@ -1340,6 +1346,62 @@ class ContentRegistry {
             'pulmonary embolism'),
       ],
     ),
+    // ── Tier 3 procedures (spec §57) ─────────────────────────────────────
+    'proc-balloon': ContentMeta(
+      id: 'proc-balloon',
+      title: 'Intrauterine balloon tamponade',
+      category: 'Procedures · Obstetrics',
+      sourceOrg: 'RCOG / FOGSI',
+      sourceTitle: 'Green-top Guideline 52; condom catheter tamponade '
+          'literature from South Asian practice',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'The algorithm this sits inside'),
+        Related('pph', 'Quantifying the loss that brought you here'),
+        Related('formulary', 'Uterotonics that should already be running'),
+      ],
+    ),
+    'proc-iucd': ContentMeta(
+      id: 'proc-iucd',
+      title: 'IUCD insertion and removal',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'FSRH / WHO / MoHFW Government of India',
+      sourceTitle: 'FSRH Intrauterine Contraception guideline; WHO MEC 5th '
+          'edition; MoHFW Postpartum IUCD reference manual',
+      year: 2023,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('contraception', 'Method choice and eligibility'),
+        Related('aub', 'The levonorgestrel system as treatment, not just '
+            'contraception'),
+      ],
+    ),
+    'proc-endometrial-biopsy': ContentMeta(
+      id: 'proc-endometrial-biopsy',
+      title: 'Endometrial sampling',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'RCOG / BSGE / NICE',
+      sourceTitle: 'Green-top Guideline 67; NICE NG88; Clark TJ et al. BJOG '
+          '2002;109:313',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('aub', 'When sampling is indicated'),
+        Related('pathology', 'Interpreting what comes back'),
+        Related('hyperplasia', 'Acting on atypical hyperplasia'),
+      ],
+    ),
   };
 }
 
@@ -1394,6 +1456,9 @@ Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _cPopq(BuildContext _) => const PopQScreen();
 
+Widget _tBalloon(BuildContext _) => _t('proc-balloon');
+Widget _tIucd(BuildContext _) => _t('proc-iucd');
+Widget _tBiopsy(BuildContext _) => _t('proc-endometrial-biopsy');
 Widget _tPathology(BuildContext _) => _t('pathology');
 Widget _tImaging(BuildContext _) => _t('imaging');
 Widget _tInfertility(BuildContext _) => _t('infertility');

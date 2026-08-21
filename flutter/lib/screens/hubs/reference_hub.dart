@@ -6,6 +6,8 @@ import '../../data/topic_registry.dart';
 import '../topics/topic_screen.dart';
 import '../reference/lab_reference_screen.dart';
 import '../reference/immunisation_screen.dart';
+import '../reference/guidelines_screen.dart';
+import '../reference/change_tracker_screen.dart';
 
 class ReferenceHub extends StatelessWidget {
   const ReferenceHub({super.key});
@@ -78,6 +80,21 @@ class ReferenceHub extends StatelessWidget {
           badge: 'India',
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const ImmunisationScreen())),
+        ),
+        HubTile(
+          title: 'What changed',
+          subtitle: 'Guideline change tracker — old position, new position, '
+              'and why it matters',
+          icon: Icons.swap_horiz_rounded,
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const ChangeTrackerScreen())),
+        ),
+        HubTile(
+          title: 'Guidelines',
+          subtitle: 'WHO · FIGO · NICE · ESHRE · FOGSI · Government of India',
+          icon: Icons.menu_book_outlined,
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const GuidelinesScreen())),
         ),
         const SizedBox(height: 18),
         const ComingSoon(phase: 'Phase 4', items: [

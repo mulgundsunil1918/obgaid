@@ -144,11 +144,11 @@ action block: these are read over hours, not seconds.
 | Gynaecological oncology — FIGO staging × 5 | §41 | ✅ *(shipped ahead of tier)* |
 | Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ⬜ |
 | Landmark trials — full §53 record on each | §53 | 🔨 *(13 trials)* |
-| Complete guideline library | §54 | ⬜ |
-| Guideline change tracker | §55 | ⬜ |
+| Guideline library — §54 record on each | §54 | 🔨 *(8 guidelines)* |
+| Guideline change tracker — previous, now, what changed, why | §55 | ✅ |
 | Advanced fetal medicine | §25 | ⬜ |
-| Surgical procedures reference | §57 | ⬜ |
-| Never Again — clinical safety cases | §56 | ⬜ |
+| Procedures reference — §57 field structure | §57 | 🔨 *(3 procedures)* |
+| Never Again — anonymised safety cases | §56 | 🔨 *(4 cases; submission needs the backend)* |
 | Academic / examination content | §59 | ⬜ |
 | Patient counselling library | §58 | ⬜ |
 | Quick reference tables | §60 | ⬜ |
@@ -207,7 +207,7 @@ Non-negotiable, and enforced in code once Tier 0.5–0.8 land:
   cancer and chemotherapy, fertility dosing, IVF protocols, fetal therapy,
   vaccination schedules.
 
-Clinical author and reviewer: **Dr Sunil Mulgund**. 33 items now fall
+Clinical author and reviewer: **Dr Sunil Mulgund**. 34 items now fall
 under §63 — the twelve emergency algorithms, magnesium sulphate, the PPH
 calculator, both statutes, the three carrying drug or anticoagulation dosing
 (insulin, IV iron, VTE prophylaxis), and six reference topics carrying dosing

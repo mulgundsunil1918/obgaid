@@ -7,6 +7,7 @@ import 'topics/womens_health_topics.dart';
 import 'topics/fertility_topics.dart';
 import 'topics/medicine_topics.dart';
 import 'topics/pathology_imaging_topics.dart';
+import 'topics/procedure_topics.dart';
 
 enum TopicGroup {
   monitoring,
@@ -17,7 +18,8 @@ enum TopicGroup {
   womensHealth,
   reproductive,
   medicine,
-  diagnostics
+  diagnostics,
+  procedures
 }
 
 extension TopicGroupInfo on TopicGroup {
@@ -31,6 +33,7 @@ extension TopicGroupInfo on TopicGroup {
         TopicGroup.reproductive => 'Reproductive medicine',
         TopicGroup.medicine => 'Maternal & fetal medicine',
         TopicGroup.diagnostics => 'Pathology & imaging',
+        TopicGroup.procedures => 'Procedures',
       };
 }
 
@@ -54,6 +57,11 @@ class TopicRegistry {
     TopicGroup.reproductive: [kInfertilityTopic, kOhssTopic],
     TopicGroup.medicine: [kMaternalMedicineTopic, kFetalMedicineTopic],
     TopicGroup.diagnostics: [kPathologyTopic, kImagingTopic],
+    TopicGroup.procedures: [
+      kBalloonTamponadeTopic,
+      kIucdTopic,
+      kEndometrialBiopsyTopic,
+    ],
   };
 
   static List<ClinicalTopic> get all =>
