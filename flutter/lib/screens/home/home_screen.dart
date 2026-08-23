@@ -9,6 +9,7 @@ import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
 import '../hubs/topics_hub.dart';
 import '../counselling/counselling_screen.dart';
+import '../anatomy/anatomy_screen.dart';
 import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
 import '../hubs/staging_scores_hub.dart';
@@ -93,6 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.medical_services_rounded,
           const Color(0xFF6D4C41),
           () => _open(context, () => const OperativeHub()),
+        ),
+        _FeatureDef(
+          'Surgical Anatomy',
+          'Before you scrub — where it gets injured',
+          Icons.account_tree_rounded,
+          const Color(0xFF6D4C41),
+          () => _open(context, () => const AnatomyHub()),
         ),
         _FeatureDef(
           'Drug Formulary',

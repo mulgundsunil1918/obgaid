@@ -118,7 +118,7 @@ action block: these are read over hours, not seconds.
 **Tier 1 is complete. Tier 2 is complete. Every Tier 3 module now exists.**
 
 Several modules are deliberately partial and marked so in the table — the
-formulary at 14 drugs, trials at 13, procedures at 3. They are breadth-limited,
+formulary at 26 drugs, trials at 13, procedures at 3. They are breadth-limited,
 not shape-limited: the model, screen and governance record are done, so
 extending them is data entry rather than design.
 
@@ -195,6 +195,12 @@ extending them is data entry rather than design.
 | L.6 | Store submission | ⬜ |
 
 ---
+
+## Beyond the specification
+
+| Module | Why it exists |
+|---|---|
+| **Surgical anatomy** — before you scrub | Not in the spec. A two-minute lookup at the sink, organised by where a structure actually gets injured rather than by descriptive anatomy: ureter, uterine artery, internal iliac, abdominal wall and ports, pelvic avascular spaces, pelvic nerves, perineum and anal sphincter. A test fails the build if any danger point lacks the manoeuvre that prevents it. |
 
 ## Content governance *(spec §61–63)*
 

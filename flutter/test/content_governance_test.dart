@@ -12,6 +12,7 @@ import 'package:obgaid_app/data/guidelines.dart';
 import 'package:obgaid_app/data/counselling.dart';
 import 'package:obgaid_app/data/quick_tables.dart';
 import 'package:obgaid_app/data/exam_topics.dart';
+import 'package:obgaid_app/data/anatomy.dart';
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -536,6 +537,72 @@ void main() {
 
     test('topic ids are unique', () {
       final ids = kExamTopics.map((t) => t.id).toList();
+      expect(ids.toSet().length, ids.length);
+    });
+  });
+
+  group('surgical anatomy', () {
+    test('every entry leads with dangers and says how to avoid them', () {
+      for (final a in kAnatomy) {
+        expect(a.dangers, isNotEmpty,
+            reason: '${a.id} lists no danger points — that is the reason the '
+                'screen exists');
+        for (final d in a.dangers) {
+          expect(d.site.trim(), isNotEmpty, reason: '${a.id}: danger site');
+          expect(d.risk.trim(), isNotEmpty, reason: '${a.id}: danger risk');
+          expect(d.avoid.trim(), isNotEmpty,
+              reason: '${a.id}: a danger without an avoidance is just a '
+                  'warning');
+        }
+      }
+    });
+
+    test('every entry says how to identify the structure', () {
+      for (final a in kAnatomy) {
+        expect(a.identification, isNotEmpty,
+            reason: '${a.id}: no identification guidance');
+        expect(a.course, isNotEmpty, reason: '${a.id}: no course');
+        expect(a.headline.trim(), isNotEmpty, reason: '${a.id}: no headline');
+        expect(a.sources, isNotEmpty, reason: '${a.id}: no source');
+      }
+    });
+
+    test('entry ids are unique', () {
+      final ids = kAnatomy.map((a) => a.id).toList();
+      expect(ids.toSet().length, ids.length);
+    });
+  });
+
+  group('formulary', () {
+    test('every drug has doses, safety and sources', () {
+      for (final d in DrugRegistry.all) {
+        expect(d.doses, isNotEmpty, reason: '${d.id}: no doses');
+        expect(d.pregnancy.summary.trim(), isNotEmpty,
+            reason: '${d.id}: no pregnancy summary');
+        expect(d.lactation.summary.trim(), isNotEmpty,
+            reason: '${d.id}: no lactation summary');
+        expect(d.references, isNotEmpty, reason: '${d.id}: no references');
+        expect(d.contraindications, isNotEmpty,
+            reason: '${d.id}: no contraindications listed');
+      }
+    });
+
+    test('no drug carries an FDA pregnancy letter category', () {
+      // §46 is explicit: avoid simplistic labels. The letter categories were
+      // withdrawn in 2015 and must not reappear.
+      final letters = RegExp(
+          r'\b(pregnancy )?categor(y|ies) ?[ABCDX]\b',
+          caseSensitive: false);
+      for (final d in DrugRegistry.all) {
+        final blob = '${d.pregnancy.summary} ${d.pregnancy.points.join(' ')} '
+            '${d.lactation.summary}';
+        expect(letters.hasMatch(blob), isFalse,
+            reason: '${d.id} uses an FDA letter category');
+      }
+    });
+
+    test('drug ids are unique', () {
+      final ids = DrugRegistry.all.map((d) => d.id).toList();
       expect(ids.toSet().length, ids.length);
     });
   });

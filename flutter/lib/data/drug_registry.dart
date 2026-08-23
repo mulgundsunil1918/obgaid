@@ -2,14 +2,27 @@ import '../models/drug.dart';
 import 'drugs/uterotonics.dart';
 import 'drugs/antihypertensives.dart';
 import 'drugs/prophylaxis_fertility.dart';
+import 'drugs/supportive_drugs.dart';
+import 'drugs/hormonal_drugs.dart';
 
-enum DrugGroup { uterotonic, antihypertensive, prophylaxis, fertility }
+enum DrugGroup {
+  uterotonic,
+  antihypertensive,
+  prophylaxis,
+  antimicrobial,
+  supportive,
+  hormonal,
+  fertility
+}
 
 extension DrugGroupInfo on DrugGroup {
   String get label => switch (this) {
         DrugGroup.uterotonic => 'Uterotonics & haemostatics',
         DrugGroup.antihypertensive => 'Antihypertensives & anticonvulsants',
         DrugGroup.prophylaxis => 'Prophylaxis & fetal therapy',
+        DrugGroup.antimicrobial => 'Antimicrobials',
+        DrugGroup.supportive => 'Analgesia & antiemetics',
+        DrugGroup.hormonal => 'Hormonal therapy',
         DrugGroup.fertility => 'Fertility',
       };
 }
@@ -34,9 +47,27 @@ class DrugRegistry {
       kEnoxaparin,
       kBetamethasone,
     ],
+    DrugGroup.antimicrobial: [
+      kErythromycin,
+      kCefazolin,
+      kBenzylpenicillin,
+    ],
+    DrugGroup.supportive: [
+      kParacetamol,
+      kNsaids,
+      kDoxylaminePyridoxine,
+      kOndansetron,
+    ],
+    DrugGroup.hormonal: [
+      kCoc,
+      kLngIus,
+      kMht,
+      kGnrhAgonist,
+    ],
     DrugGroup.fertility: [
       kLetrozole,
       kClomiphene,
+      kGonadotrophins,
     ],
   };
 

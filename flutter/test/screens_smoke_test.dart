@@ -13,6 +13,8 @@ import 'package:obgaid_app/screens/academics/trial_screen.dart';
 import 'package:obgaid_app/data/safety_cases.dart';
 import 'package:obgaid_app/data/counselling.dart';
 import 'package:obgaid_app/data/exam_topics.dart';
+import 'package:obgaid_app/data/anatomy.dart';
+import 'package:obgaid_app/screens/anatomy/anatomy_screen.dart';
 import 'package:obgaid_app/screens/academics/exam_screen.dart';
 import 'package:obgaid_app/screens/reference/quick_tables_screen.dart';
 import 'package:obgaid_app/screens/counselling/counselling_screen.dart';
@@ -84,6 +86,26 @@ void main() {
     for (final trial in TrialRegistry.all) {
       testWidgets(trial.id, (tester) async {
         await tester.pumpWidget(wrap(TrialScreen(trial: trial)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every anatomy entry renders', () {
+    for (final a in kAnatomy) {
+      testWidgets(a.id, (tester) async {
+        await tester.pumpWidget(wrap(AnatomyScreen(entry: a)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
+  group('every drug renders', () {
+    for (final d in DrugRegistry.all) {
+      testWidgets(d.id, (tester) async {
+        await tester.pumpWidget(wrap(DrugScreen(drug: d)));
         await tester.pump();
         expect(tester.takeException(), isNull);
       });
