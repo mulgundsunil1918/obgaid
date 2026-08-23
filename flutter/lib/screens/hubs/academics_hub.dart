@@ -3,6 +3,8 @@ import '../../data/trial_registry.dart';
 import '../../models/trial.dart';
 import '../../widgets/hub_widgets.dart';
 import '../academics/trial_screen.dart';
+import '../academics/exam_screen.dart';
+import '../../data/exam_topics.dart';
 
 class AcademicsHub extends StatelessWidget {
   const AcademicsHub({super.key});
@@ -18,6 +20,15 @@ class AcademicsHub extends StatelessWidget {
           'effect as well as its relative one, and its limitations alongside '
           'its result.',
       children: [
+        HubTile(
+          title: 'Examination',
+          subtitle: '${kExamTopics.length} topics — high-yield points, viva '
+              'questions, and where marks are lost',
+          icon: Icons.school_rounded,
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const ExamHub())),
+        ),
+        const SizedBox(height: 14),
         for (final entry in TrialRegistry.byCategory.entries) ...[
           Padding(
             padding: const EdgeInsets.only(top: 6, bottom: 10),
@@ -42,8 +53,8 @@ class AcademicsHub extends StatelessWidget {
               'CRASH-2, SOLO/PARP maintenance trials',
           'Guideline change tracker — what changed this year, and why it '
               'matters',
-          'Postgraduate examination content by topic',
-          'Structured viva and OSCE preparation',
+          'More examination topics — basic sciences, embryology, statistics',
+          'Structured OSCE stations',
         ]),
       ],
     );

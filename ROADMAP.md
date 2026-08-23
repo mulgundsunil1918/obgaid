@@ -115,7 +115,12 @@ action block: these are read over hours, not seconds.
 | GDM | §8 | ✅ |
 | Rh-negative pregnancy | §23 | ✅ |
 
-**Tier 1 is complete. Tier 2 is complete.**
+**Tier 1 is complete. Tier 2 is complete. Every Tier 3 module now exists.**
+
+Several modules are deliberately partial and marked so in the table — the
+formulary at 14 drugs, trials at 13, procedures at 3. They are breadth-limited,
+not shape-limited: the model, screen and governance record are done, so
+extending them is data entry rather than design.
 
 ## Tier 2 — Depth *(spec §65)*
 
@@ -149,9 +154,9 @@ action block: these are read over hours, not seconds.
 | Advanced fetal medicine | §25 | ⬜ |
 | Procedures reference — §57 field structure | §57 | 🔨 *(3 procedures)* |
 | Never Again — anonymised safety cases | §56 | 🔨 *(4 cases; submission needs the backend)* |
-| Academic / examination content | §59 | ⬜ *(not started)* |
+| Academic / examination content — high-yield, viva, traps, links | §59 | ✅ |
 | Patient counselling — clinician checklists with actual wording | §58 | 🔨 *(5 guides)* |
-| Quick reference tables | §60 | ⬜ *(not started)* |
+| Quick reference tables — 11 searchable tables | §60 | ✅ |
 
 ## India-specific content *(not a spec tier — ObgAid's differentiator)*
 

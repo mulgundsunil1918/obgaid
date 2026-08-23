@@ -12,6 +12,9 @@ import 'package:obgaid_app/data/trial_registry.dart';
 import 'package:obgaid_app/screens/academics/trial_screen.dart';
 import 'package:obgaid_app/data/safety_cases.dart';
 import 'package:obgaid_app/data/counselling.dart';
+import 'package:obgaid_app/data/exam_topics.dart';
+import 'package:obgaid_app/screens/academics/exam_screen.dart';
+import 'package:obgaid_app/screens/reference/quick_tables_screen.dart';
 import 'package:obgaid_app/screens/counselling/counselling_screen.dart';
 import 'package:obgaid_app/screens/safety/safety_case_screen.dart';
 import 'package:obgaid_app/screens/reference/guidelines_screen.dart';
@@ -87,6 +90,16 @@ void main() {
     }
   });
 
+  group('every exam topic renders', () {
+    for (final t in kExamTopics) {
+      testWidgets(t.id, (tester) async {
+        await tester.pumpWidget(wrap(ExamScreen(topic: t)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
+  });
+
   group('every counselling guide renders', () {
     for (final g in kCounsellingGuides) {
       testWidgets(g.id, (tester) async {
@@ -115,6 +128,11 @@ void main() {
     });
     testWidgets('change tracker', (tester) async {
       await tester.pumpWidget(wrap(const ChangeTrackerScreen()));
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+    testWidgets('quick reference tables', (tester) async {
+      await tester.pumpWidget(wrap(const QuickTablesScreen()));
       await tester.pump();
       expect(tester.takeException(), isNull);
     });

@@ -79,6 +79,10 @@ class ContentRegistry {
         Icons.biotech_outlined, _endometrium),
     ContentLink('figo-ovary-2014', 'Ovarian carcinoma — FIGO 2014',
         Icons.biotech_outlined, _ovary),
+    ContentLink('figo-vulva-2021', 'Vulvar carcinoma — FIGO 2021',
+        Icons.biotech_outlined, _vulva),
+    ContentLink('figo-who-gtn', 'Gestational trophoblastic neoplasia',
+        Icons.biotech_outlined, _gtn),
     ContentLink('algo-pph', 'PPH algorithm', Icons.emergency_outlined, _algoPph),
     ContentLink('algo-abruption', 'Placental abruption',
         Icons.emergency_outlined, _algoAbruption),
@@ -1419,6 +1423,8 @@ Widget _cervix(BuildContext _) => StagingScreen(system: _system('figo-cervix-201
 Widget _endometrium(BuildContext _) =>
     StagingScreen(system: _system('figo-endometrium-2023'));
 Widget _ovary(BuildContext _) => StagingScreen(system: _system('figo-ovary-2014'));
+Widget _vulva(BuildContext _) => StagingScreen(system: _system('figo-vulva-2021'));
+Widget _gtn(BuildContext _) => StagingScreen(system: _system('figo-who-gtn'));
 
 Widget _algoPph(BuildContext _) => _a('algo-pph');
 Widget _algoAbruption(BuildContext _) => _a('algo-abruption');

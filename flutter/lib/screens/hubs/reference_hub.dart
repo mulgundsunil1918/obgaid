@@ -8,6 +8,7 @@ import '../reference/lab_reference_screen.dart';
 import '../reference/immunisation_screen.dart';
 import '../reference/guidelines_screen.dart';
 import '../reference/change_tracker_screen.dart';
+import '../reference/quick_tables_screen.dart';
 
 class ReferenceHub extends StatelessWidget {
   const ReferenceHub({super.key});
@@ -80,6 +81,14 @@ class ReferenceHub extends StatelessWidget {
           badge: 'India',
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const ImmunisationScreen())),
+        ),
+        HubTile(
+          title: 'Quick reference',
+          subtitle: 'Searchable tables — milestones, Doppler, blood products, '
+              'antibiotics, labour stages',
+          icon: Icons.table_chart_outlined,
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const QuickTablesScreen())),
         ),
         HubTile(
           title: 'What changed',

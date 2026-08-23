@@ -10,6 +10,8 @@ import 'package:obgaid_app/data/trial_registry.dart';
 import 'package:obgaid_app/data/safety_cases.dart';
 import 'package:obgaid_app/data/guidelines.dart';
 import 'package:obgaid_app/data/counselling.dart';
+import 'package:obgaid_app/data/quick_tables.dart';
+import 'package:obgaid_app/data/exam_topics.dart';
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -473,6 +475,67 @@ void main() {
 
     test('guide ids are unique', () {
       final ids = kCounsellingGuides.map((g) => g.id).toList();
+      expect(ids.toSet().length, ids.length);
+    });
+  });
+
+  group('§60 — quick reference tables', () {
+    test('every row has the same number of cells as the header', () {
+      for (final t in kQuickTables) {
+        expect(t.columns, isNotEmpty, reason: '${t.id}: no columns');
+        for (var i = 0; i < t.rows.length; i++) {
+          expect(t.rows[i].length, t.columns.length,
+              reason: '${t.id} row $i has ${t.rows[i].length} cells but the '
+                  'header has ${t.columns.length}');
+        }
+      }
+    });
+
+    test('every table cites a source and has rows', () {
+      for (final t in kQuickTables) {
+        expect(t.rows, isNotEmpty, reason: '${t.id} is empty');
+        expect(t.sources, isNotEmpty, reason: '${t.id} cites no source');
+      }
+    });
+
+    test('search finds a known value', () {
+      final hits = kQuickTables.where((t) => t.matches('fibrinogen')).toList();
+      expect(hits, isNotEmpty,
+          reason: 'search should reach into table cells, not just titles');
+    });
+
+    test('table ids are unique', () {
+      final ids = kQuickTables.map((t) => t.id).toList();
+      expect(ids.toSet().length, ids.length);
+    });
+  });
+
+  group('§59 — examination content', () {
+    test('every topic has high-yield points and viva questions', () {
+      for (final t in kExamTopics) {
+        expect(t.highYield, isNotEmpty, reason: '${t.id}: no high-yield');
+        expect(t.vivaQuestions, isNotEmpty, reason: '${t.id}: no viva');
+      }
+    });
+
+    test('every in-app reference resolves to real content', () {
+      // The exam module is an index over existing content. A dangling pointer
+      // makes it a dead end.
+      final dangling = <String>[];
+      for (final t in kExamTopics) {
+        for (final id in t.readsInApp) {
+          final content = ContentRegistry.resolve(id);
+          final trial = TrialRegistry.byId(id);
+          if (content == null && trial == null) dangling.add('${t.id} → $id');
+        }
+      }
+      expect(dangling, isEmpty,
+          reason: 'Exam topics pointing at content that does not exist: '
+              '${dangling.join(', ')}');
+    });
+
+    test('topic ids are unique', () {
+      final ids = kExamTopics.map((t) => t.id).toList();
       expect(ids.toSet().length, ids.length);
     });
   });
