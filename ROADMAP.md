@@ -118,7 +118,8 @@ action block: these are read over hours, not seconds.
 **Tier 1 is complete. Tier 2 is complete. Every Tier 3 module now exists.**
 
 Several modules are deliberately partial and marked so in the table — the
-formulary at 26 drugs, trials at 25, procedures at 3. They are breadth-limited,
+formulary at 33 drugs, trials at 25, procedures at 13, counselling at 12 of
+§58's 24 topics. They are breadth-limited,
 not shape-limited: the model, screen and governance record are done, so
 extending them is data entry rather than design.
 
@@ -152,10 +153,10 @@ extending them is data entry rather than design.
 | Guideline library — §54 record on each | §54 | 🔨 *(8 guidelines)* |
 | Guideline change tracker — previous, now, what changed, why | §55 | ✅ |
 | Advanced fetal medicine | §25 | ⬜ |
-| Procedures reference — §57 field structure | §57 | 🔨 *(3 procedures)* |
+| Procedures reference — §57 field structure | §57 | ✅ *(13 procedures)* |
 | Never Again — anonymised safety cases | §56 | 🔨 *(4 cases; submission needs the backend)* |
 | Academic / examination content — high-yield, viva, traps, links | §59 | ✅ |
-| Patient counselling — clinician checklists with actual wording | §58 | 🔨 *(5 guides)* |
+| Patient counselling — clinician checklists with actual wording | §58 | 🔨 *(12 of 24 topics)* |
 | Quick reference tables — 11 searchable tables | §60 | ✅ |
 
 ## India-specific content *(not a spec tier — ObgAid's differentiator)*

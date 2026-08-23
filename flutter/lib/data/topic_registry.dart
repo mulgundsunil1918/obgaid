@@ -8,6 +8,8 @@ import 'topics/fertility_topics.dart';
 import 'topics/medicine_topics.dart';
 import 'topics/pathology_imaging_topics.dart';
 import 'topics/procedure_topics.dart';
+import 'topics/procedure_topics_obs.dart';
+import 'topics/procedure_topics_gyn.dart';
 
 enum TopicGroup {
   monitoring,
@@ -58,9 +60,19 @@ class TopicRegistry {
     TopicGroup.medicine: [kMaternalMedicineTopic, kFetalMedicineTopic],
     TopicGroup.diagnostics: [kPathologyTopic, kImagingTopic],
     TopicGroup.procedures: [
+      kVaginalExamTopic,
+      kAvdTopic,
+      kPerinealRepairTopic,
+      kManualRemovalTopic,
       kBalloonTamponadeTopic,
-      kIucdTopic,
+      kPapSmearTopic,
+      kColposcopyTopic,
       kEndometrialBiopsyTopic,
+      kHysteroscopyTopic,
+      kLaparoscopyTopic,
+      kSurgicalMiscarriageTopic,
+      kIucdTopic,
+      kImplantTopic,
     ],
   };
 

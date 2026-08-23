@@ -1,6 +1,10 @@
 import '../models/counselling.dart';
+import 'counselling_2.dart';
 
-const kCounsellingGuides = <CounsellingGuide>[
+List<CounsellingGuide> get kCounsellingGuides =>
+    [..._core, ...kCounsellingGuides2];
+
+const _core = <CounsellingGuide>[
   CounsellingGuide(
     id: 'couns-warning-signs',
     title: 'Antenatal warning signs',

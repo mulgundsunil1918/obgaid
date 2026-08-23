@@ -695,6 +695,16 @@ void main() {
 }
 
 const _allMetaIds = [
+  'proc-avd',
+  'proc-perineal-repair',
+  'proc-manual-removal',
+  'proc-vaginal-exam',
+  'proc-pap',
+  'proc-colposcopy',
+  'proc-hysteroscopy',
+  'proc-laparoscopy',
+  'proc-surgical-miscarriage',
+  'proc-implant',
   'proc-balloon',
   'proc-iucd',
   'proc-endometrial-biopsy',

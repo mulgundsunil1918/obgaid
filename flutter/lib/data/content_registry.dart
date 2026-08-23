@@ -32,6 +32,8 @@ import 'drug_registry.dart';
 import '../screens/formulary/drug_screen.dart';
 import '../screens/reference/lab_reference_screen.dart';
 import '../screens/reference/immunisation_screen.dart';
+import '../screens/anatomy/anatomy_screen.dart';
+import 'anatomy.dart';
 import '../screens/algorithms/algorithm_screen.dart';
 import 'algorithm_registry.dart';
 
@@ -147,6 +149,41 @@ class ContentRegistry {
         Icons.medical_services_outlined, _tIucd),
     ContentLink('proc-endometrial-biopsy', 'Endometrial sampling',
         Icons.medical_services_outlined, _tBiopsy),
+    ContentLink('proc-avd', 'Assisted vaginal delivery',
+        Icons.medical_services_outlined, _pAvd),
+    ContentLink('proc-perineal-repair', 'Perineal and OASIS repair',
+        Icons.medical_services_outlined, _pPerineal),
+    ContentLink('proc-manual-removal', 'Manual removal of placenta',
+        Icons.medical_services_outlined, _pManual),
+    ContentLink('proc-vaginal-exam', 'Vaginal examination in labour',
+        Icons.medical_services_outlined, _pVe),
+    ContentLink('proc-pap', 'Cervical screening',
+        Icons.medical_services_outlined, _pPap),
+    ContentLink('proc-colposcopy', 'Colposcopy',
+        Icons.medical_services_outlined, _pColpo),
+    ContentLink('proc-hysteroscopy', 'Hysteroscopy',
+        Icons.medical_services_outlined, _pHystero),
+    ContentLink('proc-laparoscopy', 'Diagnostic laparoscopy',
+        Icons.medical_services_outlined, _pLap),
+    ContentLink('proc-surgical-miscarriage', 'Surgical management of '
+        'miscarriage', Icons.medical_services_outlined, _pMiscarriage),
+    ContentLink('proc-implant', 'Contraceptive implant',
+        Icons.medical_services_outlined, _pImplant),
+    // Surgical anatomy — the pre-scrub lookup.
+    ContentLink('anat-ureter', 'Ureter', Icons.account_tree_outlined,
+        _anUreter),
+    ContentLink('anat-uterine-artery', 'Uterine artery',
+        Icons.account_tree_outlined, _anUterine),
+    ContentLink('anat-internal-iliac', 'Internal iliac artery',
+        Icons.account_tree_outlined, _anIliac),
+    ContentLink('anat-abdominal-wall', 'Abdominal wall and port placement',
+        Icons.account_tree_outlined, _anWall),
+    ContentLink('anat-spaces', 'Pelvic avascular spaces',
+        Icons.account_tree_outlined, _anSpaces),
+    ContentLink('anat-nerves', 'Pelvic nerves', Icons.account_tree_outlined,
+        _anNerves),
+    ContentLink('anat-perineum', 'Perineum and anal sphincter',
+        Icons.account_tree_outlined, _anPerineum),
     // Specified, not yet built.
     ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
         null),
@@ -1406,6 +1443,180 @@ class ContentRegistry {
         Related('hyperplasia', 'Acting on atypical hyperplasia'),
       ],
     ),
+    // ── Expanded procedures (spec §57) ───────────────────────────────────
+    'proc-avd': ContentMeta(
+      id: 'proc-avd',
+      title: 'Assisted vaginal delivery',
+      category: 'Procedures · Obstetrics',
+      sourceOrg: 'RCOG / ACOG / FOGSI',
+      sourceTitle: 'Green-top Guideline 26; ACOG Practice Bulletin 219; FOGSI GCPR — Operative Vaginal Delivery',
+      year: 2020,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-shoulder-dystocia', 'The complication that follows a difficult instrumental delivery'),
+        Related('proc-perineal-repair', 'Examine rectally after every assisted birth'),
+        Related('algo-pph', 'Anticipate haemorrhage rather than react to it'),
+      ],
+    ),
+    'proc-perineal-repair': ContentMeta(
+      id: 'proc-perineal-repair',
+      title: 'Perineal and OASIS repair',
+      category: 'Procedures · Obstetrics',
+      sourceOrg: 'RCOG / NICE / FOGSI',
+      sourceTitle: 'Green-top Guideline 29; NICE NG235; FOGSI GCPR — Perineal Trauma',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('anat-perineum', 'The anatomy that decides the classification'),
+        Related('proc-avd', 'The delivery that most often causes it'),
+      ],
+    ),
+    'proc-manual-removal': ContentMeta(
+      id: 'proc-manual-removal',
+      title: 'Manual removal of placenta',
+      category: 'Procedures · Obstetrics',
+      sourceOrg: 'RCOG / FOGSI / MoHFW',
+      sourceTitle: 'Green-top Guidelines 52 and 27a; FOGSI GCPR — Third Stage of Labour; MoHFW Dakshata',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'Haemorrhage is the reason and the risk'),
+        Related('proc-balloon', 'If bleeding continues after removal'),
+      ],
+    ),
+    'proc-vaginal-exam': ContentMeta(
+      id: 'proc-vaginal-exam',
+      title: 'Vaginal examination in labour',
+      category: 'Procedures · Obstetrics',
+      sourceOrg: 'NICE / WHO / MoHFW',
+      sourceTitle: 'NICE NG235 and NG207; WHO Labour Care Guide 2020; MoHFW Dakshata and LaQshya',
+      year: 2020,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('algo-cord-prolapse', 'The complication of amniotomy with a high head'),
+        Related('bishop', 'Scoring what you have just felt'),
+        Related('induction', 'Where amniotomy fits in the induction pathway'),
+      ],
+    ),
+    'proc-pap': ContentMeta(
+      id: 'proc-pap',
+      title: 'Cervical screening',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'WHO / MoHFW / National Cancer Grid',
+      sourceTitle: 'WHO screening and treatment guideline 2021; MoHFW Operational Framework for Management of Common Cancers',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('pathology', 'Interpreting the report that comes back'),
+        Related('proc-colposcopy', 'Where an abnormal result leads'),
+        Related('figo-cervix-2018', 'Staging if invasion is found'),
+      ],
+    ),
+    'proc-colposcopy': ContentMeta(
+      id: 'proc-colposcopy',
+      title: 'Colposcopy',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'IFCPC / BSCCP / WHO',
+      sourceTitle: 'IFCPC 2011 terminology; WHO 2021 screening guideline; Kyrgiou M et al. BMJ 2016;354:i3633',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('proc-pap', 'The screening result that brought her here'),
+        Related('pathology', 'Cervical cytology and histology terminology'),
+        Related('preterm-labour', 'Excision depth raises preterm birth risk'),
+      ],
+    ),
+    'proc-hysteroscopy': ContentMeta(
+      id: 'proc-hysteroscopy',
+      title: 'Hysteroscopy',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'RCOG / BSGE / AAGL',
+      sourceTitle: 'Green-top Guideline 59; AAGL practice guidelines on distending media; NICE NG88',
+      year: 2011,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('aub', 'The commonest indication'),
+        Related('proc-endometrial-biopsy', 'The less invasive first step'),
+        Related('fibroids', 'Types 0 to 2 come out this way'),
+      ],
+    ),
+    'proc-laparoscopy': ContentMeta(
+      id: 'proc-laparoscopy',
+      title: 'Diagnostic laparoscopy',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'RCOG / BSGE / FOGSI',
+      sourceTitle: 'Green-top Guideline 49 — Preventing Entry-Related Laparoscopic Injuries; FOGSI GCPR — Gynaecological Endoscopy',
+      year: 2008,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('anat-abdominal-wall', 'Where the entry injuries happen'),
+        Related('algo-ovarian-torsion', 'A common emergency indication'),
+        Related('endometriosis', 'Diagnosis and treatment at the same sitting'),
+      ],
+    ),
+    'proc-surgical-miscarriage': ContentMeta(
+      id: 'proc-surgical-miscarriage',
+      title: 'Surgical management of miscarriage',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'NICE / RCOG / WHO / MoHFW',
+      sourceTitle: 'NICE NG126; RCOG Green-top 25; WHO safe abortion handbook; MoHFW Comprehensive Abortion Care training manual',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ectopic', 'Consider it if no products are seen'),
+        Related('mtp-act', 'The legal frame in India'),
+        Related('rh-negative', 'Anti-D is required'),
+      ],
+    ),
+    'proc-implant': ContentMeta(
+      id: 'proc-implant',
+      title: 'Contraceptive implant',
+      category: 'Procedures · Gynaecology',
+      sourceOrg: 'FSRH / WHO / MoHFW',
+      sourceTitle: 'FSRH Progestogen-only Implant guideline; WHO MEC 5th edition; MoHFW Family Planning reference manuals',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('contraception', 'Method choice and eligibility'),
+        Related('proc-iucd', 'The other long-acting reversible option'),
+      ],
+    ),
   };
 }
 
@@ -1462,6 +1673,26 @@ Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _cPopq(BuildContext _) => const PopQScreen();
 
+Widget _an(String id) =>
+    AnatomyScreen(entry: kAnatomy.firstWhere((a) => a.id == id));
+Widget _anUreter(BuildContext _) => _an('anat-ureter');
+Widget _anUterine(BuildContext _) => _an('anat-uterine-artery');
+Widget _anIliac(BuildContext _) => _an('anat-internal-iliac');
+Widget _anWall(BuildContext _) => _an('anat-abdominal-wall');
+Widget _anSpaces(BuildContext _) => _an('anat-spaces');
+Widget _anNerves(BuildContext _) => _an('anat-nerves');
+Widget _anPerineum(BuildContext _) => _an('anat-perineum');
+
+Widget _pAvd(BuildContext _) => _t('proc-avd');
+Widget _pPerineal(BuildContext _) => _t('proc-perineal-repair');
+Widget _pManual(BuildContext _) => _t('proc-manual-removal');
+Widget _pVe(BuildContext _) => _t('proc-vaginal-exam');
+Widget _pPap(BuildContext _) => _t('proc-pap');
+Widget _pColpo(BuildContext _) => _t('proc-colposcopy');
+Widget _pHystero(BuildContext _) => _t('proc-hysteroscopy');
+Widget _pLap(BuildContext _) => _t('proc-laparoscopy');
+Widget _pMiscarriage(BuildContext _) => _t('proc-surgical-miscarriage');
+Widget _pImplant(BuildContext _) => _t('proc-implant');
 Widget _tBalloon(BuildContext _) => _t('proc-balloon');
 Widget _tIucd(BuildContext _) => _t('proc-iucd');
 Widget _tBiopsy(BuildContext _) => _t('proc-endometrial-biopsy');

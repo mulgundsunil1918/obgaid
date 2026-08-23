@@ -4,6 +4,7 @@ import 'drugs/antihypertensives.dart';
 import 'drugs/prophylaxis_fertility.dart';
 import 'drugs/supportive_drugs.dart';
 import 'drugs/hormonal_drugs.dart';
+import 'drugs/specialist_drugs.dart';
 
 enum DrugGroup {
   uterotonic,
@@ -12,7 +13,9 @@ enum DrugGroup {
   antimicrobial,
   supportive,
   hormonal,
-  fertility
+  fertility,
+  immunoglobulin,
+  oncology
 }
 
 extension DrugGroupInfo on DrugGroup {
@@ -23,6 +26,8 @@ extension DrugGroupInfo on DrugGroup {
         DrugGroup.antimicrobial => 'Antimicrobials',
         DrugGroup.supportive => 'Analgesia & antiemetics',
         DrugGroup.hormonal => 'Hormonal therapy',
+        DrugGroup.immunoglobulin => 'Immunoglobulin & haematinics',
+        DrugGroup.oncology => 'Oncology',
         DrugGroup.fertility => 'Fertility',
       };
 }
@@ -51,6 +56,8 @@ class DrugRegistry {
       kErythromycin,
       kCefazolin,
       kBenzylpenicillin,
+      kMetronidazole,
+      kFluconazole,
     ],
     DrugGroup.supportive: [
       kParacetamol,
@@ -68,6 +75,15 @@ class DrugRegistry {
       kLetrozole,
       kClomiphene,
       kGonadotrophins,
+    ],
+    DrugGroup.immunoglobulin: [
+      kAntiD,
+      kIvIron,
+    ],
+    DrugGroup.oncology: [
+      kTamoxifen,
+      kCarboplatinPaclitaxel,
+      kOlaparib,
     ],
   };
 
