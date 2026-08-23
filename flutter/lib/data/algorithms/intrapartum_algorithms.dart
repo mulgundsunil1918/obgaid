@@ -130,6 +130,8 @@ const kShoulderDystociaAlgorithm = Algorithm(
     'PROMPT (PRactical Obstetric Multi-Professional Training) course materials.',
     'Draycott TJ et al. Improving neonatal outcome through practical shoulder '
         'dystocia training. Obstet Gynecol 2008;112:14–20.',
+    'FOGSI GCPR — Intrapartum Care; MoHFW Dakshata intrapartum skills '
+        'programme.',
   ],
 );
 
@@ -249,6 +251,7 @@ const kCordProlapseAlgorithm = Algorithm(
   sources: [
     'RCOG Green-top Guideline 50 — Umbilical Cord Prolapse.',
     'PROMPT course materials — cord prolapse drill.',
-    'FOGSI GCPR — Intrapartum Care.',
+    'FOGSI GCPR — Intrapartum Care; MoHFW Dakshata and LaQshya labour room '
+        'standards.',
   ],
 );

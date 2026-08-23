@@ -309,5 +309,8 @@ const kFetalMedicineTopic = ClinicalTopic(
         'severe twin-to-twin transfusion syndrome. N Engl J Med '
         '2004;351:136–144.',
     'Mari G et al. N Engl J Med 2000;342:9–14.',
+    'FOGSI-ICOG GCPR — Fetal Medicine and Prenatal Diagnosis; MTP '
+        '(Amendment) Act 2021, Government of India — Medical Board approval '
+        'beyond 24 weeks.',
   ],
 );

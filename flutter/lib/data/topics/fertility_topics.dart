@@ -296,5 +296,8 @@ const kOhssTopic = ClinicalTopic(
     'NICE CG156 — Fertility problems.',
     'ESHRE guideline on ovarian stimulation for IVF/ICSI.',
     'HFEA guidance on multiple births and single embryo transfer.',
+    'Indian Society for Assisted Reproduction (ISAR) practice '
+        'recommendations; Assisted Reproductive Technology (Regulation) Act '
+        '2021, Government of India.',
   ],
 );

@@ -71,6 +71,7 @@ const kErythromycin = Drug(
     'Kenyon SL et al. ORACLE I trial. Lancet 2001;357:979–988.',
     'RCOG Green-top Guideline 73 — PPROM.',
     'NICE NG25 — Preterm labour and birth.',
+    'FOGSI GCPR — Preterm Birth; National Formulary of India.',
   ],
 );
 
@@ -154,6 +155,7 @@ const kCefazolin = Drug(
         'and Delivery.',
     'WHO recommendations for prevention and treatment of maternal peripartum '
         'infections.',
+    'FOGSI GCPR — Caesarean Section; National Formulary of India.',
   ],
 );
 
@@ -225,7 +227,9 @@ const kBenzylpenicillin = Drug(
   references: [
     'RCOG Green-top Guideline 36 — Group B Streptococcal Disease.',
     'WHO guideline on syphilis screening and treatment for pregnant women.',
-    'NACO National Guidelines on STI management (India).',
+    'NACO National Guidelines on Prevention, Management and Control of '
+        'Sexually Transmitted Infections, Government of India.',
+    'MoHFW — National Strategic Plan for elimination of congenital syphilis.',
   ],
 );
 
@@ -310,6 +314,7 @@ const kOndansetron = Drug(
     'RCOG Green-top Guideline 69 — The Management of Nausea and Vomiting of '
         'Pregnancy and Hyperemesis Gravidarum.',
     'ACOG Practice Bulletin 189 — Nausea and Vomiting of Pregnancy.',
+    'FOGSI GCPR — Nausea and Vomiting of Pregnancy.',
   ],
 );
 
@@ -386,6 +391,8 @@ const kDoxylaminePyridoxine = Drug(
   references: [
     'ACOG Practice Bulletin 189 — Nausea and Vomiting of Pregnancy.',
     'RCOG Green-top Guideline 69.',
+    'FOGSI GCPR — Nausea and Vomiting of Pregnancy; National Formulary of '
+        'India.',
   ],
 );
 
@@ -462,6 +469,7 @@ const kParacetamol = Drug(
   references: [
     'RCOG and MHRA guidance on analgesia in pregnancy.',
     'ACOG Practice Advisory on acetaminophen use in pregnancy.',
+    'National Formulary of India; Indian Pharmacopoeia.',
   ],
 );
 

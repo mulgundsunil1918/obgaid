@@ -134,6 +134,8 @@ const kMaternalCollapseAlgorithm = Algorithm(
     'RCOG Green-top Guideline 56 — Maternal Collapse in Pregnancy and the '
         'Puerperium.',
     'MBRRACE-UK — Saving Lives, Improving Mothers’ Care.',
+    'FOGSI GCPR — Maternal Collapse and Resuscitation; MoHFW Maternal Death '
+        'Surveillance and Response.',
   ],
 );
 

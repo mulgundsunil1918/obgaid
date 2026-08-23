@@ -1,6 +1,8 @@
 import '../models/trial.dart';
 import 'trials/obstetric_trials.dart';
 import 'trials/other_trials.dart';
+import 'trials/obstetric_trials_2.dart';
+import 'trials/gynae_trials.dart';
 
 class TrialRegistry {
   static const List<Trial> all = [
@@ -17,6 +19,18 @@ class TrialRegistry {
     kLegro,
     kSenatTtts,
     kLandonVbac,
+    kChips,
+    kHypitat,
+    kHapo,
+    kTermProm,
+    kLigginsHowie,
+    kActoMgso4,
+    kGrit,
+    kChampion,
+    kWhi,
+    kLacc,
+    kSolo1,
+    kPortec3,
   ];
 
   static Map<TrialCategory, List<Trial>> get byCategory {

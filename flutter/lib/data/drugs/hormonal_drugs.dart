@@ -84,6 +84,9 @@ const kCoc = Drug(
   references: [
     'WHO Medical Eligibility Criteria for Contraceptive Use, 5th edition.',
     'FSRH Clinical Guideline — Combined Hormonal Contraception.',
+    'Ministry of Health & Family Welfare, Government of India — Family '
+        'Planning reference manual for combined oral contraceptives.',
+    'FOGSI GCPR — Contraception.',
   ],
 );
 
@@ -165,6 +168,8 @@ const kLngIus = Drug(
     'FSRH Clinical Guideline — Intrauterine Contraception.',
     'NICE NG88 — Heavy menstrual bleeding.',
     'RCOG Green-top Guideline 67 — Endometrial Hyperplasia.',
+    'MoHFW Government of India — Postpartum IUCD reference manual.',
+    'FOGSI GCPR — Abnormal Uterine Bleeding.',
   ],
 );
 
@@ -259,6 +264,8 @@ const kMht = Drug(
     'British Menopause Society consensus statements.',
     'NAMS 2022 Hormone Therapy Position Statement.',
     'ESHRE guideline on premature ovarian insufficiency.',
+    'Indian Menopause Society — clinical practice recommendations on '
+        'menopausal hormone therapy.',
   ],
 );
 
@@ -328,6 +335,7 @@ const kGnrhAgonist = Drug(
     'ESHRE Endometriosis Guideline 2022.',
     'NICE NG73 — Endometriosis.',
     'RCOG / BSGE guidance on fibroid management.',
+    'FOGSI GCPR — Endometriosis; FOGSI GCPR — Management of Fibroids.',
   ],
 );
 
@@ -409,5 +417,8 @@ const kGonadotrophins = Drug(
     'ESHRE guideline on ovarian stimulation for IVF/ICSI.',
     'NICE CG156 — Fertility problems.',
     'RCOG Green-top Guideline 5 — OHSS.',
+    'Indian Society for Assisted Reproduction (ISAR) practice '
+        'recommendations; Assisted Reproductive Technology (Regulation) Act '
+        '2021, Government of India.',
   ],
 );

@@ -288,6 +288,7 @@ const kOvarianTorsionAlgorithm = Algorithm(
     'RCOG Green-top Guideline 62 — Management of Suspected Ovarian Masses in '
         'Premenopausal Women.',
     'ACOG Committee Opinion 783 — Adnexal Torsion in Adolescents.',
+    'FOGSI GCPR — Gynaecological Emergencies.',
     'ESHRE / ESGE guidance on management of adnexal torsion.',
     'Huang C et al. Adnexal torsion: diagnosis and conservative management. '
         'Best Pract Res Clin Obstet Gynaecol.',
@@ -403,6 +404,8 @@ const kAfeAlgorithm = Algorithm(
     'SMFM Clinical Guideline 9 — Amniotic fluid embolism: diagnosis and '
         'management. Am J Obstet Gynecol 2016;215:B16–B24.',
     'UK Obstetric Surveillance System (UKOSS) amniotic fluid embolism study.',
+    'FOGSI GCPR — Maternal Collapse; MoHFW Maternal Death Surveillance and '
+        'Response.',
     'MBRRACE-UK — Saving Lives, Improving Mothers’ Care.',
   ],
 );

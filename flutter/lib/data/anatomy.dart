@@ -90,6 +90,8 @@ const kAnatomy = <AnatomyEntry>[
       'RCOG Consent Advice and guidance on urinary tract injury at '
           'gynaecological surgery.',
       'Hurd WW et al. Pelvic anatomy for the gynaecological surgeon.',
+      'FOGSI GCPR — Prevention and Management of Urinary Tract Injury at '
+          'Gynaecological Surgery.',
     ],
   ),
   AnatomyEntry(
@@ -163,6 +165,7 @@ const kAnatomy = <AnatomyEntry>[
       'RCOG Green-top Guideline 52 — surgical management of PPH.',
       'AbdRabbo SA. Stepwise uterine devascularisation. Am J Obstet Gynecol '
           '1994.',
+      'FOGSI GCPR — Postpartum Haemorrhage: surgical management.',
     ],
   ),
   AnatomyEntry(
@@ -241,7 +244,9 @@ const kAnatomy = <AnatomyEntry>[
     sources: [
       'Standring S. Gray\'s Anatomy, 42nd edition.',
       'RCOG Green-top Guideline 52.',
-      'FOGSI GCPR — surgical management of postpartum haemorrhage.',
+      'FOGSI GCPR — surgical management of postpartum haemorrhage; MoHFW '
+          'guidance on internal iliac artery ligation at first referral '
+          'units.',
     ],
   ),
   AnatomyEntry(
@@ -328,6 +333,7 @@ const kAnatomy = <AnatomyEntry>[
           'Laparoscopic Injuries.',
       'Standring S. Gray\'s Anatomy, 42nd edition.',
       'NICE NG192 — Caesarean birth: surgical technique.',
+      'FOGSI GCPR — Caesarean Section and laparoscopic entry.',
     ],
   ),
   AnatomyEntry(
@@ -404,6 +410,7 @@ const kAnatomy = <AnatomyEntry>[
       'Querleu D, Morrow CP. Classification of radical hysterectomy. Lancet '
           'Oncol 2008.',
       'ESGO textbook of gynaecological oncology — surgical anatomy.',
+      'National Cancer Grid of India — radical hysterectomy standards.',
     ],
   ),
   AnatomyEntry(
@@ -498,6 +505,7 @@ const kAnatomy = <AnatomyEntry>[
       'Standring S. Gray\'s Anatomy, 42nd edition.',
       'Cardosi RJ et al. Neuropathy after major pelvic surgery. Obstet '
           'Gynecol 2002.',
+      'FOGSI GCPR — Gynaecological Surgery: positioning and nerve injury.',
       'ESGO surgical anatomy references; nerve-sparing radical hysterectomy '
           'literature.',
     ],
@@ -579,6 +587,7 @@ const kAnatomy = <AnatomyEntry>[
       'RCOG Green-top Guideline 29 — Third and Fourth Degree Perineal Tears.',
       'Sultan AH. Obstetric perineal injury and anal incontinence. Clinical '
           'Risk 1999.',
+      'FOGSI GCPR — Perineal Trauma and OASIS Repair.',
       'Standring S. Gray\'s Anatomy, 42nd edition.',
     ],
   ),

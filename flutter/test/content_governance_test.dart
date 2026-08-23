@@ -13,6 +13,7 @@ import 'package:obgaid_app/data/counselling.dart';
 import 'package:obgaid_app/data/quick_tables.dart';
 import 'package:obgaid_app/data/exam_topics.dart';
 import 'package:obgaid_app/data/anatomy.dart';
+import 'package:obgaid_app/data/staging_data.dart' show kStagingSystems;
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
 import 'package:obgaid_app/models/content_meta.dart';
@@ -604,6 +605,76 @@ void main() {
     test('drug ids are unique', () {
       final ids = DrugRegistry.all.map((d) => d.id).toList();
       expect(ids.toSet().length, ids.length);
+    });
+  });
+
+  group('§61 — everything cites a source', () {
+    test('every content type carries at least one reference', () {
+      final unsourced = <String>[];
+      for (final t in TopicRegistry.all) {
+        if (t.sources.isEmpty) unsourced.add('topic ${t.id}');
+      }
+      for (final a in AlgorithmRegistry.all) {
+        if (a.sources.isEmpty) unsourced.add('algorithm ${a.id}');
+      }
+      for (final d in DrugRegistry.all) {
+        if (d.references.isEmpty) unsourced.add('drug ${d.id}');
+      }
+      for (final tr in TrialRegistry.all) {
+        if (tr.journal.trim().isEmpty) unsourced.add('trial ${tr.id}');
+      }
+      for (final st in kStagingSystems) {
+        if (st.sources.isEmpty) unsourced.add('staging ${st.id}');
+      }
+      for (final c in kSafetyCases) {
+        if (c.sources.isEmpty) unsourced.add('case ${c.id}');
+      }
+      for (final g in kCounsellingGuides) {
+        if (g.sources.isEmpty) unsourced.add('counselling ${g.id}');
+      }
+      for (final e in kExamTopics) {
+        if (e.sources.isEmpty) unsourced.add('exam ${e.id}');
+      }
+      for (final q in kQuickTables) {
+        if (q.sources.isEmpty) unsourced.add('table ${q.id}');
+      }
+      for (final an in kAnatomy) {
+        if (an.sources.isEmpty) unsourced.add('anatomy ${an.id}');
+      }
+      for (final gl in kGuidelines) {
+        if (gl.source.trim().isEmpty) unsourced.add('guideline ${gl.id}');
+      }
+      expect(unsourced, isEmpty,
+          reason: 'Unsourced content: ${unsourced.join(', ')}');
+    });
+
+    test('Indian guidance is cited across the clinical content', () {
+      // The app's thesis is India-first. Every major clinical content type
+      // should reach an Indian source somewhere, or the claim is hollow.
+      final indian = RegExp(
+          r'FOGSI|ICOG|MoHFW|ICMR|Government of India|NACO|Anemia Mukt|'
+          r'DIPSI|National Cancer Grid|Indian|ISAR|National Formulary|'
+          r'Dakshata|LaQshya',
+          caseSensitive: false);
+
+      bool anyIndian(Iterable<String> refs) => refs.any(indian.hasMatch);
+
+      final gaps = <String>[];
+      for (final t in TopicRegistry.all) {
+        if (!anyIndian(t.sources)) gaps.add('topic ${t.id}');
+      }
+      for (final a in AlgorithmRegistry.all) {
+        if (!anyIndian(a.sources)) gaps.add('algorithm ${a.id}');
+      }
+      for (final e in kExamTopics) {
+        if (!anyIndian(e.sources)) gaps.add('exam ${e.id}');
+      }
+      for (final c in kSafetyCases) {
+        if (!anyIndian(c.sources)) gaps.add('case ${c.id}');
+      }
+      expect(gaps, isEmpty,
+          reason: 'Clinical content with no Indian reference: '
+              '${gaps.join(', ')}');
     });
   });
 

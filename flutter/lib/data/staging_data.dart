@@ -72,6 +72,9 @@ const _cervical = StagingSystem(
     'Bhatla N et al. Revised FIGO staging for carcinoma of the cervix uteri. '
         'Int J Gynecol Obstet 2019;145:129–135.',
     'FIGO Committee on Gynecologic Oncology, 2018 (corrigendum 2019).',
+    'National Cancer Grid of India — cervical cancer management guidelines.',
+    'MoHFW Government of India — Operational Framework for Management of '
+        'Common Cancers.',
   ],
 );
 
@@ -154,6 +157,9 @@ const _endometrial = StagingSystem(
   sources: [
     'Berek JS et al. FIGO staging of endometrial cancer: 2023. '
         'Int J Gynecol Obstet 2023;162:383–394.',
+    'National Cancer Grid of India — uterine cancer guidelines.',
+    'ESGO-ESTRO-ESP guidelines for the management of patients with '
+        'endometrial carcinoma.',
   ],
   note: 'Molecular classification (POLEmut, MMRd, NSMP, p53abn) should be '
       'recorded in all cases where available, and modifies stage in early '
@@ -224,6 +230,8 @@ const _ovarian = StagingSystem(
     'Prat J, FIGO Committee on Gynecologic Oncology. Staging classification for '
         'cancer of the ovary, fallopian tube, and peritoneum. '
         'Int J Gynecol Obstet 2014;124:1–5.',
+    'National Cancer Grid of India — ovarian cancer management guidelines.',
+    'ESGO guidelines on ovarian cancer surgery and management.',
   ],
 );
 
@@ -269,6 +277,8 @@ const _vulvar = StagingSystem(
   sources: [
     'Olawaiye AB et al. FIGO staging for carcinoma of the vulva: 2021 revision. '
         'Int J Gynecol Obstet 2021;155:43–47.',
+    'ESGO-ESTRO-ESP guidelines for the management of patients with vulvar '
+        'cancer.',
   ],
 );
 
@@ -313,6 +323,9 @@ const _gtd = StagingSystem(
     'FIGO Oncology Committee. FIGO staging for gestational trophoblastic '
         'neoplasia 2000. Int J Gynecol Obstet 2002;77:285–287.',
     'WHO prognostic scoring system, as adopted by FIGO.',
+    'FOGSI GCPR — Gestational Trophoblastic Disease.',
+    'National Cancer Grid of India — gestational trophoblastic neoplasia '
+        'guidelines.',
   ],
   note: 'Total score 0–6 = low risk (single-agent methotrexate or '
       'actinomycin-D). Score ≥ 7 = high risk (multi-agent, usually EMA-CO).',

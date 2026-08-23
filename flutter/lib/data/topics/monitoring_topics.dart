@@ -175,6 +175,8 @@ const kCtgTopic = ClinicalTopic(
         'monitoring: cardiotocography. Int J Gynecol Obstet 2015;131:13–24.',
     'RCOG — Each Baby Counts.',
     'Fetal blood sampling thresholds per NICE NG229.',
+    'FOGSI-ICOG GCPR — Intrapartum Fetal Surveillance; MoHFW Dakshata '
+        'intrapartum monitoring standards.',
   ],
 );
 

@@ -80,6 +80,7 @@ const kAspirin = Drug(
     'NICE NG133 — Hypertension in pregnancy.',
     'ACOG Practice Advisory — Low-Dose Aspirin Use for the Prevention of '
         'Preeclampsia.',
+    'FOGSI-ICOG GCPR — Hypertensive Disorders of Pregnancy.',
   ],
 );
 
@@ -181,6 +182,7 @@ const kEnoxaparin = Drug(
     'RCOG Green-top Guideline 37b — Acute Management.',
     'Obstetric Anaesthetists Association guidance on regional anaesthesia and '
         'anticoagulation.',
+    'FOGSI GCPR — Thromboprophylaxis in Obstetrics and Gynaecology.',
   ],
 );
 
@@ -265,6 +267,8 @@ const kBetamethasone = Drug(
         'maturation. Cochrane Database Syst Rev 2017.',
     'NICE NG25 — Preterm labour and birth.',
     'RCOG Green-top Guideline 74 — Antenatal Corticosteroids.',
+    'MoHFW Government of India — India Newborn Action Plan; antenatal '
+        'corticosteroid use at first referral units.',
   ],
 );
 
@@ -345,6 +349,7 @@ const kLetrozole = Drug(
         'polycystic ovary syndrome. N Engl J Med 2014;371:119–129.',
     'Teede HJ et al. International PCOS Guideline, 2023.',
     'NICE CG156 — Fertility problems.',
+    'FOGSI-ICOG GCPR on PCOS; ISAR practice recommendations.',
   ],
 );
 
@@ -417,6 +422,6 @@ const kClomiphene = Drug(
   references: [
     'NICE CG156 — Fertility problems: assessment and treatment.',
     'Legro RS et al. N Engl J Med 2014;371:119–129.',
-    'FOGSI GCPR — Ovulation Induction.',
+    'FOGSI GCPR — Ovulation Induction; ISAR practice recommendations.',
   ],
 );

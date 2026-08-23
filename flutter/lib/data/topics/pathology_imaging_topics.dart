@@ -150,6 +150,8 @@ const kPathologyTopic = ClinicalTopic(
     'Berek JS et al. FIGO staging of endometrial cancer: 2023.',
     'Government of India — Operational Framework for Management of Common '
         'Cancers; HPV and VIA-based cervical screening.',
+    'National Cancer Grid of India — gynaecological pathology reporting '
+        'guidelines; ICMR consensus documents on gynaecological cancers.',
   ],
 );
 
@@ -249,5 +251,7 @@ const kImagingTopic = ClinicalTopic(
         'and childhood outcomes. JAMA 2016;316:952–961.',
     'IOTA, MUSA and IETA consensus terminology statements.',
     'ACR Manual on Contrast Media.',
+    'PCPNDT Act 1994 (as amended 2003) and PCPNDT Rules, Government of '
+        'India — Form F requirements for every prenatal scan.',
   ],
 );

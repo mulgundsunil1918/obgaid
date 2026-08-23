@@ -74,6 +74,8 @@ const kSafetyCases = <SafetyCase>[
       'Gallos I et al. E-MOTIVE trial. N Engl J Med 2023;389:11–21.',
       'MBRRACE-UK — Saving Lives, Improving Mothers\' Care.',
       'RCOG Green-top Guideline 52.',
+      'MoHFW Government of India — Maternal Death Surveillance and Response '
+          'guidelines; LaQshya labour room quality standards.',
     ],
   ),
   SafetyCase(
@@ -144,6 +146,7 @@ const kSafetyCases = <SafetyCase>[
       'RCOG Green-top Guideline 52.',
       'MBRRACE-UK confidential enquiry themes on medication safety.',
       'FOGSI GCPR — Hypertensive Disorders of Pregnancy.',
+      'MoHFW Government of India — Maternal Death Surveillance and Response.',
     ],
   ),
   SafetyCase(
@@ -220,6 +223,8 @@ const kSafetyCases = <SafetyCase>[
       'RCOG Green-top Guideline 64b — Bacterial Sepsis following Pregnancy.',
       'NICE NG51 — Sepsis.',
       'MBRRACE-UK — Saving Lives, Improving Mothers\' Care.',
+      'FOGSI GCPR — Maternal Sepsis; MoHFW Maternal Death Surveillance and '
+          'Response.',
     ],
   ),
   SafetyCase(
@@ -293,6 +298,7 @@ const kSafetyCases = <SafetyCase>[
     sources: [
       'RCOG Green-top Guideline 37a.',
       'MBRRACE-UK — Saving Lives, Improving Mothers\' Care.',
+      'FOGSI GCPR — Thromboprophylaxis in Obstetrics and Gynaecology.',
     ],
   ),
 ];

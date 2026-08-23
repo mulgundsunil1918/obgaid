@@ -3,6 +3,7 @@ import '../../data/exam_topics.dart';
 import '../../data/content_registry.dart';
 import '../../models/exam_topic.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../widgets/reference_note.dart';
 
 class ExamHub extends StatelessWidget {
   const ExamHub({super.key});
@@ -155,6 +156,7 @@ class ExamScreen extends StatelessWidget {
                   ),
                 )),
           ],
+          ReferenceNote(sources: topic.sources),
         ],
       ),
     );

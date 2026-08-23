@@ -301,5 +301,7 @@ const kEndometrialBiopsyTopic = ClinicalTopic(
     'NICE NG88 — Heavy menstrual bleeding.',
     'Clark TJ et al. Accuracy of outpatient endometrial biopsy in the '
         'diagnosis of endometrial cancer. BJOG 2002;109:313–321.',
+    'FOGSI GCPR — Abnormal Uterine Bleeding and endometrial sampling; '
+        'National Cancer Grid of India — endometrial cancer guidelines.',
   ],
 );

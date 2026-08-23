@@ -237,6 +237,8 @@ const kMisoprostol = Drug(
       'tachysystole with terbutaline 250 µg subcutaneously.',
   references: [
     'FIGO Misoprostol-only Recommended Regimens.',
+    'FOGSI GCPR — Misoprostol use in obstetrics and gynaecology; MoHFW '
+        'guidelines on medical methods of abortion.',
     'WHO Recommendations on Induction of Labour.',
     'NICE NG126 — Ectopic pregnancy and miscarriage.',
     'RCOG Green-top Guideline 52.',
@@ -508,6 +510,7 @@ const kTranexamicAcid = Drug(
     'WOMAN Trial Collaborators. Lancet 2017;389:2105–2116.',
     'WHO Recommendation on Tranexamic Acid for the Treatment of Postpartum '
         'Haemorrhage.',
+    'FOGSI GCPR — Postpartum Haemorrhage; National Formulary of India.',
     'NICE NG88 — Heavy menstrual bleeding.',
     'RCOG Green-top Guideline 52.',
   ],

@@ -118,7 +118,7 @@ action block: these are read over hours, not seconds.
 **Tier 1 is complete. Tier 2 is complete. Every Tier 3 module now exists.**
 
 Several modules are deliberately partial and marked so in the table — the
-formulary at 26 drugs, trials at 13, procedures at 3. They are breadth-limited,
+formulary at 26 drugs, trials at 25, procedures at 3. They are breadth-limited,
 not shape-limited: the model, screen and governance record are done, so
 extending them is data entry rather than design.
 
@@ -148,7 +148,7 @@ extending them is data entry rather than design.
 |---|---|---|
 | Gynaecological oncology — FIGO staging × 5 | §41 | ✅ *(shipped ahead of tier)* |
 | Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ⬜ |
-| Landmark trials — full §53 record on each | §53 | 🔨 *(13 trials)* |
+| Landmark trials — full §53 record on each | §53 | ✅ *(25 trials across all nine §53 categories)* |
 | Guideline library — §54 record on each | §54 | 🔨 *(8 guidelines)* |
 | Guideline change tracker — previous, now, what changed, why | §55 | ✅ |
 | Advanced fetal medicine | §25 | ⬜ |
@@ -201,6 +201,23 @@ extending them is data entry rather than design.
 | Module | Why it exists |
 |---|---|
 | **Surgical anatomy** — before you scrub | Not in the spec. A two-minute lookup at the sink, organised by where a structure actually gets injured rather than by descriptive anatomy: ureter, uterine artery, internal iliac, abdominal wall and ports, pelvic avascular spaces, pelvic nerves, perineum and anal sphincter. A test fails the build if any danger point lacks the manoeuvre that prevents it. |
+
+## References
+
+Every clinical item cites its source, and two tests enforce it. The first
+fails the build if any topic, algorithm, drug, trial, staging system, safety
+case, counselling guide, examination topic, quick table, anatomy entry or
+guideline record has no reference at all. The second fails if a topic,
+algorithm, examination topic or safety case reaches no **Indian** source —
+because an India-first app whose references are entirely RCOG and ACOG is
+making a claim it does not honour.
+
+Indian sources used: FOGSI and ICOG Good Clinical Practice Recommendations ·
+MoHFW national guidelines, Dakshata, LaQshya, PMSMA and Maternal Death
+Surveillance and Response · ICMR · National Cancer Grid of India · NACO ·
+Anemia Mukt Bharat · DIPSI · National Immunization Schedule · ISAR ·
+Indian Menopause Society · National Formulary of India · the MTP, PCPNDT and
+ART Acts.
 
 ## Content governance *(spec §61–63)*
 

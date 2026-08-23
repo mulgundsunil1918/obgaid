@@ -47,6 +47,8 @@ const kCounsellingGuides = <CounsellingGuide>[
     sources: [
       'RCOG Green-top Guideline 57 — Reduced Fetal Movements.',
       'NICE NG201 — Antenatal care.',
+      'MoHFW Government of India — Pradhan Mantri Surakshit Matritva Abhiyan '
+          'antenatal counselling materials.',
       'MBRRACE-UK — recurring themes on missed warning signs.',
     ],
   ),
@@ -99,6 +101,7 @@ const kCounsellingGuides = <CounsellingGuide>[
       'RCOG Green-top Guideline 45 — Birth After Previous Caesarean Birth.',
       'ACOG Practice Bulletin 205.',
       'Landon MB et al. N Engl J Med 2004;351:2581.',
+      'FOGSI GCPR — Vaginal Birth After Caesarean.',
     ],
   ),
   CounsellingGuide(
@@ -199,6 +202,7 @@ const kCounsellingGuides = <CounsellingGuide>[
     sources: [
       'NICE NG126 — Ectopic pregnancy and miscarriage.',
       'RCOG Green-top Guideline 22 — Anti-D prophylaxis.',
+      'FOGSI GCPR — Early Pregnancy Complications.',
       'RCOG — Good Practice on management of early pregnancy loss.',
     ],
   ),

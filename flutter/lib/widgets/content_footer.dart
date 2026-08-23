@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../models/content_meta.dart';
 import '../data/content_registry.dart';
 
-/// Governance block shown at the foot of every clinical screen.
+/// Foot of every clinical screen.
 ///
-/// Renders the §62 versioning record and, where §63 applies, states plainly
-/// whether a clinician has signed the content off. The specification's rule is
-/// that every claim is traceable; this is where that becomes visible to the
-/// person acting on it.
+/// The §62 versioning record is held on [ContentMeta] and enforced by the
+/// governance tests, but it is deliberately NOT rendered — IDs, versions and
+/// review dates are governance metadata, and putting them under every
+/// clinical screen is clutter at the point of care. What remains visible is
+/// the part a clinician needs: an unreviewed warning where §63 applies, and
+/// the links to where this leads.
 class ContentFooter extends StatelessWidget {
   const ContentFooter({super.key, required this.meta});
   final ContentMeta meta;
-
-  static final _fmt = DateFormat('d MMM yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -49,95 +48,11 @@ class ContentFooter extends StatelessWidget {
               ),
             ]),
           ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 14),
-          padding: const EdgeInsets.all(13),
-          decoration: BoxDecoration(
-            color: cs.surfaceContainerHighest.withValues(alpha: 0.4),
-            borderRadius: BorderRadius.circular(11),
-          ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Icon(Icons.verified_outlined,
-                  size: 14, color: cs.onSurfaceVariant),
-              const SizedBox(width: 6),
-              Text('CONTENT RECORD',
-                  style: TextStyle(
-                      fontSize: 9.5,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.7,
-                      color: cs.onSurfaceVariant)),
-              const Spacer(),
-              _StatusChip(meta: meta),
-            ]),
-            const SizedBox(height: 10),
-            _row(context, 'ID', meta.id),
-            _row(context, 'Version', meta.version),
-            _row(context, 'Evidence', meta.evidence.label),
-            _row(context, 'Author', meta.author),
-            _row(context, 'Medical reviewer', meta.reviewer ?? 'Not yet reviewed'),
-            _row(context, 'Created', _fmt.format(meta.created)),
-            if (meta.reviewed != null)
-              _row(context, 'Reviewed', _fmt.format(meta.reviewed!)),
-            if (meta.nextReview != null)
-              _row(
-                  context,
-                  'Next review',
-                  '${_fmt.format(meta.nextReview!)}'
-                      '${meta.isReviewOverdue ? '  — overdue' : ''}'),
-          ]),
-        ),
         RelatedBlock(links: meta.related),
       ],
     );
   }
 
-  Widget _row(BuildContext context, String k, String v) {
-    final cs = Theme.of(context).colorScheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          width: 118,
-          child: Text(k,
-              style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant)),
-        ),
-        Expanded(
-          child: Text(v,
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
-        ),
-      ]),
-    );
-  }
-}
-
-class _StatusChip extends StatelessWidget {
-  const _StatusChip({required this.meta});
-  final ContentMeta meta;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = switch (meta.status) {
-      ContentStatus.published || ContentStatus.approved => const Color(0xFF1B7F5C),
-      ContentStatus.underReview => const Color(0xFFB8860B),
-      ContentStatus.draft => const Color(0xFF5B6B68),
-      _ => const Color(0xFFC2603C),
-    };
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Text(meta.status.label.toUpperCase(),
-          style: TextStyle(
-              fontSize: 9,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 0.4,
-              color: color)),
-    );
-  }
 }
 
 /// §68 — "every content item should connect to other relevant content".

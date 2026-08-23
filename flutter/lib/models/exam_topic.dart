@@ -12,6 +12,7 @@ class ExamTopic {
     required this.area,
     required this.highYield,
     required this.vivaQuestions,
+    required this.sources,
     this.classicTraps = const [],
     this.readsInApp = const [],
   });
@@ -31,6 +32,10 @@ class ExamTopic {
 
   /// Content ids in the app that cover this topic.
   final List<String> readsInApp;
+
+  /// Curriculum, guideline and textbook references. Indian sources lead,
+  /// because Indian examinations are set against Indian guidelines.
+  final List<String> sources;
 }
 
 enum ExamArea { obstetrics, gynaecology, reproductive, oncology }

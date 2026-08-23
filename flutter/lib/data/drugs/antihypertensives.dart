@@ -109,6 +109,8 @@ const kLabetalol = Drug(
     'ACOG Committee Opinion 767 — Emergent Therapy for Acute-Onset Severe '
         'Hypertension.',
     'RCOG Green-top Guideline 10(A).',
+    'FOGSI-ICOG GCPR — Hypertensive Disorders of Pregnancy; MoHFW Government '
+        'of India maternal health guidelines.',
   ],
 );
 
@@ -206,6 +208,7 @@ const kNifedipine = Drug(
     'NICE NG133 — Hypertension in pregnancy.',
     'NICE NG25 — Preterm labour and birth.',
     'RCOG Green-top Guideline 1B — Tocolysis for Women in Preterm Labour.',
+    'FOGSI GCPR — Hypertensive Disorders of Pregnancy and Preterm Birth.',
   ],
 );
 
@@ -285,6 +288,8 @@ const kHydralazine = Drug(
     'NICE NG133 — Hypertension in pregnancy.',
     'ACOG Committee Opinion 767.',
     'RCOG Green-top Guideline 10(A).',
+    'MoHFW Government of India — guidelines on management of severe '
+        'pre-eclampsia and eclampsia at first referral units.',
   ],
 );
 

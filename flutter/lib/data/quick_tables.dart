@@ -105,6 +105,7 @@ const kQuickTables = <QuickTable>[
       'ISUOG Practice Guidelines — use of Doppler in obstetrics.',
       'Mari G et al. N Engl J Med 2000;342:9–14.',
       'RCOG Green-top Guideline 31.',
+      'FOGSI-ICOG GCPR — Fetal Growth Restriction.',
     ],
   ),
   QuickTable(
@@ -132,6 +133,7 @@ const kQuickTables = <QuickTable>[
       'ACOG Practice Bulletin 222.',
       'NICE NG133.',
       'ISSHP classification of hypertensive disorders of pregnancy.',
+      'FOGSI-ICOG GCPR — Hypertensive Disorders of Pregnancy.',
     ],
   ),
   QuickTable(
@@ -228,6 +230,8 @@ const kQuickTables = <QuickTable>[
     sources: [
       'RCOG Green-top Guideline 47 — Blood Transfusion in Obstetrics.',
       'RCOG Green-top Guideline 52.',
+      'FOGSI GCPR — Blood Transfusion in Obstetrics; National Blood '
+          'Transfusion Council of India standards.',
       'Abbassi-Ghanavati M et al. Obstet Gynecol 2009;114:1326.',
     ],
   ),
