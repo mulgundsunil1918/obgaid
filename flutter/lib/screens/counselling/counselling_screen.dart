@@ -24,18 +24,6 @@ class CounsellingHub extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => CounsellingScreen(guide: g))),
             )),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 3 continued', items: [
-          'Labour preparation and birth planning',
-          'Breastfeeding',
-          'Induction of labour',
-          'Pre-eclampsia and hypertension',
-          'Ectopic pregnancy',
-          'Infertility and IVF',
-          'PCOS, endometriosis and fibroids',
-          'Menopause and hormone therapy',
-          'Breaking a cancer diagnosis',
-        ]),
       ],
     );
   }

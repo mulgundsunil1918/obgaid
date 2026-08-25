@@ -25,6 +25,19 @@ import 'package:obgaid_app/screens/topics/topic_screen.dart';
 import 'package:obgaid_app/screens/algorithms/algorithm_screen.dart';
 import 'package:obgaid_app/screens/staging/staging_screen.dart';
 import 'package:obgaid_app/theme/app_theme.dart';
+import 'package:obgaid_app/screens/hubs/calculators_hub.dart';
+import 'package:obgaid_app/screens/hubs/emergency_hub.dart';
+import 'package:obgaid_app/screens/hubs/topics_hub.dart';
+import 'package:obgaid_app/screens/hubs/tumour_staging_hub.dart';
+import 'package:obgaid_app/screens/hubs/staging_scores_hub.dart';
+import 'package:obgaid_app/screens/hubs/labour_hub.dart';
+import 'package:obgaid_app/screens/hubs/operative_hub.dart';
+import 'package:obgaid_app/screens/hubs/formulary_hub.dart';
+import 'package:obgaid_app/screens/hubs/reference_hub.dart';
+import 'package:obgaid_app/screens/hubs/never_again_hub.dart';
+import 'package:obgaid_app/screens/hubs/academics_hub.dart';
+import 'package:obgaid_app/screens/hubs/cme_hub.dart';
+import 'package:obgaid_app/screens/hubs/ultrasound_hub.dart';
 
 /// Builds every clinical screen once.
 ///
@@ -40,6 +53,36 @@ void main() {
           child: child,
         ),
       );
+
+  // Every hub was edited when the roadmap blocks came out; nothing covered
+  // them before, so a dangling widget would have shipped silently.
+  group('every hub renders', () {
+    final hubs = <String, Widget Function()>{
+      'calculators': () => const CalculatorsHub(),
+      'emergency': () => const EmergencyHub(),
+      'topics': () => const TopicsHub(),
+      'tumour staging': () => const TumourStagingHub(),
+      'staging & scores': () => const StagingScoresHub(),
+      'labour': () => const LabourHub(),
+      'operative': () => const OperativeHub(),
+      'formulary': () => const FormularyHub(),
+      'reference': () => const ReferenceHub(),
+      'never again': () => const NeverAgainHub(),
+      'academics': () => const AcademicsHub(),
+      'cme': () => const CmeHub(),
+      'ultrasound': () => const UltrasoundHub(),
+      'anatomy': () => const AnatomyHub(),
+      'counselling': () => const CounsellingHub(),
+      'examination': () => const ExamHub(),
+    };
+    hubs.forEach((name, build) {
+      testWidgets(name, (tester) async {
+        await tester.pumpWidget(wrap(build()));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    });
+  });
 
   group('every registered tool renders', () {
     for (final tool in ToolRegistry.all) {

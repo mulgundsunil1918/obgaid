@@ -36,17 +36,6 @@ class UltrasoundHub extends StatelessWidget {
           onTap: () => Navigator.push(
               context, MaterialPageRoute(builder: efw.builder)),
         ),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Phase 2', items: [
-          'Doppler centiles — UA PI/RI, MCA PI and PSV, CPR, ductus venosus',
-          'MCA-PSV in multiples of the median, for fetal anaemia',
-          'Uterine artery PI centiles and pre-eclampsia risk',
-          'Nuchal translucency centiles and combined risk calculation',
-          'Cervical length — risk of preterm birth',
-          'Biophysical profile scoring',
-          'INTERGROWTH-21st and customised (GROW) growth standards',
-          'Individual biometry centiles — BPD, HC, AC, FL',
-        ]),
       ],
     );
   }

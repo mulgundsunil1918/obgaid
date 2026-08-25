@@ -47,15 +47,6 @@ class AcademicsHub extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => TrialScreen(trial: t))),
               )),
         ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 3 continued', items: [
-          'More trials — CHIPS, HYPITAT, GRIT, DIGITAT, PPROMT, Term PROM, '
-              'CRASH-2, SOLO/PARP maintenance trials',
-          'Guideline change tracker — what changed this year, and why it '
-              'matters',
-          'More examination topics — basic sciences, embryology, statistics',
-          'Structured OSCE stations',
-        ]),
       ],
     );
   }

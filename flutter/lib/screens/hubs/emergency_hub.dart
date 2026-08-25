@@ -37,17 +37,6 @@ class EmergencyHub extends StatelessWidget {
                         builder: (_) => AlgorithmScreen(algorithm: a))),
               )),
         ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 1C – 2', items: [
-          'Non-reassuring CTG — categorisation and response',
-          'Preterm labour and PPROM',
-          'Miscarriage and pregnancy of unknown location',
-          'Reduced fetal movement',
-          'Ruptured ovarian cyst; acute pelvic pain',
-          'Septic abortion; pelvic sepsis',
-          'Ovarian hyperstimulation syndrome',
-          'Acute urinary retention; postoperative haemorrhage',
-        ]),
       ],
     );
   }

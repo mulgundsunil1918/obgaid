@@ -127,7 +127,7 @@ extending them is data entry rather than design.
 
 | Module | Spec § | Status |
 |---|---|---|
-| Drug formulary — §45 record on every entry | §44, §45 | 🔨 *(14 core drugs; antibiotics, hormones, oncology pending)* |
+| Drug formulary — §45 record on every entry | §44, §45 | ✅ *(33 drugs across all §44 categories)* |
 | Pregnancy & lactation safety — narrative, no SAFE/UNSAFE labels | §46 | 🔨 *(on all 14; enforced in CI)* |
 | Maternal medicine — cardiac (mWHO), thyroid, epilepsy, autoimmune, infection, renal | §24 | ✅ |
 | Fetal medicine — screening, diagnosis, TTTS/IUT/fetal therapy | §25 | ✅ |
@@ -202,6 +202,21 @@ extending them is data entry rather than design.
 | Module | Why it exists |
 |---|---|
 | **Surgical anatomy** — before you scrub | Not in the spec. A two-minute lookup at the sink, organised by where a structure actually gets injured rather than by descriptive anatomy: ureter, uterine artery, internal iliac, abdominal wall and ports, pelvic avascular spaces, pelvic nerves, perineum and anal sphincter. A test fails the build if any danger point lacks the manoeuvre that prevents it. |
+
+## Housekeeping
+
+The in-app "coming soon" blocks were removed. Fifteen of them listed a build
+plan on clinical screens, and many had gone stale — naming content that by then
+existed. A roadmap belongs in this file, not under a magnesium regimen. The
+`ComingSoon` widget, the phase-label machinery on `HubTile`, and six drawer
+entries that did nothing but raise a snackbar went with them.
+
+Five related links pointed at nodes that had no screen and rendered as an
+untappable "soon". That content did exist, inside other topics, so the edges
+were repointed at what actually carries it — ovarian reserve to infertility,
+hyperplasia to pathology, blood products to the laboratory reference, Doppler
+to fetal growth restriction, endometrial thickness to imaging. Every link in
+the graph now opens something.
 
 ## References
 

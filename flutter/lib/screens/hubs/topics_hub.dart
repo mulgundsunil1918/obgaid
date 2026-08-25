@@ -33,17 +33,6 @@ class TopicsHub extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
               )),
         ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 2', items: [
-          'Antenatal care — schedule, investigations, surveillance',
-          'Operative vaginal delivery — forceps and vacuum',
-          'Postpartum care and complications',
-          'Multiple pregnancy — chorionicity, TTTS, timing',
-          'First-trimester bleeding and miscarriage',
-          'Maternal medicine — cardiac, renal, endocrine, neurological',
-          'Fetal medicine — anomalies, genetic screening, fetal therapy',
-          'Cervical insufficiency and cerclage',
-        ]),
       ],
     );
   }

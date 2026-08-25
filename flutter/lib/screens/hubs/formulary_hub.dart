@@ -78,18 +78,6 @@ class _FormularyHubState extends State<FormularyHub> {
             ),
             ...entry.value.map((d) => _tile(context, d)),
           ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 2 continued', items: [
-          'Antibiotics — obstetric and gynaecological infection',
-          'Analgesics and antiemetics in pregnancy',
-          'Tocolytics — atosiban',
-          'Hormonal therapy — oestrogens, progestogens, GnRH analogues, SERMs',
-          'Gonadotrophins, hCG and luteal support',
-          'Gynaecological oncology agents — platinums, taxanes, PARP '
-              'inhibitors',
-          'Antiepileptics, antidepressants and antidiabetics in pregnancy',
-          'A full lactation-safety index',
-        ]),
       ],
     );
   }

@@ -105,20 +105,6 @@ class ReferenceHub extends StatelessWidget {
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const GuidelinesScreen())),
         ),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Phase 4', items: [
-          'FOGSI Good Clinical Practice Recommendations — the full set',
-          'ICOG guidelines',
-          'RCOG Green-top Guidelines',
-          'ACOG Practice Bulletins',
-          'NICE NG201 antenatal care and NG235 intrapartum care',
-          'WHO — ANC 2016, Labour Care Guide 2020, PPH recommendations',
-          'Anemia Mukt Bharat — protocols and IV iron pathways',
-          'LaQshya labour room quality standards; SUMAN; JSY / JSSK',
-          'Trimester-specific laboratory reference ranges',
-          'Emergency algorithms — eclampsia, shoulder dystocia, cord prolapse, '
-              'amniotic fluid embolism, maternal collapse',
-        ]),
       ],
     );
   }

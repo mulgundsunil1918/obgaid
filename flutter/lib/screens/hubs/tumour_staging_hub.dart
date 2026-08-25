@@ -24,14 +24,6 @@ class TumourStagingHub extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (_) => StagingScreen(system: s))),
             )),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Phase 3', items: [
-          'Interactive stage assignment — select findings, get the stage',
-          'Vaginal carcinoma (FIGO)',
-          'Uterine sarcoma (FIGO 2009)',
-          'Molecular classification wizard for endometrial carcinoma',
-          'Sentinel node algorithms',
-        ]),
       ],
     );
   }

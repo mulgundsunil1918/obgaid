@@ -215,8 +215,8 @@ class _EfwScreenState extends State<EfwScreen> {
           ],
           caveat: 'Hadlock is a North American reference. INTERGROWTH-21st and '
               'customised (GROW) charts are alternatives where a population-'
-              'specific standard matters — both are planned for Phase 2. '
-              'Ultrasound EFW carries a typical error of ±10–15%.',
+              'specific standard matters. Ultrasound EFW carries a typical '
+              'error of ±10–15%.',
         ),
         ContentFooter(meta: ContentRegistry.metaFor('efw')!),
       ],

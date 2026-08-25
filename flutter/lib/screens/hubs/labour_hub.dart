@@ -45,14 +45,6 @@ class LabourHub extends StatelessWidget {
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
           ),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Tier 2', items: [
-          'WHO Labour Care Guide 2020 — full interactive chart',
-          'Augmentation — oxytocin regimens and arrest disorders',
-          'VBAC success prediction (MFMU model)',
-          'Operative vaginal delivery — forceps and vacuum',
-          'Cord blood gas interpretation',
-        ]),
       ],
     );
   }

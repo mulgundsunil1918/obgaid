@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/cme_entry.dart';
 import '../../services/cme_store.dart';
-import '../../widgets/hub_widgets.dart';
 import '../../widgets/reference_note.dart';
 
 class CmeHub extends StatefulWidget {
@@ -152,15 +151,6 @@ class _CmeHubState extends State<CmeHub> {
                 const _Point('FOGSI and its member societies, and the '
                     'specialty associations, are the usual accrediting routes '
                     'for OBG activities in India.'),
-                const SizedBox(height: 18),
-                const ComingSoon(phase: 'Platform phase', items: [
-                  'Browse upcoming CME programmes and webinars by city and '
-                      'date',
-                  'Post an event, with moderation before it goes live',
-                  'Certificates issued and stored against your account',
-                  'Push notification when an event is posted near you',
-                  'Sync this log across devices, and to PediAid',
-                ]),
                 const ReferenceNote(
                   sources: [
                     'National Medical Commission — Registered Medical '

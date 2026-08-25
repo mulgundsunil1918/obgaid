@@ -40,16 +40,6 @@ class AnatomyHub extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => AnatomyScreen(entry: a))),
               )),
         ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Next', items: [
-          'Ovarian and infundibulopelvic vessels',
-          'Bladder and vesicouterine fold',
-          'Levator ani and the pelvic floor',
-          'Inguinal canal and round ligament',
-          'Para-aortic nodal anatomy',
-          'Fetal skull — diameters, sutures and moulding',
-          'Maternal pelvis — types, planes and diameters',
-        ]),
       ],
     );
   }

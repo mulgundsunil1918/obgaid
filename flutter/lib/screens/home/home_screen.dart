@@ -391,25 +391,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (_) => const ReviewQueueScreen()));
             },
           ),
-          const Divider(),
-          for (final item in const [
-            ('Settings', Icons.settings_outlined),
-            ('Account', Icons.person_outline),
-            ('Saved', Icons.bookmark_outline),
-            ('My submissions', Icons.upload_file_outlined),
-            ('References', Icons.menu_book_outlined),
-            ('About', Icons.info_outline),
-          ])
-            ListTile(
-              leading: Icon(item.$2),
-              title: Text(item.$1),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${item.$1} — arriving in Phase 6')),
-                );
-              },
-            ),
         ],
       ),
     );

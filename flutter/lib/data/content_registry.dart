@@ -44,9 +44,10 @@ class ContentLink {
   final String title;
   final IconData icon;
 
-  /// Null where the content is specified but not yet built. The link still
-  /// renders, marked "soon", so the intended pathway is visible before every
-  /// node on it exists.
+  /// Every node resolves to a screen. Where a subject is covered inside
+  /// another topic rather than having its own, the edge points at the topic
+  /// that actually carries it — a related link that cannot be opened is a
+  /// dead end, not a signpost.
   final WidgetBuilder? builder;
 }
 
@@ -184,9 +185,6 @@ class ContentRegistry {
         _anNerves),
     ContentLink('anat-perineum', 'Perineum and anal sphincter',
         Icons.account_tree_outlined, _anPerineum),
-    // Specified, not yet built.
-    ContentLink('ovarian-reserve', 'Ovarian reserve', Icons.article_outlined,
-        null),
     ContentLink('aub', 'Abnormal uterine bleeding — PALM-COEIN',
         Icons.female_outlined, _cAub),
     ContentLink('pcos-assessment', 'PCOS assessment', Icons.female_outlined,
@@ -194,8 +192,6 @@ class ContentRegistry {
     ContentLink('adnexal-mass', 'Adnexal mass', Icons.female_outlined,
         _cAdnexal),
     ContentLink('popq', 'POP-Q', Icons.female_outlined, _cPopq),
-    ContentLink('hyperplasia', 'Endometrial hyperplasia',
-        Icons.article_outlined, null),
     ContentLink('anaemia', 'Anaemia & iron', Icons.water_drop_outlined,
         _anaemiaS),
     ContentLink('insulin', 'Insulin in pregnancy',
@@ -214,12 +210,7 @@ class ContentRegistry {
         _tInduction),
     ContentLink('formulary', 'Drug formulary', Icons.medication_outlined,
         _formulary),
-    ContentLink('blood-products', 'Blood products & massive transfusion',
-        Icons.bloodtype_outlined, null),
     ContentLink('fgr', 'Fetal growth restriction', Icons.trending_down, _tFgr),
-    ContentLink('doppler', 'Doppler indices', Icons.graphic_eq_outlined, null),
-    ContentLink('endometrial-thickness', 'Endometrial thickness thresholds',
-        Icons.straighten_outlined, null),
   ];
 
   static ContentLink? resolve(String id) {
@@ -293,7 +284,7 @@ class ContentRegistry {
         Related('usg', 'Work the measurements from any of these scans'),
         Related('efw', 'Estimated weight from the growth scan'),
         Related('pcpndt-act', 'The legal frame every Indian scan sits inside'),
-        Related('doppler', 'Indices and centiles for the Doppler studies'),
+        Related('fgr', 'Indices and centiles for the Doppler studies'),
       ],
     ),
     'efw': ContentMeta(
@@ -311,7 +302,7 @@ class ContentRegistry {
       related: [
         Related('fgr', 'A weight below the 10th centile is where growth '
             'restriction is worked up'),
-        Related('doppler', 'Umbilical and cerebral Doppler decide timing in FGR'),
+        Related('fgr', 'Umbilical and cerebral Doppler decide timing in FGR'),
         Related('dating', 'The centile is only as good as the gestational age'),
         Related('gdm', 'Macrosomia is the reason glycaemic control matters'),
       ],
@@ -386,7 +377,7 @@ class ContentRegistry {
       highRisk: true,
       related: [
         Related('algo-pph', 'The full algorithm — 4 Ts, escalation, surgery'),
-        Related('blood-products', 'Transfusion and massive transfusion protocol'),
+        Related('lab-reference', 'Transfusion and massive transfusion protocol'),
         Related('mgso4', 'Magnesium given for pre-eclampsia worsens atony'),
         Related('anaemia', 'Antenatal anaemia is what makes a given loss lethal'),
       ],
@@ -450,7 +441,7 @@ class ContentRegistry {
         Related('mgso4', 'Magnesium relaxes the uterus — it worsens atony'),
         Related('algo-abruption', 'Abruption causes both the bleeding and the '
             'coagulopathy'),
-        Related('blood-products', 'Massive transfusion ratios and targets'),
+        Related('lab-reference', 'Massive transfusion ratios and targets'),
       ],
     ),
     'algo-abruption': ContentMeta(
@@ -567,7 +558,7 @@ class ContentRegistry {
       related: [
         Related('algo-maternal-collapse', 'The resuscitation this sits inside'),
         Related('algo-pph', 'The coagulopathy presents as unstoppable bleeding'),
-        Related('blood-products', 'Empirical 1:1:1 before the results return'),
+        Related('lab-reference', 'Empirical 1:1:1 before the results return'),
       ],
     ),
     'algo-sepsis': ContentMeta(
@@ -739,7 +730,7 @@ class ContentRegistry {
         Related('algo-pph', 'Antenatal anaemia is what makes a survivable '
             'loss fatal'),
         Related('pph', 'Blood volume and proportion lost'),
-        Related('blood-products', 'When iron is too slow and she needs blood'),
+        Related('lab-reference', 'When iron is too slow and she needs blood'),
       ],
     ),
     'insulin': ContentMeta(
@@ -856,7 +847,7 @@ class ContentRegistry {
       status: ContentStatus.draft,
       related: [
         Related('efw', 'The measurement that starts the conversation'),
-        Related('doppler', 'The indices that decide when to deliver'),
+        Related('fgr', 'The indices that decide when to deliver'),
         Related('preterm-labour', 'Steroids and neuroprotection before an '
             'early delivery'),
         Related('ctg', 'Surveillance while she is monitored'),
@@ -978,7 +969,7 @@ class ContentRegistry {
       related: [
         Related('algo-abruption', 'A sensitising event needing a Kleihauer'),
         Related('algo-ectopic', 'Anti-D is required after surgical management'),
-        Related('doppler', 'MCA peak systolic velocity for fetal anaemia'),
+        Related('fgr', 'MCA peak systolic velocity for fetal anaemia'),
         Related('ctg', 'A sinusoidal trace means fetal anaemia until proven '
             'otherwise'),
       ],
@@ -1002,7 +993,7 @@ class ContentRegistry {
             'the metabolic assessment'),
         Related('gdm', 'Screen every pregnancy, early and again at 24–28 weeks'),
         Related('infertility', 'Ovulation induction pathway'),
-        Related('hyperplasia', 'Chronic anovulation means unopposed oestrogen'),
+        Related('pathology', 'Chronic anovulation means unopposed oestrogen'),
       ],
     ),
     'fibroids': ContentMeta(
@@ -1038,7 +1029,7 @@ class ContentRegistry {
       related: [
         Related('adenomyosis', 'The two coexist often enough to look for both'),
         Related('infertility', 'Endometriosis Fertility Index and ART'),
-        Related('ovarian-reserve', 'Cystectomy costs ovarian cortex'),
+        Related('infertility', 'Cystectomy costs ovarian cortex'),
       ],
     ),
     'adenomyosis': ContentMeta(
@@ -1194,7 +1185,7 @@ class ContentRegistry {
         Related('fibroids', 'The L of PALM-COEIN'),
         Related('adenomyosis', 'The A'),
         Related('anaemia', 'Check haemoglobin and ferritin in everyone'),
-        Related('hyperplasia', 'Sample the endometrium over 45, or younger '
+        Related('pathology', 'Sample the endometrium over 45, or younger '
             'with risk factors'),
       ],
     ),
@@ -1239,7 +1230,7 @@ class ContentRegistry {
         Related('ohss', 'Where stimulation goes next, and what it risks'),
         Related('endometriosis', 'Surgery, the fertility index, and when to go '
             'straight to IVF'),
-        Related('ovarian-reserve', 'AMH and antral follicle count in detail'),
+        Related('infertility', 'AMH and antral follicle count in detail'),
       ],
     ),
     'ohss': ContentMeta(
@@ -1365,7 +1356,7 @@ class ContentRegistry {
         Related('figo-endometrium-2023', 'Molecular classification is now part '
             'of the stage'),
         Related('aub', 'When to sample the endometrium'),
-        Related('hyperplasia', 'Managing what the report says'),
+        Related('pathology', 'Managing what the report says'),
       ],
     ),
     'imaging': ContentMeta(
@@ -1440,7 +1431,7 @@ class ContentRegistry {
       related: [
         Related('aub', 'When sampling is indicated'),
         Related('pathology', 'Interpreting what comes back'),
-        Related('hyperplasia', 'Acting on atypical hyperplasia'),
+        Related('pathology', 'Acting on atypical hyperplasia'),
       ],
     ),
     // ── Expanded procedures (spec §57) ───────────────────────────────────

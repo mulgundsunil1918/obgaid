@@ -27,16 +27,6 @@ class NeverAgainHub extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (_) => SafetyCaseScreen(safetyCase: c))),
             )),
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Platform phase', items: [
-          'Submit an anonymised case from your own practice',
-          'Moderated review before anything is published',
-          'Comment and discussion, with the same moderation queue',
-          'Browse by category across the full §56 list — CTG interpretation, '
-              'delayed caesarean, handover failure, wrong blood product',
-          'Shares PediAid\'s existing backend module — no second system to '
-              'build',
-        ]),
       ],
     );
   }

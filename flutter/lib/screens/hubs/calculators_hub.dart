@@ -36,18 +36,6 @@ class CalculatorsHub extends StatelessWidget {
                     context, MaterialPageRoute(builder: t.builder)),
               )),
         ],
-        const SizedBox(height: 18),
-        const ComingSoon(phase: 'Phases 1–3', items: [
-          'Anaemia — WHO/AMB grading, Ganzoni iron deficit, IV iron regimens',
-          'Doppler — UA PI/RI, MCA PSV (Mari), CPR, ductus venosus centiles',
-          'Liquor — AFI and DVP centiles, oligo- and polyhydramnios',
-          'Anti-D — Kleihauer-Betke, dosing, MCA-PSV multiples of the median',
-          'Preterm — cervical length, fFN, steroid timing, MgSO4 neuroprotection',
-          'Aneuploidy screening — combined, quad, NIPT with likelihood ratios',
-          'PCOS, HOMA-IR, Ferriman-Gallwey, PBAC',
-          'Ovarian reserve — AMH, AFC, POSEIDON',
-          'Adnexal mass — RMI, IOTA simple rules, O-RADS, ROMA',
-        ]),
       ],
     );
   }
