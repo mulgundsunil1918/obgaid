@@ -17,6 +17,10 @@ import '../screens/calculators/pcos_assessment_screen.dart';
 import '../screens/calculators/adnexal_mass_screen.dart';
 import '../screens/calculators/popq_screen.dart';
 import '../screens/calculators/aub_screen.dart';
+import '../screens/scores/epds_screen.dart';
+import '../screens/scores/simple_scores.dart';
+import '../screens/scores/meows_robson.dart';
+import '../screens/scores/caprini_rasrm.dart';
 import '../screens/calculators/efw_screen.dart';
 import '../screens/calculators/bishop_screen.dart';
 import '../screens/calculators/dipsi_screen.dart';
@@ -34,6 +38,10 @@ import '../screens/reference/lab_reference_screen.dart';
 import '../screens/reference/immunisation_screen.dart';
 import '../screens/anatomy/anatomy_screen.dart';
 import 'anatomy.dart';
+import 'counselling.dart';
+import 'trial_registry.dart';
+import '../screens/counselling/counselling_screen.dart';
+import '../screens/academics/trial_screen.dart';
 import '../screens/algorithms/algorithm_screen.dart';
 import 'algorithm_registry.dart';
 
@@ -192,6 +200,17 @@ class ContentRegistry {
     ContentLink('adnexal-mass', 'Adnexal mass', Icons.female_outlined,
         _cAdnexal),
     ContentLink('popq', 'POP-Q', Icons.female_outlined, _cPopq),
+    ContentLink('meows', 'MEOWS', Icons.rule_outlined, _cMeows),
+    ContentLink('epds', 'EPDS', Icons.rule_outlined, _cEpds),
+    ContentLink('caprini', 'Caprini score', Icons.rule_outlined, _cCaprini),
+    ContentLink('robson', 'Robson classification', Icons.rule_outlined,
+        _cRobson),
+    ContentLink('quintero', 'Quintero staging', Icons.rule_outlined,
+        _cQuintero),
+    ContentLink('rasrm', 'rASRM staging', Icons.rule_outlined, _cRasrm),
+    ContentLink('mrs', 'Menopause Rating Scale', Icons.rule_outlined, _cMrs),
+    ContentLink('ecog', 'ECOG performance status', Icons.rule_outlined,
+        _cEcog),
     ContentLink('anaemia', 'Anaemia & iron', Icons.water_drop_outlined,
         _anaemiaS),
     ContentLink('insulin', 'Insulin in pregnancy',
@@ -213,8 +232,23 @@ class ContentRegistry {
     ContentLink('fgr', 'Fetal growth restriction', Icons.trending_down, _tFgr),
   ];
 
+  /// Counselling guides and trials are generated rather than listed, because
+  /// they are already registries of their own — duplicating them by hand is
+  /// how a graph drifts out of step with its content.
+  static final List<ContentLink> _generated = [
+    for (final g in kCounsellingGuides)
+      ContentLink(g.id, g.title, Icons.record_voice_over_outlined,
+          (_) => CounsellingScreen(guide: g)),
+    for (final t in TrialRegistry.all)
+      ContentLink(t.id, '${t.acronym} · ${t.year}', Icons.science_outlined,
+          (_) => TrialScreen(trial: t)),
+  ];
+
   static ContentLink? resolve(String id) {
     for (final n in _nodes) {
+      if (n.id == id) return n;
+    }
+    for (final n in _generated) {
       if (n.id == id) return n;
     }
     return null;
@@ -1608,6 +1642,141 @@ class ContentRegistry {
         Related('proc-iucd', 'The other long-acting reversible option'),
       ],
     ),
+    // ── §51 score library additions ──────────────────────────────────────
+    'meows': ContentMeta(
+      id: 'meows',
+      title: 'MEOWS',
+      category: 'Obstetrics · Early warning',
+      sourceOrg: 'RCOG / MBRRACE-UK / FOGSI',
+      sourceTitle: 'Green-top Guideline 56; MBRRACE-UK confidential enquiries; FOGSI GCPR — Maternal Early Warning Systems',
+      year: 2011,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-sepsis', 'The commonest reason a MEOWS chart triggers'),
+        Related('algo-maternal-collapse', 'Where an untriggered deterioration ends'),
+        Related('haemodynamics', 'Shock index catches what blood pressure hides'),
+      ],
+    ),
+    'epds': ContentMeta(
+      id: 'epds',
+      title: 'Edinburgh Postnatal Depression Scale',
+      category: 'Obstetrics · Mental health',
+      sourceOrg: 'Br J Psychiatry / NICE / MoHFW',
+      sourceTitle: 'Cox JL et al. Br J Psychiatry 1987;150:782; NICE CG192; MoHFW maternal mental health guidance',
+      year: 1987,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('couns-preeclampsia', 'How to open a difficult conversation'),
+        Related('maternal-medicine', 'Coexisting conditions that mimic depression'),
+      ],
+    ),
+    'caprini': ContentMeta(
+      id: 'caprini',
+      title: 'Caprini score',
+      category: 'Gynaecology · Thromboprophylaxis',
+      sourceOrg: 'ACOG / Dis Mon / FOGSI',
+      sourceTitle: 'Caprini JA. Dis Mon 2005;51:70; ACOG Practice Bulletin 232; FOGSI GCPR — Thromboprophylaxis',
+      year: 2005,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('vte-risk', 'The obstetric score — use that one in pregnancy'),
+        Related('proc-laparoscopy', 'The surgery this is scored before'),
+        Related('formulary', 'Enoxaparin dosing'),
+      ],
+    ),
+    'robson': ContentMeta(
+      id: 'robson',
+      title: 'Robson classification',
+      category: 'Obstetrics · Audit',
+      sourceOrg: 'WHO / FOGSI',
+      sourceTitle: 'Robson MS. Fetal Matern Med Rev 2001;12:23; WHO Robson implementation manual 2017',
+      year: 2001,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('caesarean', 'What the audit is auditing'),
+        Related('vbac', 'Group 5 is where the rate is usually decided'),
+      ],
+    ),
+    'quintero': ContentMeta(
+      id: 'quintero',
+      title: 'Quintero staging',
+      category: 'Obstetrics · Fetal medicine',
+      sourceOrg: 'J Perinatol / ISUOG / FOGSI',
+      sourceTitle: 'Quintero RA et al. J Perinatol 1999;19:550; Senat MV et al. NEJM 2004;351:136',
+      year: 1999,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('fetal-medicine', 'Laser therapy and the referral pathway'),
+        Related('senat-ttts', 'The trial that made laser standard'),
+      ],
+    ),
+    'rasrm': ContentMeta(
+      id: 'rasrm',
+      title: 'rASRM endometriosis staging',
+      category: 'Gynaecology · Endometriosis',
+      sourceOrg: 'ASRM / ESHRE / FOGSI',
+      sourceTitle: 'ASRM revised classification 1996, Fertil Steril 1997;67:817; ESHRE Endometriosis Guideline 2022',
+      year: 1996,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('endometriosis', 'Why the stage predicts pain so poorly'),
+        Related('infertility', 'The Endometriosis Fertility Index predicts conception better'),
+      ],
+    ),
+    'mrs': ContentMeta(
+      id: 'mrs',
+      title: 'Menopause Rating Scale',
+      category: 'Gynaecology · Menopause',
+      sourceOrg: 'Indian Menopause Society / NICE',
+      sourceTitle: 'Heinemann LAJ et al. Health Qual Life Outcomes 2004;2:45; Indian Menopause Society recommendations',
+      year: 2004,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('menopause', 'What to do with a raised score'),
+        Related('urogynaecology', 'The urogenital subscale needs separate treatment'),
+      ],
+    ),
+    'ecog': ContentMeta(
+      id: 'ecog',
+      title: 'ECOG performance status',
+      category: 'Oncology',
+      sourceOrg: 'ECOG / National Cancer Grid',
+      sourceTitle: 'Oken MM et al. Am J Clin Oncol 1982;5:649; National Cancer Grid of India guidelines',
+      year: 1982,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(24),
+      status: ContentStatus.draft,
+      related: [
+        Related('figo-ovary-2014', 'Staging the disease being treated'),
+        Related('formulary', 'Fitness for platinum-taxane chemotherapy'),
+      ],
+    ),
   };
 }
 
@@ -1660,6 +1829,14 @@ Widget _tCaesarean(BuildContext _) => _t('caesarean');
 Widget _tRh(BuildContext _) => _t('rh-negative');
 
 Widget _cAub(BuildContext _) => const AubScreen();
+Widget _cMeows(BuildContext _) => const MeowsScreen();
+Widget _cEpds(BuildContext _) => const EpdsScreen();
+Widget _cCaprini(BuildContext _) => const CapriniScreen();
+Widget _cRobson(BuildContext _) => const RobsonScreen();
+Widget _cQuintero(BuildContext _) => const QuinteroScreen();
+Widget _cRasrm(BuildContext _) => const RasrmScreen();
+Widget _cMrs(BuildContext _) => const MrsScreen();
+Widget _cEcog(BuildContext _) => const EcogScreen();
 Widget _cPcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _cAdnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _cPopq(BuildContext _) => const PopQScreen();

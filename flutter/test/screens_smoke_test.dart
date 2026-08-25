@@ -28,9 +28,9 @@ import 'package:obgaid_app/theme/app_theme.dart';
 import 'package:obgaid_app/screens/hubs/calculators_hub.dart';
 import 'package:obgaid_app/screens/hubs/emergency_hub.dart';
 import 'package:obgaid_app/screens/hubs/topics_hub.dart';
+import 'package:obgaid_app/screens/hubs/scores_hub.dart';
+import 'package:obgaid_app/data/scores.dart';
 import 'package:obgaid_app/screens/hubs/tumour_staging_hub.dart';
-import 'package:obgaid_app/screens/hubs/staging_scores_hub.dart';
-import 'package:obgaid_app/screens/hubs/labour_hub.dart';
 import 'package:obgaid_app/screens/hubs/operative_hub.dart';
 import 'package:obgaid_app/screens/hubs/formulary_hub.dart';
 import 'package:obgaid_app/screens/hubs/reference_hub.dart';
@@ -61,9 +61,8 @@ void main() {
       'calculators': () => const CalculatorsHub(),
       'emergency': () => const EmergencyHub(),
       'topics': () => const TopicsHub(),
+      'scores': () => const ScoresHub(),
       'tumour staging': () => const TumourStagingHub(),
-      'staging & scores': () => const StagingScoresHub(),
-      'labour': () => const LabourHub(),
       'operative': () => const OperativeHub(),
       'formulary': () => const FormularyHub(),
       'reference': () => const ReferenceHub(),
@@ -82,6 +81,16 @@ void main() {
         expect(tester.takeException(), isNull);
       });
     });
+  });
+
+  group('every score reference page renders', () {
+    for (final score in kScores) {
+      testWidgets(score.id, (tester) async {
+        await tester.pumpWidget(wrap(ScoreScreen(score: score)));
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    }
   });
 
   group('every registered tool renders', () {

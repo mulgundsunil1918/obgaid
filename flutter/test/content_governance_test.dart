@@ -13,6 +13,7 @@ import 'package:obgaid_app/data/counselling.dart';
 import 'package:obgaid_app/data/quick_tables.dart';
 import 'package:obgaid_app/data/exam_topics.dart';
 import 'package:obgaid_app/data/anatomy.dart';
+import 'package:obgaid_app/data/scores.dart';
 import 'package:obgaid_app/data/staging_data.dart' show kStagingSystems;
 import 'package:obgaid_app/data/lab_reference.dart';
 import 'package:obgaid_app/models/reference_data.dart';
@@ -678,6 +679,44 @@ void main() {
     });
   });
 
+  group('§51 — score library', () {
+    test('every score carries the full §51 record', () {
+      for (final s in kScores) {
+        expect(s.purpose.trim(), isNotEmpty, reason: '${s.id}: purpose');
+        expect(s.population.trim(), isNotEmpty,
+            reason: '${s.id}: population — the field that decides whether the '
+                'score transfers to the woman in front of you');
+        expect(s.inputs, isNotEmpty, reason: '${s.id}: inputs');
+        expect(s.calculation.trim(), isNotEmpty,
+            reason: '${s.id}: calculation');
+        expect(s.interpretation, isNotEmpty,
+            reason: '${s.id}: interpretation');
+        expect(s.limitations, isNotEmpty, reason: '${s.id}: limitations');
+        expect(s.sources, isNotEmpty, reason: '${s.id}: sources');
+      }
+    });
+
+    test('interactive scores point at a tool or staging system that exists',
+        () {
+      final dangling = <String>[];
+      for (final s in kScores) {
+        if (s.toolId != null && ContentRegistry.resolve(s.toolId!) == null) {
+          dangling.add('${s.id} → ${s.toolId}');
+        }
+        if (s.stagingId != null &&
+            !kStagingSystems.any((st) => st.id == s.stagingId)) {
+          dangling.add('${s.id} → ${s.stagingId}');
+        }
+      }
+      expect(dangling, isEmpty, reason: dangling.join(', '));
+    });
+
+    test('score ids are unique', () {
+      final ids = kScores.map((s) => s.id).toList();
+      expect(ids.toSet().length, ids.length);
+    });
+  });
+
   group('registry integrity', () {
     test('every working tool has a content record', () {
       for (final t in ToolRegistry.all) {
@@ -695,6 +734,14 @@ void main() {
 }
 
 const _allMetaIds = [
+  'meows',
+  'epds',
+  'caprini',
+  'robson',
+  'quintero',
+  'rasrm',
+  'mrs',
+  'ecog',
   'proc-avd',
   'proc-perineal-repair',
   'proc-manual-removal',

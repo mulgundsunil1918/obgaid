@@ -19,6 +19,10 @@ import '../screens/calculators/pcos_assessment_screen.dart';
 import '../screens/calculators/adnexal_mass_screen.dart';
 import '../screens/calculators/popq_screen.dart';
 import '../screens/calculators/aub_screen.dart';
+import '../screens/scores/epds_screen.dart';
+import '../screens/scores/simple_scores.dart';
+import '../screens/scores/meows_robson.dart';
+import '../screens/scores/caprini_rasrm.dart';
 
 /// Single source of truth for every working tool. Home quick-access, the
 /// calculators hub and global search all read from here, so a tool added once
@@ -135,6 +139,63 @@ class ToolRegistry {
       builder: _aub,
     ),
     Tool(
+      id: 'meows',
+      name: 'MEOWS',
+      blurb: 'Modified early obstetric warning score · trigger rule',
+      module: ToolModule.maternalMedicine,
+      builder: _meows,
+    ),
+    Tool(
+      id: 'epds',
+      name: 'EPDS',
+      blurb: 'Edinburgh Postnatal Depression Scale · 10 items',
+      module: ToolModule.maternalMedicine,
+      builder: _epds,
+      indiaSpecific: true,
+    ),
+    Tool(
+      id: 'caprini',
+      name: 'Caprini score',
+      blurb: 'VTE risk before gynaecological surgery',
+      module: ToolModule.maternalMedicine,
+      builder: _caprini,
+    ),
+    Tool(
+      id: 'robson',
+      name: 'Robson classification',
+      blurb: 'Ten-group caesarean audit',
+      module: ToolModule.labour,
+      builder: _robson,
+    ),
+    Tool(
+      id: 'quintero',
+      name: 'Quintero staging',
+      blurb: 'Twin-to-twin transfusion syndrome',
+      module: ToolModule.biometry,
+      builder: _quintero,
+    ),
+    Tool(
+      id: 'rasrm',
+      name: 'rASRM staging',
+      blurb: 'Endometriosis, scored at surgery',
+      module: ToolModule.gynaecology,
+      builder: _rasrm,
+    ),
+    Tool(
+      id: 'mrs',
+      name: 'Menopause Rating Scale',
+      blurb: 'MRS · 11 items with subscales',
+      module: ToolModule.gynaecology,
+      builder: _mrs,
+    ),
+    Tool(
+      id: 'ecog',
+      name: 'ECOG performance status',
+      blurb: 'Fitness for cancer treatment',
+      module: ToolModule.gynaecology,
+      builder: _ecog,
+    ),
+    Tool(
       id: 'bishop',
       name: 'Bishop score',
       blurb: 'Induction favourability · ripening threshold',
@@ -206,3 +267,11 @@ Widget _pcosAssess(BuildContext _) => const PcosAssessmentScreen();
 Widget _adnexal(BuildContext _) => const AdnexalMassScreen();
 Widget _popq(BuildContext _) => const PopQScreen();
 Widget _aub(BuildContext _) => const AubScreen();
+Widget _meows(BuildContext _) => const MeowsScreen();
+Widget _epds(BuildContext _) => const EpdsScreen();
+Widget _caprini(BuildContext _) => const CapriniScreen();
+Widget _robson(BuildContext _) => const RobsonScreen();
+Widget _quintero(BuildContext _) => const QuinteroScreen();
+Widget _rasrm(BuildContext _) => const RasrmScreen();
+Widget _mrs(BuildContext _) => const MrsScreen();
+Widget _ecog(BuildContext _) => const EcogScreen();

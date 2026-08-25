@@ -8,12 +8,11 @@ import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
 import '../hubs/topics_hub.dart';
+import '../hubs/scores_hub.dart';
 import '../counselling/counselling_screen.dart';
 import '../anatomy/anatomy_screen.dart';
 import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
-import '../hubs/staging_scores_hub.dart';
-import '../hubs/labour_hub.dart';
 import '../hubs/operative_hub.dart';
 import '../hubs/formulary_hub.dart';
 import '../hubs/reference_hub.dart';
@@ -37,112 +36,133 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => builder()));
   }
 
-  List<_FeatureDef> _cards(BuildContext context) => [
-        _FeatureDef(
-          'Emergencies',
-          'PPH · eclampsia · collapse · sepsis · dystocia',
-          Icons.emergency_rounded,
-          const Color(0xFFB3261E),
-          () => _open(context, () => const EmergencyHub()),
-          highlight: true,
+  /// Grouped by the question a clinician is asking, not by subject — subject
+  /// cross-cuts almost everything here, which is why an accreted flat list
+  /// stopped being navigable.
+  List<(String, List<_FeatureDef>)> _groups(BuildContext context) => [
+        (
+          'In an emergency',
+          [
+            _FeatureDef(
+              'Emergencies',
+              '12 algorithms · PPH, eclampsia, collapse, sepsis',
+              Icons.emergency_rounded,
+              const Color(0xFFB3261E),
+              () => _open(context, () => const EmergencyHub()),
+              highlight: true,
+            ),
+          ]
         ),
-        _FeatureDef(
-          'Calculators & Tools',
-          'Obstetric & gynae · bedside tools',
-          Icons.calculate_rounded,
-          const Color(0xFF0D5C55),
-          () => _open(context, () => const CalculatorsHub()),
+        (
+          'At the bedside',
+          [
+            _FeatureDef(
+              'Calculators',
+              'Dating, EFW, doses, fluids, risk',
+              Icons.calculate_rounded,
+              const Color(0xFF0D5C55),
+              () => _open(context, () => const CalculatorsHub()),
+            ),
+            _FeatureDef(
+              'Scores',
+              'Bishop · MEOWS · EPDS · POP-Q · Caprini',
+              Icons.rule_rounded,
+              const Color(0xFF00695C),
+              () => _open(context, () => const ScoresHub()),
+            ),
+            _FeatureDef(
+              'Ultrasound',
+              'Scan guide · biometry · liquor · EFW',
+              Icons.graphic_eq_rounded,
+              const Color(0xFF1565C0),
+              () => _open(context, () => const UltrasoundHub()),
+            ),
+            _FeatureDef(
+              'Formulary',
+              'Doses · pregnancy & lactation safety',
+              Icons.medication_rounded,
+              const Color(0xFF00838F),
+              () => _open(context, () => const FormularyHub()),
+            ),
+          ]
         ),
-        _FeatureDef(
-          'Ultrasound',
-          'Scan guide · biometry · liquor · EFW',
-          Icons.graphic_eq_rounded,
-          const Color(0xFF1565C0),
-          () => _open(context, () => const UltrasoundHub()),
+        (
+          'In theatre',
+          [
+            _FeatureDef(
+              'Procedures',
+              'Steps, complications, what to document',
+              Icons.medical_services_rounded,
+              const Color(0xFF6D4C41),
+              () => _open(context, () => const OperativeHub()),
+            ),
+            _FeatureDef(
+              'Surgical Anatomy',
+              'Before you scrub — where it gets injured',
+              Icons.account_tree_rounded,
+              const Color(0xFF5D4037),
+              () => _open(context, () => const AnatomyHub()),
+            ),
+          ]
         ),
-        _FeatureDef(
-          'Clinical Topics',
-          'CTG · preterm · PCOS · fibroids · menopause',
-          Icons.article_rounded,
-          const Color(0xFF00695C),
-          () => _open(context, () => const TopicsHub()),
+        (
+          'Reference',
+          [
+            _FeatureDef(
+              'Clinical Topics',
+              'CTG · preterm · PCOS · menopause',
+              Icons.article_rounded,
+              const Color(0xFF283593),
+              () => _open(context, () => const TopicsHub()),
+            ),
+            _FeatureDef(
+              'Oncology & Staging',
+              'FIGO cervical · endometrial · ovarian',
+              Icons.biotech_rounded,
+              const Color(0xFF6A1B9A),
+              () => _open(context, () => const TumourStagingHub()),
+            ),
+            _FeatureDef(
+              'Reference Library',
+              'Guidelines · labs · vaccines · MTP · PCPNDT',
+              Icons.menu_book_rounded,
+              const Color(0xFF1A237E),
+              () => _open(context, () => const ReferenceHub()),
+            ),
+            _FeatureDef(
+              'Counselling',
+              'What to say — and what not to',
+              Icons.record_voice_over_rounded,
+              const Color(0xFF00695C),
+              () => _open(context, () => const CounsellingHub()),
+            ),
+          ]
         ),
-        _FeatureDef(
-          'Tumour Staging',
-          'FIGO cervical · endometrial · ovarian',
-          Icons.biotech_rounded,
-          const Color(0xFF6A1B9A),
-          () => _open(context, () => const TumourStagingHub()),
-        ),
-        _FeatureDef(
-          'Staging & Scores',
-          'Bishop · POP-Q · rASRM · Quintero',
-          Icons.rule_rounded,
-          const Color(0xFF00695C),
-          () => _open(context, () => const StagingScoresHub()),
-        ),
-        _FeatureDef(
-          'Labour',
-          'WHO Labour Care Guide · induction · VBAC',
-          Icons.timeline_rounded,
-          const Color(0xFFC2603C),
-          () => _open(context, () => const LabourHub()),
-        ),
-        _FeatureDef(
-          'Operative',
-          'Obstetric & gynae procedures · ERAS',
-          Icons.medical_services_rounded,
-          const Color(0xFF6D4C41),
-          () => _open(context, () => const OperativeHub()),
-        ),
-        _FeatureDef(
-          'Surgical Anatomy',
-          'Before you scrub — where it gets injured',
-          Icons.account_tree_rounded,
-          const Color(0xFF6D4C41),
-          () => _open(context, () => const AnatomyHub()),
-        ),
-        _FeatureDef(
-          'Drug Formulary',
-          'Pregnancy & lactation safety',
-          Icons.medication_rounded,
-          const Color(0xFF00838F),
-          () => _open(context, () => const FormularyHub()),
-        ),
-        _FeatureDef(
-          'Reference Library',
-          'FOGSI · RCOG · ACOG · NICE · MTP · PCPNDT',
-          Icons.menu_book_rounded,
-          const Color(0xFF283593),
-          () => _open(context, () => const ReferenceHub()),
-        ),
-        _FeatureDef(
-          'Counselling',
-          'What to say — and what not to',
-          Icons.record_voice_over_rounded,
-          const Color(0xFF00838F),
-          () => _open(context, () => const CounsellingHub()),
-        ),
-        _FeatureDef(
-          'Never Again',
-          'Learn from real mistakes',
-          Icons.groups_rounded,
-          const Color(0xFF1A237E),
-          () => _open(context, () => const NeverAgainHub()),
-        ),
-        _FeatureDef(
-          'Academics',
-          'Landmark trials · FOGSI · ICOG',
-          Icons.school_rounded,
-          const Color(0xFFAD1457),
-          () => _open(context, () => const AcademicsHub()),
-        ),
-        _FeatureDef(
-          'CME & Webinars',
-          'Find & post events',
-          Icons.event_note_rounded,
-          const Color(0xFF7B1FA2),
-          () => _open(context, () => const CmeHub()),
+        (
+          'Learning',
+          [
+            _FeatureDef(
+              'Academics',
+              '25 landmark trials · examination topics',
+              Icons.school_rounded,
+              const Color(0xFFAD1457),
+              () => _open(context, () => const AcademicsHub()),
+            ),
+            _FeatureDef(
+              'Never Again',
+              'Learn from real mistakes',
+              Icons.groups_rounded,
+              const Color(0xFF4527A0),
+              () => _open(context, () => const NeverAgainHub()),
+            ),
+            _FeatureDef(
+              'CME',
+              'Credit log · accreditation',
+              Icons.event_note_rounded,
+              const Color(0xFF7B1FA2),
+              () => _open(context, () => const CmeHub()),
+            ),
+          ]
         ),
       ];
 
@@ -206,21 +226,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _buildWelcomeBanner(context, isDark),
                   const SizedBox(height: 22),
-                  _sectionHeader(context, 'Modules'),
-                  const SizedBox(height: 12),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      mainAxisExtent: isPhone ? 130 : 140,
+                  for (final group in _groups(context)) ...[
+                    _sectionHeader(context, group.$1),
+                    const SizedBox(height: 12),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        mainAxisExtent: isPhone ? 130 : 140,
+                      ),
+                      itemCount: group.$2.length,
+                      itemBuilder: (_, i) =>
+                          _FeatureCardWidget(card: group.$2[i], isDark: isDark),
                     ),
-                    itemCount: _cards(context).length,
-                    itemBuilder: (_, i) => _FeatureCardWidget(
-                        card: _cards(context)[i], isDark: isDark),
-                  ),
+                    const SizedBox(height: 22),
+                  ],
                   const SizedBox(height: 26),
                   _sectionHeader(context, 'Quick access'),
                   const SizedBox(height: 12),

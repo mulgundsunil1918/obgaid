@@ -197,6 +197,18 @@ extending them is data entry rather than design.
 
 ---
 
+## Score library *(spec §51)*
+
+| | |
+|---|---|
+| Scores indexed | 19, each with the full §51 record — purpose, derivation population, inputs, calculation, interpretation, limitations, reference |
+| New interactive | MEOWS · EPDS · Caprini · Robson · Quintero · rASRM · Menopause Rating Scale · ECOG |
+| Already existing, now indexed | Bishop · Apgar · shock index · POP-Q · PBAC · Ferriman-Gallwey · RMI/IOTA/O-RADS · VTE risk · Rotterdam · WHO GTN score · biophysical profile |
+
+Built because the scores had scattered — Bishop under Labour, Ferriman-Gallwey
+inside PCOS assessment, POP-Q under Gynaecology, Apgar under Neonatal. "Which
+scores exist" had no single answer, and the Staging & Scores hub showed one.
+
 ## Beyond the specification
 
 | Module | Why it exists |
@@ -204,6 +216,13 @@ extending them is data entry rather than design.
 | **Surgical anatomy** — before you scrub | Not in the spec. A two-minute lookup at the sink, organised by where a structure actually gets injured rather than by descriptive anatomy: ureter, uterine artery, internal iliac, abdominal wall and ports, pelvic avascular spaces, pelvic nerves, perineum and anal sphincter. A test fails the build if any danger point lacks the manoeuvre that prevents it. |
 
 ## Housekeeping
+
+Home is grouped by the question a clinician is asking rather than by subject:
+**in an emergency · at the bedside · in theatre · reference · learning**.
+Subject cross-cuts almost everything here, so a flat list that had grown by
+appending had stopped being navigable. Two hubs went in the process — Staging &
+Scores, superseded by the score library, and Labour, whose content is fully
+reachable through Topics, Emergencies, Scores and Procedures.
 
 The in-app "coming soon" blocks were removed. Fifteen of them listed a build
 plan on clinical screens, and many had gone stale — naming content that by then
