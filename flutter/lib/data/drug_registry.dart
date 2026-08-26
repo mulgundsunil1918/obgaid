@@ -5,6 +5,7 @@ import 'drugs/prophylaxis_fertility.dart';
 import 'drugs/supportive_drugs.dart';
 import 'drugs/hormonal_drugs.dart';
 import 'drugs/specialist_drugs.dart';
+import 'drugs/oncology_drugs.dart';
 
 enum DrugGroup {
   uterotonic,
@@ -84,6 +85,8 @@ class DrugRegistry {
       kTamoxifen,
       kCarboplatinPaclitaxel,
       kOlaparib,
+      kBevacizumab,
+      kPembrolizumab,
     ],
   };
 
