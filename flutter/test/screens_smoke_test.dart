@@ -370,7 +370,7 @@ void _learningScreenTests() {
       }
     });
 
-    for (final c in LearningCategory.values)
+    for (final c in LearningCategory.values) {
       testWidgets('category screen renders ${c.name}', (t) async {
         await t.pumpWidget(MaterialApp(
             theme: AppTheme.light(), home: LearningCategoryScreen(c)));
@@ -384,8 +384,9 @@ void _learningScreenTests() {
               reason: '${topic.id} missing from its category screen');
         }
       });
+    }
 
-    for (final topic in LearningRegistry.all)
+    for (final topic in LearningRegistry.all) {
       testWidgets('topic renders ${topic.id}', (t) async {
         await t.pumpWidget(MaterialApp(
             theme: AppTheme.light(),
@@ -394,5 +395,6 @@ void _learningScreenTests() {
         expect(find.text(topic.summary), findsOneWidget,
             reason: '${topic.id} did not render its summary');
       });
+    }
   });
 }
