@@ -1,6 +1,7 @@
 import '../models/exam_topic.dart';
+import 'exam_topics_2.dart';
 
-const kExamTopics = <ExamTopic>[
+const _core = <ExamTopic>[
   ExamTopic(
     id: 'exam-hypertensive',
     title: 'Hypertensive disorders of pregnancy',
@@ -418,3 +419,7 @@ const kExamTopics = <ExamTopic>[
     readsInApp: ['mtp-act', 'pcpndt-act', 'gdm', 'anaemia'],
   ),
 ];
+
+
+/// Every §59 academic topic.
+List<ExamTopic> get kExamTopics => [..._core, ...kExamTopics2];

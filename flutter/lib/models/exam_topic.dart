@@ -38,10 +38,11 @@ class ExamTopic {
   final List<String> sources;
 }
 
-enum ExamArea { obstetrics, gynaecology, reproductive, oncology }
+enum ExamArea { basicSciences, obstetrics, gynaecology, reproductive, oncology }
 
 extension ExamAreaInfo on ExamArea {
   String get label => switch (this) {
+        ExamArea.basicSciences => 'Basic sciences',
         ExamArea.obstetrics => 'Obstetrics',
         ExamArea.gynaecology => 'Gynaecology',
         ExamArea.reproductive => 'Reproductive medicine',
