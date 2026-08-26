@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../data/tool_registry.dart';
 import '../../models/tool.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/scores.dart';
+import 'scores_hub.dart' show ScoreScreen;
 
 class CalculatorsHub extends StatelessWidget {
   const CalculatorsHub({super.key});
@@ -14,7 +16,7 @@ class CalculatorsHub extends StatelessWidget {
     }
 
     return HubScaffold(
-      title: 'Calculators & Tools',
+      title: 'Calculators & Scores',
       subtitle: '${ToolRegistry.all.length} live · more each phase',
       children: [
         for (final entry in byModule.entries) ...[
@@ -36,7 +38,38 @@ class CalculatorsHub extends StatelessWidget {
                     context, MaterialPageRoute(builder: t.builder)),
               )),
         ],
+        const _CalcSection('Scores without a calculator'),
+        // Seventeen of the twenty-five scores already have a calculator and
+        // are listed above under their clinical area. Only the standalone
+        // ones appear here, so nothing is advertised twice.
+        for (final sc in kScores.where((s) => s.toolId == null))
+          HubTile(
+            title: sc.name,
+            subtitle: sc.subtitle,
+            icon: Icons.rule_outlined,
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => ScoreScreen(score: sc))),
+          ),
       ],
     );
   }
+}
+
+class _CalcSection extends StatelessWidget {
+  const _CalcSection(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 8, bottom: 10),
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(
+            fontSize: 10.5,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.8,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      );
 }

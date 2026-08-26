@@ -4,25 +4,25 @@ import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/theme_provider.dart';
 import '../../data/tool_registry.dart';
+import '../../data/topic_registry.dart';
+import '../../data/drug_registry.dart';
+import '../../data/counselling.dart';
+import '../../data/safety_cases.dart';
+import '../../data/scores.dart';
 import '../../data/algorithm_registry.dart';
 import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
 import '../hubs/topics_hub.dart';
-import '../hubs/scores_hub.dart';
 import '../counselling/counselling_screen.dart';
-import '../anatomy/anatomy_screen.dart';
-import '../hubs/tumour_staging_hub.dart';
 import '../hubs/ultrasound_hub.dart';
 import '../hubs/operative_hub.dart';
 import '../hubs/formulary_hub.dart';
 import '../hubs/reference_hub.dart';
 import '../hubs/never_again_hub.dart';
 import '../hubs/academics_hub.dart';
-import '../learning/learning_hub.dart';
 import '../../data/learning_registry.dart';
 import '../../data/trial_registry.dart';
-import '../hubs/cme_hub.dart';
 import '../search/app_search_delegate.dart';
 import '../governance/review_queue_screen.dart';
 import '../../data/content_registry.dart';
@@ -43,148 +43,95 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Grouped by the question a clinician is asking, not by subject — subject
   /// cross-cuts almost everything here, which is why an accreted flat list
   /// stopped being navigable.
-  List<(String, List<_FeatureDef>)> _groups(BuildContext context) => [
-        (
-          'In an emergency',
-          [
-            _FeatureDef(
-              'Emergencies',
-              '${AlgorithmRegistry.all.length} algorithms · PPH, eclampsia, '
-              'collapse, sepsis',
-              Icons.emergency_rounded,
-              const Color(0xFFB3261E),
-              () => _open(context, () => const EmergencyHub()),
-              highlight: true,
-            ),
-          ]
+  /// The doors. Flat, no group headings — grouping added a hop and the group
+  /// names were doing no work that the card titles were not already doing.
+  ///
+  /// Emergencies is deliberately NOT here: it renders as a full-width band
+  /// above the grid, so no amount of text scaling or narrow-screen reflow can
+  /// push it below the fold.
+  List<_FeatureDef> _cards(BuildContext context) => [
+        _FeatureDef(
+          'Calculators & Scores',
+          '${ToolRegistry.all.length + _standaloneScoreCount} tools · dating, '
+              'EFW, Bishop, MgSO4, MEOWS',
+          Icons.calculate_rounded,
+          const Color(0xFF0D5C55),
+          () => _open(context, () => const CalculatorsHub()),
         ),
-        (
-          'At the bedside',
-          [
-            _FeatureDef(
-              'Calculators',
-              'Dating, EFW, doses, fluids, risk',
-              Icons.calculate_rounded,
-              const Color(0xFF0D5C55),
-              () => _open(context, () => const CalculatorsHub()),
-            ),
-            _FeatureDef(
-              'Scores',
-              'Bishop · MEOWS · EPDS · POP-Q · Caprini',
-              Icons.rule_rounded,
-              const Color(0xFF00695C),
-              () => _open(context, () => const ScoresHub()),
-            ),
-            _FeatureDef(
-              'Ultrasound',
-              'Scan guide · biometry · liquor · EFW',
-              Icons.graphic_eq_rounded,
-              const Color(0xFF1565C0),
-              () => _open(context, () => const UltrasoundHub()),
-            ),
-            _FeatureDef(
-              'Formulary',
-              'Doses · pregnancy & lactation safety',
-              Icons.medication_rounded,
-              const Color(0xFF00838F),
-              () => _open(context, () => const FormularyHub()),
-            ),
-          ]
+        _FeatureDef(
+          'Clinical Topics',
+          '${TopicRegistry.all.length + LearningRegistry.all.length} topics · '
+              'bedside reference & full curriculum',
+          Icons.article_rounded,
+          const Color(0xFF283593),
+          () => _open(context, () => const TopicsHub()),
         ),
-        (
-          'In theatre',
-          [
-            _FeatureDef(
-              'Procedures',
-              'Steps, complications, what to document',
-              Icons.medical_services_rounded,
-              const Color(0xFF6D4C41),
-              () => _open(context, () => const OperativeHub()),
-            ),
-            _FeatureDef(
-              'Surgical Anatomy',
-              'Before you scrub — where it gets injured',
-              Icons.account_tree_rounded,
-              const Color(0xFF5D4037),
-              () => _open(context, () => const AnatomyHub()),
-            ),
-          ]
+        _FeatureDef(
+          'Drug Formulary',
+          '${DrugRegistry.all.length} drugs · pregnancy & lactation safety',
+          Icons.medication_rounded,
+          const Color(0xFF00838F),
+          () => _open(context, () => const FormularyHub()),
         ),
-        (
-          'Reference',
-          [
-            _FeatureDef(
-              'Clinical Topics',
-              'CTG · preterm · PCOS · menopause',
-              Icons.article_rounded,
-              const Color(0xFF283593),
-              () => _open(context, () => const TopicsHub()),
-            ),
-            _FeatureDef(
-              'Oncology & Staging',
-              'FIGO cervical · endometrial · ovarian',
-              Icons.biotech_rounded,
-              const Color(0xFF6A1B9A),
-              () => _open(context, () => const TumourStagingHub()),
-            ),
-            _FeatureDef(
-              'Reference Library',
-              'Guidelines · labs · vaccines · MTP · PCPNDT',
-              Icons.menu_book_rounded,
-              const Color(0xFF1A237E),
-              () => _open(context, () => const ReferenceHub()),
-            ),
-            _FeatureDef(
-              'Counselling',
-              'What to say — and what not to',
-              Icons.record_voice_over_rounded,
-              const Color(0xFF00695C),
-              () => _open(context, () => const CounsellingHub()),
-            ),
-          ]
+        _FeatureDef(
+          'Ultrasound',
+          'Scan guide · biometry · Doppler · Form F',
+          Icons.graphic_eq_rounded,
+          const Color(0xFF1565C0),
+          () => _open(context, () => const UltrasoundHub()),
         ),
-        (
-          'Learning',
-          [
-            _FeatureDef(
-              'Learning',
-              '${LearningRegistry.all.length} teaching topics across the '
-                  'curriculum',
-              Icons.menu_book_rounded,
-              const Color(0xFF00695C),
-              () => _open(context, () => const LearningHub()),
-            ),
-            _FeatureDef(
-              'Academics',
-              '${TrialRegistry.all.length} landmark trials · examination '
-                  'topics',
-              Icons.school_rounded,
-              const Color(0xFFAD1457),
-              () => _open(context, () => const AcademicsHub()),
-            ),
-            _FeatureDef(
-              'Never Again',
-              'Learn from real mistakes',
-              Icons.groups_rounded,
-              const Color(0xFF4527A0),
-              () => _open(context, () => const NeverAgainHub()),
-            ),
-            _FeatureDef(
-              'CME',
-              'Credit log · accreditation',
-              Icons.event_note_rounded,
-              const Color(0xFF7B1FA2),
-              () => _open(context, () => const CmeHub()),
-            ),
-          ]
+        _FeatureDef(
+          'Procedures & Anatomy',
+          'Steps, pitfalls, and where the ureter runs',
+          Icons.medical_services_rounded,
+          const Color(0xFF6D4C41),
+          () => _open(context, () => const OperativeHub()),
+        ),
+        _FeatureDef(
+          'Counselling',
+          '${kCounsellingGuides.length} guides · what to say · MTP Act',
+          Icons.record_voice_over_rounded,
+          const Color(0xFF00695C),
+          () => _open(context, () => const CounsellingHub()),
+        ),
+        _FeatureDef(
+          'Reference Library',
+          'Guidelines · labs · vaccines · tables · FIGO staging',
+          Icons.menu_book_rounded,
+          const Color(0xFF1A237E),
+          () => _open(context, () => const ReferenceHub()),
+        ),
+        _FeatureDef(
+          'Academics & CME',
+          '${TrialRegistry.all.length} trials · viva topics · credit log',
+          Icons.school_rounded,
+          const Color(0xFFAD1457),
+          () => _open(context, () => const AcademicsHub()),
+        ),
+        _FeatureDef(
+          'Never Again',
+          '${kSafetyCases.length} real cases · learn from real mistakes',
+          Icons.groups_rounded,
+          const Color(0xFF4527A0),
+          () => _open(context, () => const NeverAgainHub()),
         ),
       ];
+
+  /// Scores that are not already a calculator. Seventeen of the twenty-five
+  /// carry a toolId, so counting all of them would advertise the same thing
+  /// twice.
+  static int get _standaloneScoreCount =>
+      kScores.where((s) => s.toolId == null).length;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final cs = Theme.of(context).colorScheme;
     final isPhone = MediaQuery.of(context).size.width < 600;
+    final cols = MediaQuery.of(context).size.width < 600
+        ? 2
+        : (MediaQuery.of(context).size.width < 980 ? 3 : 4);
+    final cards = _cards(context);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -238,26 +185,34 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _buildWelcomeBanner(context, isDark),
-                  const SizedBox(height: 22),
-                  for (final group in _groups(context)) ...[
-                    _sectionHeader(context, group.$1),
-                    const SizedBox(height: 12),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        mainAxisExtent: isPhone ? 130 : 140,
-                      ),
-                      itemCount: group.$2.length,
-                      itemBuilder: (_, i) =>
-                          _FeatureCardWidget(card: group.$2[i], isDark: isDark),
+                  _buildWelcomeBanner(
+                    context,
+                    isDark,
+                    band: _EmergencyBand(
+                      count: AlgorithmRegistry.all.length,
+                      onTap: () => _open(context, () => const EmergencyHub()),
                     ),
-                    const SizedBox(height: 22),
-                  ],
+                  ),
+                  const SizedBox(height: 20),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: cols,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      // Card height follows the text scale, or the content
+                      // overflows at accessibility sizes.
+                      mainAxisExtent: (isPhone ? 132.0 : 142.0) *
+                          MediaQuery.textScalerOf(context)
+                              .scale(14)
+                              .clamp(14, 28) /
+                          14,
+                    ),
+                    itemCount: cards.length,
+                    itemBuilder: (_, i) =>
+                        _FeatureCardWidget(card: cards[i], isDark: isDark),
+                  ),
                   const SizedBox(height: 26),
                   _sectionHeader(context, 'Quick access'),
                   const SizedBox(height: 12),
@@ -308,7 +263,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-  Widget _buildWelcomeBanner(BuildContext context, bool isDark) {
+  Widget _buildWelcomeBanner(BuildContext context, bool isDark,
+      {required Widget band}) {
+    // At large accessibility text sizes the decorative half of the hero is
+    // what pushes the emergency band off screen, so it is dropped rather than
+    // allowed to compete with it.
+    final scale = MediaQuery.textScalerOf(context).scale(14) / 14;
+    final compact = scale > 1.3;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -339,17 +300,21 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(mainAxisSize: MainAxisSize.min, children: [
               Icon(_greetingIcon, color: Colors.white, size: 12),
               const SizedBox(width: 5),
-              Text(
+              Flexible(
+                child: Text(
                 _greetingLine,
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.plusJakartaSans(
                   color: Colors.white,
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                 ),
+                ),
               ),
             ]),
           ),
-          const SizedBox(height: 10),
+          if (!compact) const SizedBox(height: 10),
+          if (!compact)
           Text(
             'What would you like to look up?',
             style: GoogleFonts.plusJakartaSans(
@@ -360,7 +325,8 @@ class _HomeScreenState extends State<HomeScreen> {
               letterSpacing: -0.3,
             ),
           ),
-          const SizedBox(height: 4),
+          if (!compact) const SizedBox(height: 4),
+          if (!compact)
           Text(
             'Obstetrics & Gynaecology clinical reference',
             style: GoogleFonts.plusJakartaSans(
@@ -401,7 +367,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
+          band,
+          if (!compact) const SizedBox(height: 14),
+          if (!compact)
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -545,16 +514,14 @@ class _FeatureDef {
   final IconData icon;
   final Color accent;
   final VoidCallback onTap;
-  final bool highlight;
 
   const _FeatureDef(
     this.title,
     this.subtitle,
     this.icon,
     this.accent,
-    this.onTap, {
-    this.highlight = false,
-  });
+    this.onTap,
+  );
 }
 
 class _FeatureCardWidget extends StatelessWidget {
@@ -565,23 +532,16 @@ class _FeatureCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    const highlightBg = Color(0xFFFFF8E1);
-    const highlightBorder = Color(0xFFFFC107);
-    const highlightBgDark = Color(0xFF2A2415);
-
-    final cardBg = card.highlight
-        ? (isDark ? highlightBgDark : highlightBg)
-        : (isDark ? const Color(0xFF17201E) : Colors.white);
-    final border = card.highlight
-        ? highlightBorder
-        : (isDark ? const Color(0xFF25322F) : const Color(0xFFD5E0DD));
+    // The amber highlight left with the emergency card — every card on the
+    // grid is now peer-level, and emphasis lives in the red band above it.
+    final cardBg = isDark ? AppTheme.dCard : Colors.white;
+    final border = isDark ? AppTheme.dBorder : const Color(0xFFD5E0DD);
 
     return Container(
       decoration: BoxDecoration(
         color: cardBg,
         borderRadius: BorderRadius.circular(16),
-        border:
-            Border.all(color: border, width: card.highlight ? 1.6 : 1.0),
+        border: Border.all(color: border),
       ),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -624,6 +584,84 @@ class _FeatureCardWidget extends StatelessWidget {
                 ],
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Emergencies, rendered as a full-width band rather than a grid tile.
+///
+/// As a tile it can be pushed below the fold by a large text scale, a narrow
+/// screen, or a future extra card. As a band pinned directly under the search
+/// bar it cannot. That is a clinical safety property, not a layout preference.
+class _EmergencyBand extends StatelessWidget {
+  const _EmergencyBand({required this.count, required this.onTap});
+  final int count;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    const red = Color(0xFFB3261E);
+    return Semantics(
+      button: true,
+      label: 'Emergencies. $count algorithms. Opens immediately.',
+      child: Material(
+        color: red,
+        borderRadius: BorderRadius.circular(16),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            child: Row(
+              children: [
+                Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.18),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(Icons.emergency_rounded,
+                      color: Colors.white, size: 24),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Emergencies',
+                        style: GoogleFonts.plusJakartaSans(
+                          color: Colors.white,
+                          fontSize: 16.5,
+                          fontWeight: FontWeight.w800,
+                          height: 1.15,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '$count algorithms · PPH · eclampsia · sepsis · '
+                        'collapse',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.plusJakartaSans(
+                          color: Colors.white.withValues(alpha: 0.85),
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w500,
+                          height: 1.3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const Icon(Icons.chevron_right, color: Colors.white, size: 22),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/staging_data.dart';
+import '../staging/staging_screen.dart';
 import '../legal/mtp_screen.dart';
 import '../legal/pcpndt_screen.dart';
 import '../../data/topic_registry.dart';
@@ -105,7 +107,36 @@ class ReferenceHub extends StatelessWidget {
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const GuidelinesScreen())),
         ),
+        const _SectionLabel('FIGO staging'),
+        ...kStagingSystems.map((sys) => HubTile(
+              title: sys.name,
+              subtitle: sys.edition,
+              icon: Icons.biotech_outlined,
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => StagingScreen(system: sys))),
+            )),
       ],
     );
   }
+}
+
+/// A heading between grids inside a hub. HubScaffold treats any non-HubTile
+/// child as full width, which is what makes sectioning work.
+class _SectionLabel extends StatelessWidget {
+  const _SectionLabel(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 4, bottom: 10),
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(
+            fontSize: 10.5,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.8,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      );
 }

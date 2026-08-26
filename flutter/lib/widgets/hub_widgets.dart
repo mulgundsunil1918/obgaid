@@ -64,7 +64,10 @@ class _HubScaffoldState extends State<HubScaffold> {
           crossAxisCount: cols,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          mainAxisExtent: w < 600 ? 132 : 142,
+          // Follows the text scale so tiles do not overflow at accessibility
+          // sizes.
+          mainAxisExtent: (w < 600 ? 132.0 : 142.0) *
+              MediaQuery.textScalerOf(context).scale(14).clamp(14, 28) / 14,
         ),
         itemCount: tiles.length,
         itemBuilder: (_, i) => tiles[i],

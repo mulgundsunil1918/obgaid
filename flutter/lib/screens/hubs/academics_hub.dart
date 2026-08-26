@@ -4,6 +4,7 @@ import '../../models/trial.dart';
 import '../../widgets/hub_widgets.dart';
 import '../academics/trial_screen.dart';
 import '../academics/exam_screen.dart';
+import 'cme_hub.dart';
 import '../../data/exam_topics.dart';
 
 class AcademicsHub extends StatelessWidget {
@@ -13,7 +14,7 @@ class AcademicsHub extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return HubScaffold(
-      title: 'Academics',
+      title: 'Academics & CME',
       subtitle: '${TrialRegistry.all.length} landmark trials',
       intro: 'The trial that changed practice, summarised to the point where '
           'you could defend it on a ward round. Each carries its absolute '
@@ -27,6 +28,14 @@ class AcademicsHub extends StatelessWidget {
           icon: Icons.school_rounded,
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const ExamHub())),
+        ),
+        HubTile(
+          title: 'CME credit log',
+          subtitle: 'Record credits and certificates · five-year and '
+              'twelve-month totals',
+          icon: Icons.event_available_outlined,
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const CmeHub())),
         ),
         const SizedBox(height: 14),
         for (final entry in TrialRegistry.byCategory.entries) ...[
