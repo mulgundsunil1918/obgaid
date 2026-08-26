@@ -47,6 +47,18 @@ void main() {
       }
     });
 
+    test('every node in the graph carries a content record', () {
+      // Without this, a node with no record is invisible to every rule below,
+      // because they all iterate the records rather than the graph.
+      final missing = <String>[];
+      for (final n in ContentRegistry.allNodes) {
+        if (ContentRegistry.metaFor(n.id) == null) missing.add(n.id);
+      }
+      expect(missing, isEmpty,
+          reason: 'These nodes exist but are governed by nothing: '
+              '${missing.join(', ')}');
+    });
+
     test('no content item is an island', () {
       for (final id in _allMetaIds) {
         expect(ContentRegistry.metaFor(id)!.related, isNotEmpty,
@@ -733,84 +745,4 @@ void main() {
   });
 }
 
-const _allMetaIds = [
-  'meows',
-  'epds',
-  'caprini',
-  'robson',
-  'quintero',
-  'rasrm',
-  'mrs',
-  'ecog',
-  'proc-avd',
-  'proc-perineal-repair',
-  'proc-manual-removal',
-  'proc-vaginal-exam',
-  'proc-pap',
-  'proc-colposcopy',
-  'proc-hysteroscopy',
-  'proc-laparoscopy',
-  'proc-surgical-miscarriage',
-  'proc-implant',
-  'proc-balloon',
-  'proc-iucd',
-  'proc-endometrial-biopsy',
-  'pathology',
-  'imaging',
-  'infertility',
-  'ohss',
-  'maternal-medicine',
-  'fetal-medicine',
-  'lab-reference',
-  'immunisation',
-  'formulary',
-  'pcos-assessment',
-  'adnexal-mass',
-  'popq',
-  'aub',
-  'pcos',
-  'fibroids',
-  'endometriosis',
-  'adenomyosis',
-  'contraception',
-  'menopause',
-  'urogynaecology',
-  'ctg',
-  'fgr',
-  'pprom',
-  'preterm-labour',
-  'induction',
-  'vbac',
-  'caesarean',
-  'rh-negative',
-  'anthropometry',
-  'weight-gain',
-  'haemodynamics',
-  'anaemia',
-  'insulin',
-  'creatinine',
-  'vte-risk',
-  'apgar',
-  'algo-pph',
-  'algo-abruption',
-  'algo-uterine-rupture',
-  'algo-eclampsia',
-  'algo-severe-htn',
-  'algo-maternal-collapse',
-  'algo-afe',
-  'algo-sepsis',
-  'algo-shoulder-dystocia',
-  'algo-cord-prolapse',
-  'algo-ectopic',
-  'algo-ovarian-torsion',
-  'dating',
-  'usg',
-  'usg-guide',
-  'efw',
-  'bishop',
-  'gdm',
-  'mgso4',
-  'pph',
-  'mtp-act',
-  'pcpndt-act',
-];
+final _allMetaIds = ContentRegistry.allMetaIds;

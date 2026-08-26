@@ -1,8 +1,9 @@
 import '../models/counselling.dart';
 import 'counselling_2.dart';
+import 'counselling_3.dart';
 
 List<CounsellingGuide> get kCounsellingGuides =>
-    [..._core, ...kCounsellingGuides2];
+    [..._core, ...kCounsellingGuides2, ...kCounsellingGuides3];
 
 const _core = <CounsellingGuide>[
   CounsellingGuide(

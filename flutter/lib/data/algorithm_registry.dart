@@ -4,16 +4,29 @@ import 'algorithms/hypertensive_algorithms.dart';
 import 'algorithms/collapse_sepsis_algorithms.dart';
 import 'algorithms/intrapartum_algorithms.dart';
 import 'algorithms/gynae_algorithms.dart';
+import 'algorithms/gynae_algorithms_2.dart';
+import 'algorithms/antenatal_algorithms.dart';
+import 'algorithms/early_pregnancy_algorithms.dart';
 
 /// Emergency grouping for the hub. Ordered by how a clinician thinks about
 /// them, not alphabetically.
-enum EmergencyGroup { haemorrhage, hypertensive, collapse, intrapartum, gynae }
+enum EmergencyGroup {
+  haemorrhage,
+  hypertensive,
+  collapse,
+  antenatal,
+  intrapartum,
+  earlyPregnancy,
+  gynae,
+}
 
 extension EmergencyGroupInfo on EmergencyGroup {
   String get label => switch (this) {
         EmergencyGroup.haemorrhage => 'Haemorrhage',
         EmergencyGroup.hypertensive => 'Hypertensive disorders',
         EmergencyGroup.collapse => 'Collapse & sepsis',
+        EmergencyGroup.antenatal => 'Antenatal',
+        EmergencyGroup.earlyPregnancy => 'Early pregnancy',
         EmergencyGroup.intrapartum => 'Intrapartum',
         EmergencyGroup.gynae => 'Gynaecological',
       };
@@ -35,13 +48,27 @@ class AlgorithmRegistry {
       kAfeAlgorithm,
       kSepsisAlgorithm,
     ],
+    EmergencyGroup.antenatal: [
+      kRfmAlgorithm,
+      kFgrAlgorithm,
+      kPpromAlgorithm,
+      kPretermLabourAlgorithm,
+    ],
     EmergencyGroup.intrapartum: [
       kShoulderDystociaAlgorithm,
       kCordProlapseAlgorithm,
+      kCtgAlgorithm,
+    ],
+    EmergencyGroup.earlyPregnancy: [
+      kEctopicAlgorithm,
+      kMiscarriageAlgorithm,
     ],
     EmergencyGroup.gynae: [
-      kEctopicAlgorithm,
       kOvarianTorsionAlgorithm,
+      kPelvicPainAlgorithm,
+      kAubAlgorithm,
+      kPmbAlgorithm,
+      kOhssAlgorithm,
     ],
   };
 

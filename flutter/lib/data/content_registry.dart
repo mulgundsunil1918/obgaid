@@ -40,6 +40,7 @@ import '../screens/anatomy/anatomy_screen.dart';
 import 'anatomy.dart';
 import 'counselling.dart';
 import 'trial_registry.dart';
+import 'derived_meta.dart';
 import '../screens/counselling/counselling_screen.dart';
 import '../screens/academics/trial_screen.dart';
 import '../screens/algorithms/algorithm_screen.dart';
@@ -94,29 +95,6 @@ class ContentRegistry {
         Icons.biotech_outlined, _vulva),
     ContentLink('figo-who-gtn', 'Gestational trophoblastic neoplasia',
         Icons.biotech_outlined, _gtn),
-    ContentLink('algo-pph', 'PPH algorithm', Icons.emergency_outlined, _algoPph),
-    ContentLink('algo-abruption', 'Placental abruption',
-        Icons.emergency_outlined, _algoAbruption),
-    ContentLink('algo-uterine-rupture', 'Uterine rupture',
-        Icons.emergency_outlined, _algoRupture),
-    ContentLink('algo-eclampsia', 'Eclampsia', Icons.emergency_outlined,
-        _algoEclampsia),
-    ContentLink('algo-severe-htn', 'Severe hypertension',
-        Icons.emergency_outlined, _algoSevereHtn),
-    ContentLink('algo-maternal-collapse', 'Maternal collapse',
-        Icons.emergency_outlined, _algoCollapse),
-    ContentLink('algo-afe', 'Amniotic fluid embolism',
-        Icons.emergency_outlined, _algoAfe),
-    ContentLink('algo-sepsis', 'Obstetric sepsis', Icons.emergency_outlined,
-        _algoSepsis),
-    ContentLink('algo-shoulder-dystocia', 'Shoulder dystocia',
-        Icons.emergency_outlined, _algoShoulder),
-    ContentLink('algo-cord-prolapse', 'Cord prolapse',
-        Icons.emergency_outlined, _algoCord),
-    ContentLink('algo-ectopic', 'Ectopic pregnancy', Icons.emergency_outlined,
-        _algoEctopic),
-    ContentLink('algo-ovarian-torsion', 'Ovarian torsion',
-        Icons.emergency_outlined, _algoTorsion),
     // Specified but not yet built — the pathway is visible before the node is.
     ContentLink('ctg', 'CTG interpretation', Icons.monitor_heart_outlined, _tCtg),
     ContentLink('pprom', 'PPROM', Icons.article_outlined, _tPprom),
@@ -236,6 +214,11 @@ class ContentRegistry {
   /// they are already registries of their own — duplicating them by hand is
   /// how a graph drifts out of step with its content.
   static final List<ContentLink> _generated = [
+    // Every algorithm in the registry gets a node automatically. Adding an
+    // algorithm without a node is therefore impossible by construction.
+    for (final a in AlgorithmRegistry.all)
+      ContentLink(a.id, a.name, Icons.emergency_outlined,
+          (_) => AlgorithmScreen(algorithm: a)),
     for (final g in kCounsellingGuides)
       ContentLink(g.id, g.title, Icons.record_voice_over_outlined,
           (_) => CounsellingScreen(guide: g)),
@@ -244,17 +227,21 @@ class ContentRegistry {
           (_) => TrialScreen(trial: t)),
   ];
 
+  /// Every node in the graph, hand-listed and generated alike.
+  static List<ContentLink> get allNodes => [..._nodes, ..._generated];
+
   static ContentLink? resolve(String id) {
-    for (final n in _nodes) {
-      if (n.id == id) return n;
-    }
-    for (final n in _generated) {
+    for (final n in allNodes) {
       if (n.id == id) return n;
     }
     return null;
   }
 
   static ContentMeta? metaFor(String id) => _meta[id];
+
+  /// Every id carrying a content record. Derived from the map itself so the
+  /// governance suite cannot drift out of step with what is actually here.
+  static List<String> get allMetaIds => _meta.keys.toList();
 
   /// Every item flagged under §63 that no clinician has signed off yet.
   static List<ContentMeta> get awaitingReview => _meta.values
@@ -263,6 +250,7 @@ class ContentRegistry {
     ..sort((a, b) => a.title.compareTo(b.title));
 
   static final Map<String, ContentMeta> _meta = {
+    ...DerivedMeta.build(),
     'dating': ContentMeta(
       id: 'dating',
       title: 'Dating & gestational age',
@@ -690,6 +678,222 @@ class ContentRegistry {
             'before the scan'),
         Related('usg', 'The scan findings, and why normal Doppler proves '
             'nothing'),
+      ],
+    ),
+    // ── Tier 1B/2 algorithms added to complete spec §52 ──────────────────
+    'algo-rfm': ContentMeta(
+      id: 'algo-rfm',
+      title: 'Reduced fetal movements algorithm',
+      category: 'Obstetrics · Antenatal',
+      sourceOrg: 'RCOG / NHS England',
+      sourceTitle: "Green-top Guideline 57; Saving Babies' Lives Care Bundle",
+      year: 2011,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-fgr', 'The commonest pathology found behind reduced '
+            'movements'),
+        Related('algo-ctg', 'What to do when the trace taken for reduced '
+            'movements is abnormal'),
+        Related('ctg', 'How to read the trace you have just taken'),
+        Related('usg', 'Growth, liquor and Doppler within 24 hours'),
+      ],
+    ),
+    'algo-ctg': ContentMeta(
+      id: 'algo-ctg',
+      title: 'Non-reassuring CTG algorithm',
+      category: 'Obstetrics · Intrapartum',
+      sourceOrg: 'NICE / FIGO',
+      sourceTitle: 'NICE NG229; FIGO consensus guidelines on intrapartum '
+          'fetal monitoring',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('ctg', 'The classification this algorithm acts on'),
+        Related('algo-cord-prolapse', 'Excluded by vaginal examination before '
+            'anything else'),
+        Related('algo-uterine-rupture', 'The cause you must not treat as a '
+            'simple bradycardia'),
+        Related('algo-abruption', 'Pain and a tonic uterus alongside the '
+            'trace'),
+        Related('proc-avd', 'The delivery route when the cervix is fully '
+            'dilated'),
+      ],
+    ),
+    'algo-pprom': ContentMeta(
+      id: 'algo-pprom',
+      title: 'PPROM algorithm',
+      category: 'Obstetrics · Antenatal',
+      sourceOrg: 'RCOG / NICE',
+      sourceTitle: 'Green-top Guideline 73; NICE NG25',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('pprom', 'The condition in full, beyond the acute pathway'),
+        Related('algo-preterm-labour', 'Steroids, magnesium and transfer are '
+            'shared between the two'),
+        Related('algo-sepsis', 'Chorioamnionitis is the complication that '
+            'forces delivery'),
+      ],
+    ),
+    'algo-fgr': ContentMeta(
+      id: 'algo-fgr',
+      title: 'Fetal growth restriction algorithm',
+      category: 'Obstetrics · Antenatal',
+      sourceOrg: 'RCOG / ISUOG',
+      sourceTitle: 'Green-top Guideline 31; Delphi consensus definition; '
+          'ISUOG Practice Guidelines',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('fgr', 'The condition in full, beyond surveillance and '
+            'timing'),
+        Related('efw', 'The weight and centile this pathway is built on'),
+        Related('algo-rfm', 'How growth restriction most often announces '
+            'itself'),
+        Related('usg', 'Doppler technique and interpretation'),
+      ],
+    ),
+    'algo-preterm-labour': ContentMeta(
+      id: 'algo-preterm-labour',
+      title: 'Preterm labour algorithm',
+      category: 'Obstetrics · Antenatal',
+      sourceOrg: 'NICE / RCOG',
+      sourceTitle: 'NICE NG25; Green-top Guideline 1B',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('preterm-labour', 'The condition in full, including '
+            'prevention'),
+        Related('algo-pprom', 'The same pathway once membranes have ruptured'),
+        Related('formulary', 'Betamethasone, dexamethasone, nifedipine and '
+            'magnesium doses'),
+      ],
+    ),
+    'algo-miscarriage': ContentMeta(
+      id: 'algo-miscarriage',
+      title: 'Miscarriage algorithm',
+      category: 'Obstetrics · Early pregnancy',
+      sourceOrg: 'NICE / RCOG',
+      sourceTitle: 'NICE NG126; Green-top Guideline 17',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ectopic', 'Excluded before any bleeding is called a '
+            'miscarriage'),
+        Related('proc-surgical-miscarriage', 'How the evacuation is actually '
+            'done'),
+        Related('rh-negative', 'Anti-D after surgical management'),
+        Related('mtp-act', 'The legal frame around evacuation in India'),
+      ],
+    ),
+    'algo-pelvic-pain': ContentMeta(
+      id: 'algo-pelvic-pain',
+      title: 'Acute pelvic pain algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / NICE',
+      sourceTitle: 'Green-top Guidelines 62 and 32; NICE CG154',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ectopic', 'The diagnosis the pregnancy test is looking '
+            'for'),
+        Related('algo-ovarian-torsion', 'The diagnosis that costs an ovary if '
+            'it waits'),
+        Related('algo-ohss', 'Where the pain follows recent ovulation '
+            'induction'),
+        Related('endometriosis', 'The commonest cause of pain that recurs '
+            'cyclically'),
+      ],
+    ),
+    'algo-aub': ContentMeta(
+      id: 'algo-aub',
+      title: 'Heavy or abnormal uterine bleeding algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'NICE / FIGO',
+      sourceTitle: 'NICE NG88; FIGO PALM-COEIN classification',
+      year: 2018,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('aub', 'The condition in full, beyond acute control'),
+        Related('algo-pmb', 'The same symptom after the menopause, where the '
+            'threshold for cancer changes'),
+        Related('fibroids', 'The commonest structural cause'),
+        Related('anaemia', 'What the bleeding has usually already caused'),
+        Related('proc-endometrial-biopsy', 'How the sample is taken'),
+      ],
+    ),
+    'algo-pmb': ContentMeta(
+      id: 'algo-pmb',
+      title: 'Postmenopausal bleeding algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / BSGE / NICE',
+      sourceTitle: 'Green-top Guideline 67; NICE NG12',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('figo-endometrium-2023', 'How a positive histology is then '
+            'staged'),
+        Related('proc-hysteroscopy', 'Required whatever the thickness when '
+            'bleeding recurs'),
+        Related('proc-endometrial-biopsy', 'The first-line sample'),
+        Related('menopause', 'Unscheduled bleeding on hormone therapy counts '
+            'as postmenopausal bleeding'),
+      ],
+    ),
+    'algo-ohss': ContentMeta(
+      id: 'algo-ohss',
+      title: 'Ovarian hyperstimulation syndrome algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / ESHRE / ICMR',
+      sourceTitle: 'Green-top Guideline 5; ESHRE ovarian stimulation '
+          'guideline; ICMR ART guidelines',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('ohss', 'The condition in full, including prediction'),
+        Related('algo-ovarian-torsion', 'Enlarged stimulated ovaries torse'),
+        Related('vte-risk', 'Why every inpatient gets heparin'),
+        Related('infertility', 'The treatment that caused it'),
       ],
     ),
     // ── Tier 1A calculators (spec §4, §5, §8, §9, §12, §24) ──────────────
@@ -1797,18 +2001,6 @@ Widget _ovary(BuildContext _) => StagingScreen(system: _system('figo-ovary-2014'
 Widget _vulva(BuildContext _) => StagingScreen(system: _system('figo-vulva-2021'));
 Widget _gtn(BuildContext _) => StagingScreen(system: _system('figo-who-gtn'));
 
-Widget _algoPph(BuildContext _) => _a('algo-pph');
-Widget _algoAbruption(BuildContext _) => _a('algo-abruption');
-Widget _algoRupture(BuildContext _) => _a('algo-uterine-rupture');
-Widget _algoEclampsia(BuildContext _) => _a('algo-eclampsia');
-Widget _algoSevereHtn(BuildContext _) => _a('algo-severe-htn');
-Widget _algoCollapse(BuildContext _) => _a('algo-maternal-collapse');
-Widget _algoAfe(BuildContext _) => _a('algo-afe');
-Widget _algoSepsis(BuildContext _) => _a('algo-sepsis');
-Widget _algoShoulder(BuildContext _) => _a('algo-shoulder-dystocia');
-Widget _algoCord(BuildContext _) => _a('algo-cord-prolapse');
-Widget _algoEctopic(BuildContext _) => _a('algo-ectopic');
-Widget _algoTorsion(BuildContext _) => _a('algo-ovarian-torsion');
 
 Widget _anthroS(BuildContext _) => const AnthropometryScreen();
 Widget _weightGainS(BuildContext _) => const WeightGainScreen();
@@ -1885,9 +2077,6 @@ Widget _formulary(BuildContext _) =>
     DrugScreen(drug: DrugRegistry.byId('oxytocin')!);
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
-
-Widget _a(String id) =>
-    AlgorithmScreen(algorithm: AlgorithmRegistry.byId(id)!);
 
 StagingSystem _system(String id) =>
     kStagingSystems.firstWhere((s) => s.id == id);
