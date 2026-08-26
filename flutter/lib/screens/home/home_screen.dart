@@ -22,6 +22,8 @@ import '../hubs/reference_hub.dart';
 import '../hubs/never_again_hub.dart';
 import '../hubs/academics_hub.dart';
 import '../../data/learning_registry.dart';
+import '../../data/curriculum.dart';
+import '../curriculum/learn_obg.dart';
 import '../../data/trial_registry.dart';
 import '../search/app_search_delegate.dart';
 import '../governance/review_queue_screen.dart';
@@ -57,6 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.calculate_rounded,
           const Color(0xFF0D5C55),
           () => _open(context, () => const CalculatorsHub()),
+        ),
+        _FeatureDef(
+          'Learn OBG',
+          '${kCurriculum.fold<int>(0, (a, s) => a + s.topicCount)} topics · '
+              'the whole subject, taught in order',
+          Icons.school_rounded,
+          const Color(0xFF00695C),
+          () => _open(context, () => const LearnObgHub()),
         ),
         _FeatureDef(
           'Clinical Topics',
