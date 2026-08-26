@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/theme_provider.dart';
 import '../../data/tool_registry.dart';
+import '../../data/algorithm_registry.dart';
 import '../../models/tool.dart';
 import '../hubs/calculators_hub.dart';
 import '../hubs/emergency_hub.dart';
@@ -45,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
           [
             _FeatureDef(
               'Emergencies',
-              '12 algorithms · PPH, eclampsia, collapse, sepsis',
+              '${AlgorithmRegistry.all.length} algorithms · PPH, eclampsia, '
+              'collapse, sepsis',
               Icons.emergency_rounded,
               const Color(0xFFB3261E),
               () => _open(context, () => const EmergencyHub()),
@@ -271,9 +273,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String get _greetingLine {
+    final h = DateTime.now().hour;
+    if (h < 12) return 'Good morning';
+    if (h < 17) return 'Good afternoon';
+    return 'Good evening';
+  }
+
+  IconData get _greetingIcon {
+    final h = DateTime.now().hour;
+    if (h < 12) return Icons.wb_sunny_rounded;
+    if (h < 17) return Icons.wb_cloudy_rounded;
+    return Icons.nightlight_round;
+  }
+
+  Widget _circle(double size, double alpha) => Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white.withValues(alpha: alpha),
+        ),
+      );
+
   Widget _buildWelcomeBanner(BuildContext context, bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isDark
@@ -284,26 +308,85 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         borderRadius: BorderRadius.circular(16),
       ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(children: [
+        Positioned(top: -34, right: -40, child: _circle(170, 0.05)),
+        Positioned(top: 46, right: 58, child: _circle(84, 0.05)),
+        Padding(
+      padding: const EdgeInsets.all(18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+            ),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(_greetingIcon, color: Colors.white, size: 12),
+              const SizedBox(width: 5),
+              Text(
+                _greetingLine,
+                style: GoogleFonts.plusJakartaSans(
+                  color: Colors.white,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ]),
+          ),
+          const SizedBox(height: 10),
           Text(
-            'Obstetrics & Gynaecology,\nat the bedside.',
+            'What would you like to look up?',
             style: GoogleFonts.plusJakartaSans(
               color: Colors.white,
-              fontSize: 19,
+              fontSize: 20,
               fontWeight: FontWeight.w800,
-              height: 1.3,
+              height: 1.2,
+              letterSpacing: -0.3,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
-            'Every threshold digitised from its source publication, with the '
-            'reference shown on the screen. Verify before you act.',
+            'Obstetrics & Gynaecology clinical reference',
             style: GoogleFonts.plusJakartaSans(
-              color: Colors.white.withValues(alpha: 0.85),
-              fontSize: 12.5,
-              height: 1.45,
+              color: Colors.white.withValues(alpha: 0.65),
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 12),
+          GestureDetector(
+            onTap: () =>
+                showSearch(context: context, delegate: AppSearchDelegate()),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(12),
+                border:
+                    Border.all(color: Colors.white.withValues(alpha: 0.2)),
+              ),
+              child: Row(children: [
+                Icon(Icons.search,
+                    color: Colors.white.withValues(alpha: 0.6), size: 18),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Search algorithms, drugs, scores, topics, trials…',
+                    style: GoogleFonts.plusJakartaSans(
+                      color: Colors.white.withValues(alpha: 0.55),
+                      fontSize: 12.5,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Icon(Icons.tune_rounded,
+                    color: Colors.white.withValues(alpha: 0.4), size: 16),
+              ]),
             ),
           ),
           const SizedBox(height: 14),
@@ -321,6 +404,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+        ),
+      ]),
     );
   }
 

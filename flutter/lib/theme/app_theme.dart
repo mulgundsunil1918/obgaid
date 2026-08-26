@@ -25,6 +25,11 @@ class ObgColors {
 }
 
 class AppTheme {
+  /// Card and border in dark mode. Named here rather than repeated as hex
+  /// literals so a card in a hub and a card on home cannot drift apart.
+  static const dCard = Color(0xFF17201E);
+  static const dBorder = Color(0xFF2A3735);
+
   static ThemeData light() => _build(Brightness.light);
   static ThemeData dark() => _build(Brightness.dark);
 

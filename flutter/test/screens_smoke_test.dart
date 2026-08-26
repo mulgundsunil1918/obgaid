@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:obgaid_app/data/tool_registry.dart';
+import 'package:obgaid_app/widgets/hub_widgets.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
 import 'package:obgaid_app/data/topic_registry.dart';
@@ -46,6 +47,7 @@ import 'package:obgaid_app/screens/hubs/ultrasound_hub.dart';
 /// `ContentRegistry.metaFor(id)!`, which the analyzer cannot check — a missing
 /// record would crash at the bedside rather than in CI without this.
 void main() {
+  _hubLayoutTests();
   Widget wrap(Widget child) => MaterialApp(
         theme: AppTheme.light(),
         home: MediaQuery(
@@ -230,5 +232,122 @@ void main() {
         expect(tester.takeException(), isNull);
       });
     }
+  });
+}
+
+/// The hub layout is the shared surface every module renders through, so it
+/// gets asserted rather than eyeballed: tiles must land in a grid, and a hub
+/// with more than eight of them must offer a search field.
+void _hubLayoutTests() {
+  group('hub layout', () {
+    testWidgets('tiles render as a grid, not a list', (t) async {
+      await t.pumpWidget(MaterialApp(
+        home: HubScaffold(
+          title: 'Test hub',
+          children: [
+            for (var i = 0; i < 4; i++)
+              HubTile(
+                title: 'Tile $i',
+                subtitle: 'Subtitle $i',
+                icon: Icons.circle,
+                onTap: () {},
+              ),
+          ],
+        ),
+      ));
+      await t.pumpAndSettle();
+      expect(find.byType(GridView), findsOneWidget);
+      expect(find.byType(ListTile), findsNothing);
+      expect(find.text('Tile 0'), findsOneWidget);
+    });
+
+    testWidgets('section headers survive between grids', (t) async {
+      await t.pumpWidget(MaterialApp(
+        home: HubScaffold(
+          title: 'Grouped',
+          children: [
+            const Text('SECTION ONE'),
+            HubTile(
+                title: 'A',
+                subtitle: 's',
+                icon: Icons.circle,
+                onTap: () {}),
+            const Text('SECTION TWO'),
+            HubTile(
+                title: 'B',
+                subtitle: 's',
+                icon: Icons.circle,
+                onTap: () {}),
+          ],
+        ),
+      ));
+      await t.pumpAndSettle();
+      expect(find.text('SECTION ONE'), findsOneWidget);
+      expect(find.text('SECTION TWO'), findsOneWidget);
+      expect(find.byType(GridView), findsNWidgets(2));
+    });
+
+    testWidgets('search appears past eight tiles and filters', (t) async {
+      await t.pumpWidget(MaterialApp(
+        home: HubScaffold(
+          title: 'Big hub',
+          children: [
+            for (var i = 0; i < 10; i++)
+              HubTile(
+                title: 'Item $i',
+                subtitle: 'sub',
+                icon: Icons.circle,
+                onTap: () {},
+              ),
+          ],
+        ),
+      ));
+      await t.pumpAndSettle();
+      expect(find.byType(HubSearchField), findsOneWidget);
+      await t.enterText(find.byType(TextField), 'Item 7');
+      await t.pumpAndSettle();
+      // The search field holds the query text too, so match the tile itself.
+      expect(find.widgetWithText(HubTile, 'Item 7'), findsOneWidget);
+      expect(find.widgetWithText(HubTile, 'Item 3'), findsNothing);
+    });
+
+    testWidgets('the real hubs render as grids, with no list tiles left',
+        (t) async {
+      // Guards the conversion itself: if any hub regresses to ListTile, or
+      // stops producing a grid, this fails rather than being noticed later.
+      for (final hub in <(String, Widget)>[
+        ('Calculators', const CalculatorsHub()),
+        ('Emergencies', const EmergencyHub()),
+        ('Topics', const TopicsHub()),
+        ('Scores', const ScoresHub()),
+        ('Formulary', const FormularyHub()),
+        ('Reference', const ReferenceHub()),
+      ]) {
+        await t.pumpWidget(MaterialApp(theme: AppTheme.light(), home: hub.$2));
+        await t.pumpAndSettle();
+        expect(find.byType(GridView), findsWidgets,
+            reason: '${hub.$1} hub renders no grid');
+        expect(find.byType(ListTile), findsNothing,
+            reason: '${hub.$1} hub still uses list tiles');
+      }
+    });
+
+    testWidgets('no search field on a small hub', (t) async {
+      await t.pumpWidget(MaterialApp(
+        home: HubScaffold(
+          title: 'Small hub',
+          children: [
+            for (var i = 0; i < 3; i++)
+              HubTile(
+                  title: 'Item $i',
+                  subtitle: 'sub',
+                  icon: Icons.circle,
+                  onTap: () {}),
+          ],
+        ),
+      ));
+      await t.pumpAndSettle();
+      expect(find.byType(HubSearchField), findsNothing);
+    });
   });
 }
