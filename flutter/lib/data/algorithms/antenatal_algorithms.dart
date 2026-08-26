@@ -397,7 +397,7 @@ const kFgrAlgorithm = Algorithm(
     ]),
   ],
   sources: [
-    'RCOG Green-top Guideline 31 — The Small-for-Gestational-Age Fetus.',
+    'Morris RK et al. Investigation and Care of a Small-for-Gestational-Age Fetus and a Growth Restricted Fetus: RCOG Green-top Guideline 31. BJOG 2024;131:e31-e80.',
     'Gordijn SJ et al. Delphi consensus definition of FGR. Ultrasound Obstet '
         'Gynecol 2016;48:333–339.',
     'Lees CC et al. TRUFFLE. Lancet 2015;385:2162–2172.',

@@ -241,7 +241,7 @@ const kPretermLabourTopic = ClinicalTopic(
   ],
   sources: [
     'NICE NG25 — Preterm labour and birth.',
-    'RCOG Green-top Guideline 1B — Tocolysis for Women in Preterm Labour.',
+    'NICE NG25 — Preterm labour and birth (RCOG Green-top 1b on tocolytic drugs is archived).',
     'Kenyon SL et al. ORACLE II trial. Lancet 2001;357:989–994, and 7-year '
         'follow-up, Lancet 2008;372:1319–1327.',
     'Doyle LW et al. Magnesium sulphate for fetal neuroprotection. Cochrane '
@@ -365,8 +365,9 @@ const kRhTopic = ClinicalTopic(
     ]),
   ],
   sources: [
-    'RCOG Green-top Guideline 22 — The Use of Anti-D Immunoglobulin for '
-        'Rhesus D Prophylaxis.',
+    'Qureshi H et al. BSH guideline for the use of anti-D immunoglobulin. '
+        'Transfus Med 2014;24:8-20. RCOG Green-top 22 is archived and points '
+        'here.',
     'RCOG Green-top Guideline 65 — The Management of Women with Red Cell '
         'Antibodies during Pregnancy.',
     'NICE TA156 — Routine antenatal anti-D prophylaxis for women who are '

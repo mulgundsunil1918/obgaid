@@ -354,8 +354,7 @@ const kVaginalSurgeryTopic = ClinicalTopic(
   ],
   sources: [
     'NICE NG123 — Urinary incontinence and pelvic organ prolapse in women.',
-    'RCOG Green-top Guideline 46 — Vaginal Hysterectomy and Prolapse Surgery '
-        'consent advice; RCOG/BSUG joint guidance.',
+    'RCOG Green-top Guideline 46 — Post-Hysterectomy Vaginal Vault Prolapse; RCOG/BSUG joint guidance.',
     'AAGL position statement on route of hysterectomy for benign disease.',
     'Cochrane review — Surgical approach to hysterectomy for benign '
         'gynaecological disease.',

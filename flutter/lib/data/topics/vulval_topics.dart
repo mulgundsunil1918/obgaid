@@ -160,8 +160,8 @@ const kVulvalTopic = ClinicalTopic(
         'lichen sclerosus, 2018.',
     'British Society for the Study of Vulval Disease — guidelines on vulval '
         'skin disorders and on vulvodynia.',
-    'RCOG/BSCCP Green-top Guideline 58 — The Management of Vulval Skin '
-        'Disorders.',
+    'RCOG Green-top Guideline 58 on vulval skin disorders is archived; the '
+        'BAD and BSSVD guidelines above are the current authority.',
     'Lee A, Bradford J, Fischer G. Long-term management of adult vulvar '
         'lichen sclerosus. JAMA Dermatol 2015;151:1061–1067.',
     'FOGSI GCPR — Vulval Disorders; National Cancer Grid of India guidelines '

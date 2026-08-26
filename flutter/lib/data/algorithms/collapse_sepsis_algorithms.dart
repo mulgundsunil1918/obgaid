@@ -289,8 +289,9 @@ const kSepsisAlgorithm = Algorithm(
     ]),
   ],
   sources: [
-    'RCOG Green-top Guideline 64a — Bacterial Sepsis in Pregnancy; 64b — '
-        'Bacterial Sepsis following Pregnancy.',
+    'Lissauer D et al. Identification and Management of Maternal Sepsis '
+        'During and Following Pregnancy: RCOG Green-top Guideline 64. BJOG '
+        '2025;132:e61-e85. This replaces the archived 64a and 64b.',
     'Surviving Sepsis Campaign — International Guidelines for Management of '
         'Sepsis and Septic Shock 2021.',
     'NICE NG51 — Sepsis: recognition, diagnosis and early management.',

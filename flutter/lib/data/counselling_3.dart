@@ -490,8 +490,7 @@ const kCounsellingGuides3 = <CounsellingGuide>[
     sources: [
       'ESHRE guideline — Endometriosis, 2022.',
       'NICE NG73 — Endometriosis: diagnosis and management.',
-      'RCOG Green-top Guideline 24 — Endometriosis, Investigation and '
-          'Management.',
+      'ESHRE Endometriosis guideline 2022; NICE NG73 (RCOG Green-top 24 is archived).',
       'FOGSI-ICOG Good Clinical Practice Recommendations on Endometriosis; '
           'Indian Society for Study of Pain guidance on chronic pelvic pain.',
     ],

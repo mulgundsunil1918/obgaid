@@ -87,8 +87,7 @@ const kPelvicPainAlgorithm = Algorithm(
   sources: [
     'RCOG Green-top Guideline 62 — Management of Suspected Ovarian Masses in '
         'Premenopausal Women.',
-    'RCOG Green-top Guideline 32 — Management of Acute Pelvic Inflammatory '
-        'Disease.',
+    'BASHH UK national guideline for the management of pelvic inflammatory disease (RCOG Green-top 32 is archived).',
     'NICE CG154 — Ectopic pregnancy and miscarriage.',
     'FOGSI GCPR — Acute Abdomen in Gynaecology; NACO National Guidelines on '
         'RTI/STI management.',

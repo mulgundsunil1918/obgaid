@@ -108,7 +108,8 @@ const kLabetalol = Drug(
     'NICE NG133 — Hypertension in pregnancy.',
     'ACOG Committee Opinion 767 — Emergent Therapy for Acute-Onset Severe '
         'Hypertension.',
-    'RCOG Green-top Guideline 10(A).',
+    'RCOG Green-top 10A on severe pre-eclampsia is archived; NG133 above is '
+        'the current authority.',
     'FOGSI-ICOG GCPR — Hypertensive Disorders of Pregnancy; MoHFW Government '
         'of India maternal health guidelines.',
   ],
@@ -207,7 +208,7 @@ const kNifedipine = Drug(
   references: [
     'NICE NG133 — Hypertension in pregnancy.',
     'NICE NG25 — Preterm labour and birth.',
-    'RCOG Green-top Guideline 1B — Tocolysis for Women in Preterm Labour.',
+    'NICE NG25 — Preterm labour and birth (RCOG Green-top 1b on tocolytic drugs is archived).',
     'FOGSI GCPR — Hypertensive Disorders of Pregnancy and Preterm Birth.',
   ],
 );
@@ -287,7 +288,8 @@ const kHydralazine = Drug(
   references: [
     'NICE NG133 — Hypertension in pregnancy.',
     'ACOG Committee Opinion 767.',
-    'RCOG Green-top Guideline 10(A).',
+    'RCOG Green-top 10A on severe pre-eclampsia is archived; NG133 above is '
+        'the current authority.',
     'MoHFW Government of India — guidelines on management of severe '
         'pre-eclampsia and eclampsia at first referral units.',
   ],
@@ -413,7 +415,8 @@ const kMagnesiumSulphate = Drug(
     'The Magpie Trial Collaborative Group. Lancet 2002;359:1877–1890.',
     'Doyle LW et al. Magnesium sulphate for fetal neuroprotection. Cochrane '
         'Database Syst Rev 2009.',
-    'RCOG Green-top Guideline 10(A).',
+    'RCOG Green-top 10A on severe pre-eclampsia is archived; NG133 above is '
+        'the current authority.',
     'FOGSI–ICOG GCPR — Hypertensive Disorders of Pregnancy.',
   ],
 );

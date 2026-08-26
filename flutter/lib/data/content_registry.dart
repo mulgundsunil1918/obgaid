@@ -604,8 +604,8 @@ class ContentRegistry {
       title: 'Obstetric sepsis algorithm',
       category: 'Obstetrics · Emergency',
       sourceOrg: 'RCOG / NICE / Surviving Sepsis Campaign',
-      sourceTitle: 'Green-top 64a and 64b; NICE NG51; Surviving Sepsis '
-          'Campaign 2021',
+      sourceTitle: 'Green-top Guideline 64, BJOG 2025; NICE NG51; Surviving '
+          'Sepsis Campaign 2021',
       year: 2021,
       evidence: EvidenceLevel.guideline,
       created: _built,
@@ -721,8 +721,8 @@ class ContentRegistry {
       title: 'Septic abortion algorithm',
       category: 'Obstetrics · Early pregnancy',
       sourceOrg: 'WHO / RCOG / MoHFW',
-      sourceTitle: 'WHO Abortion Care Guideline 2022; Green-top Guidelines '
-          '64a and 64b; MoHFW Comprehensive Abortion Care guidelines',
+      sourceTitle: 'WHO Abortion Care Guideline 2022; Green-top Guideline '
+          '64; MoHFW Comprehensive Abortion Care guidelines',
       year: 2022,
       evidence: EvidenceLevel.guideline,
       created: _built,

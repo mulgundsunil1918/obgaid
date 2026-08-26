@@ -145,9 +145,8 @@ const kEclampsiaAlgorithm = Algorithm(
   sources: [
     'The Magpie Trial Collaborative Group. Do women with pre-eclampsia benefit '
         'from magnesium sulphate? Lancet 2002;359:1877–1890.',
-    'RCOG Green-top Guideline 10(A) — Management of Severe Pre-eclampsia and '
-        'Eclampsia.',
-    'NICE NG133 — Hypertension in pregnancy: diagnosis and management.',
+    'NICE NG133 — Hypertension in pregnancy: diagnosis and management. '
+        'RCOG Green-top 10A is archived and points here.',
     'ACOG Practice Bulletin 222 — Gestational Hypertension and Preeclampsia.',
     'FOGSI–ICOG GCPR — Hypertensive Disorders of Pregnancy.',
     'WHO Recommendations for Prevention and Treatment of Pre-eclampsia and '
@@ -295,7 +294,8 @@ const kSevereHypertensionAlgorithm = Algorithm(
     'ACOG Practice Bulletin 222 — Gestational Hypertension and Preeclampsia; '
         'Committee Opinion 767 — Emergent Therapy for Acute-Onset Severe '
         'Hypertension.',
-    'RCOG Green-top Guideline 10(A).',
+    'RCOG Green-top 10A on severe pre-eclampsia is archived; NG133 above is '
+        'the current authority.',
     'FOGSI–ICOG GCPR — Hypertensive Disorders of Pregnancy.',
     'Rolnik DL et al. ASPRE trial — aspirin for preterm pre-eclampsia. '
         'N Engl J Med 2017;377:613–622.',

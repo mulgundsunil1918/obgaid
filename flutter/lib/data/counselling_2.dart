@@ -113,7 +113,7 @@ const kCounsellingGuides2 = <CounsellingGuide>[
     sources: [
       'NICE NG133 — Hypertension in pregnancy.',
       'FOGSI-ICOG GCPR — Hypertensive Disorders of Pregnancy.',
-      'ACOG Practice Bulletin 222; RCOG Green-top Guideline 10(A).',
+      'ACOG Practice Bulletin 222; NICE NG133 — Hypertension in pregnancy (RCOG Green-top 10A is archived).',
       'Rolnik DL et al. ASPRE trial. N Engl J Med 2017;377:613.',
     ],
   ),

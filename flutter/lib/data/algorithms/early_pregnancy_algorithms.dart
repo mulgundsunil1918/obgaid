@@ -237,9 +237,9 @@ const kPretermLabourAlgorithm = Algorithm(
   ],
   sources: [
     'NICE NG25 — Preterm labour and birth.',
-    'RCOG Green-top Guideline 1B — Tocolysis for Women in Preterm Labour.',
+    'NICE NG25 — Preterm labour and birth (RCOG Green-top 1b on tocolytic drugs is archived).',
     'Crowther CA et al. ACTOMgSO4. JAMA 2003;290:2669–2676.',
-    'Doyle LW et al. Magnesium sulphate for neuroprotection. Cochrane 2009.',
+    'Shepherd ES et al. Magnesium sulphate for women at risk of preterm birth for neuroprotection of the fetus. Cochrane Database Syst Rev 2024;CD004661 (updating Doyle 2009; NNT 63, 95% CI 43-87).',
     'Kenyon SL et al. ORACLE II. Lancet 2001;357:989–994.',
     'FOGSI GCPR — Preterm Birth; MoHFW India Newborn Action Plan; '
         'Antenatal corticosteroid guidance, Government of India.',

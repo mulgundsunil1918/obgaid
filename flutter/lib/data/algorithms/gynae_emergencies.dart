@@ -193,8 +193,7 @@ const kSepticAbortionAlgorithm = Algorithm(
   sources: [
     'WHO — Safe abortion: technical and policy guidance; WHO Abortion Care '
         'Guideline 2022.',
-    'RCOG Green-top Guidelines 64a and 64b — Bacterial Sepsis in Pregnancy '
-        'and Following Pregnancy.',
+    'Lissauer D et al. Identification and Management of Maternal Sepsis During and Following Pregnancy: RCOG Green-top Guideline 64. BJOG 2025;132:e61-e85.',
     'NICE NG51 — Sepsis.',
     'Medical Termination of Pregnancy Act 1971 as amended 2021, India; MoHFW '
         'Comprehensive Abortion Care training and service delivery '
@@ -294,8 +293,7 @@ const kPelvicSepsisAlgorithm = Algorithm(
     ]),
   ],
   sources: [
-    'RCOG Green-top Guideline 32 — Management of Acute Pelvic Inflammatory '
-        'Disease.',
+    'BASHH UK national guideline for the management of pelvic inflammatory disease (RCOG Green-top 32 is archived).',
     'BASHH UK national guideline for the management of pelvic inflammatory '
         'disease.',
     'CDC Sexually Transmitted Infections Treatment Guidelines.',

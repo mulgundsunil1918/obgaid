@@ -346,9 +346,8 @@ const kSafetyCases2 = <SafetyCase>[
     ],
     sources: [
       'MBRRACE-UK — Saving Lives, Improving Mothers\' Care.',
-      'NICE NG133 — Hypertension in pregnancy.',
-      'RCOG Green-top Guideline 10A — Management of Severe Pre-eclampsia and '
-          'Eclampsia.',
+      'NICE NG133 — Hypertension in pregnancy (RCOG Green-top Guideline 10A '
+          'is archived).',
       'ISSHP classification and management of hypertensive disorders of '
           'pregnancy, 2018.',
       'MoHFW Guidelines for Management of Pregnancy Induced Hypertension; '

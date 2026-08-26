@@ -84,8 +84,10 @@ const kAntiD = Drug(
     source: 'LactMed.',
   ),
   references: [
-    'RCOG Green-top Guideline 22 — The Use of Anti-D Immunoglobulin for '
-        'Rhesus D Prophylaxis.',
+    'Qureshi H et al. BSH guideline for the use of anti-D immunoglobulin for '
+        'the prevention of haemolytic disease of the fetus and newborn. '
+        'Transfus Med 2014;24:8-20. RCOG Green-top 22 is archived and points '
+        'here.',
     'NICE TA156 — Routine antenatal anti-D prophylaxis.',
     'FOGSI GCPR — Rh Negative Pregnancy; MoHFW Government of India guidance '
         'on Rh prophylaxis.',
@@ -578,7 +580,7 @@ const kCarboplatinPaclitaxel = Drug(
     'ESGO-ESTRO-ESP guidelines for gynaecological cancers.',
     'NCCN Clinical Practice Guidelines in Oncology.',
     'Calvert AH et al. Carboplatin dosage: prospective evaluation of a simple '
-        'formula. J Clin Oncol 1989;7:1748.',
+        'formula. J Clin Oncol 1989;7:1748-1756.',
   ],
 );
 

@@ -39,7 +39,7 @@ const _core = <ExamTopic>[
     sources: [
       'FOGSI-ICOG Good Clinical Practice Recommendations — Hypertensive Disorders of Pregnancy.',
       'Ministry of Health & Family Welfare, Government of India — Maternal Health Division guidelines on pre-eclampsia and eclampsia.',
-      'NICE NG133; ACOG Practice Bulletin 222; RCOG Green-top Guideline 10(A).',
+      'NICE NG133; ACOG Practice Bulletin 222; NICE NG133 — Hypertension in pregnancy (RCOG Green-top 10A is archived).',
       'Magpie Trial, Lancet 2002;359:1877. ASPRE, N Engl J Med 2017;377:613. CHIPS, N Engl J Med 2015;372:407.',
       'Dutta DC. Textbook of Obstetrics; Williams Obstetrics, 26th edition.',
       'National Medical Commission — MS/DNB Obstetrics & Gynaecology competency-based curriculum.',
@@ -123,7 +123,7 @@ const _core = <ExamTopic>[
     sources: [
       'FOGSI GCPR — Fetal Growth Restriction; ICOG recommendations on antenatal fetal surveillance.',
       'NICE NG229 — Fetal monitoring in labour; FIGO intrapartum fetal monitoring consensus, Int J Gynecol Obstet 2015;131:13.',
-      'RCOG Green-top Guideline 31 — The Small-for-Gestational-Age Fetus.',
+      'Morris RK et al. Investigation and Care of a Small-for-Gestational-Age Fetus and a Growth Restricted Fetus: RCOG Green-top Guideline 31. BJOG 2024;131:e31-e80.',
       'Gordijn SJ et al. Delphi consensus on FGR, Ultrasound Obstet Gynecol 2016;48:333. TRUFFLE, Lancet 2015;385:2162.',
       'ISUOG Practice Guidelines on Doppler in obstetrics.',
     ],

@@ -223,7 +223,7 @@ const kExamTopics2 = <ExamTopic>[
     ],
     sources: [
       'FOGSI GCPR — Caesarean Section; Operative Vaginal Delivery.',
-      'RCOG Green-top Guidelines 26 (Operative Vaginal Delivery), 29 '
+      'RCOG Green-top Guidelines 26 (Assisted Vaginal Birth), 29 '
           '(Third- and Fourth-degree Perineal Tears), 45 (Birth After '
           'Previous Caesarean), 27a (Placenta Praevia and Accreta), 52 (PPH).',
       'NICE NG192 — Caesarean birth.',

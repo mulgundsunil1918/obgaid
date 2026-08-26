@@ -45,8 +45,7 @@ const kScores2 = <ClinicalScore>[
       'Bowyer L et al. SOMANZ guidelines for the investigation and management '
           'of sepsis in pregnancy. Aust N Z J Obstet Gynaecol 2017;57:540–551.',
       'Singer M et al. Sepsis-3 definitions. JAMA 2016;315:801–810.',
-      'RCOG Green-top Guidelines 64a and 64b — Bacterial Sepsis in Pregnancy '
-          'and Following Pregnancy.',
+      'Lissauer D et al. Identification and Management of Maternal Sepsis During and Following Pregnancy: RCOG Green-top Guideline 64. BJOG 2025;132:e61-e85.',
       'NICE NG51 — Sepsis: recognition, diagnosis and early management.',
       'FOGSI GCPR — Maternal Sepsis; MoHFW guidance on maternal sepsis under '
           'the LaQshya programme.',

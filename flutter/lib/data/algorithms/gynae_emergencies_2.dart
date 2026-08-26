@@ -96,8 +96,7 @@ const kBartholinAlgorithm = Algorithm(
     ]),
   ],
   sources: [
-    'RCOG/BSSVD Green-top Guideline 58 — The Management of Vulval Skin '
-        'Disorders.',
+    'British Association of Dermatologists and BSSVD guidelines on vulval skin disorders (RCOG Green-top 58 is archived).',
     'Wechter ME et al. Management of Bartholin duct cysts and abscesses. '
         'Obstet Gynecol Surv 2009;64:395–404.',
     'ACOG Practice Bulletin 224 — Diagnosis and Management of Vulvar Skin '
@@ -200,8 +199,9 @@ const kVaginalForeignBodyAlgorithm = Algorithm(
     ]),
   ],
   sources: [
-    'RCOG Green-top Guideline 58 — Management of Vulval Skin Disorders; RCOG '
-        'guidance on paediatric and adolescent gynaecology.',
+    'British Association of Dermatologists and BSSVD guidance on vulval skin '
+        'disorders; RCOG guidance on paediatric and adolescent gynaecology. '
+        'RCOG Green-top 58 is archived.',
     'British Society for Paediatric and Adolescent Gynaecology — guidance on '
         'vaginal discharge and foreign bodies in children.',
     'CDC and UK guidance on staphylococcal toxic shock syndrome.',
