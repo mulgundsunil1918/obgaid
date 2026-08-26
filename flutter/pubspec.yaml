@@ -31,3 +31,8 @@ flutter:
     # fetus, IUD, speculum, sonogram. Every file uses fill="currentColor" so
     # they tint to the theme like a Material icon does.
     - assets/icons/
+
+    # Original line illustrations, one per learning curriculum area. Drawn
+    # for this app, not adapted from anywhere. Linework is currentColor so it
+    # follows the theme; the clay accent is a literal so it survives.
+    - assets/learning/

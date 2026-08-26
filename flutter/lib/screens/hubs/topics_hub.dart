@@ -5,6 +5,7 @@ import '../../data/icon_map.dart';
 import '../../data/learning_registry.dart';
 import '../../models/learning_topic.dart';
 import '../learning/learning_hub.dart';
+import '../../widgets/learning_art.dart';
 import '../topics/topic_screen.dart';
 
 class TopicsHub extends StatelessWidget {
@@ -45,6 +46,7 @@ class TopicsHub extends StatelessWidget {
             subtitle: '${LearningRegistry.byCategory[c]!.length} topics · '
                 '${c.blurb}',
             icon: LearningHub.iconFor(c),
+            art: LearningArt(category: c, size: 48),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => LearningCategoryScreen(c))),
           ),

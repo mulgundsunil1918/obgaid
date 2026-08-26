@@ -233,6 +233,7 @@ class HubTile extends StatelessWidget {
     this.badge,
     this.accent,
     this.id,
+    this.art,
   });
 
   final String title;
@@ -245,6 +246,10 @@ class HubTile extends StatelessWidget {
   /// Node id, where the tile represents one. Lets the tile draw a Health
   /// Icons glyph for subjects Material has no icon for.
   final String? id;
+
+  /// Replaces the icon block entirely — used by the learning categories,
+  /// which carry their own illustration rather than a glyph.
+  final Widget? art;
 
   @override
   Widget build(BuildContext context) {
@@ -272,18 +277,22 @@ class HubTile extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 38,
-                    height: 38,
-                    decoration: BoxDecoration(
-                      color: tint.withValues(alpha: isDark ? 0.22 : 0.12),
-                      borderRadius: BorderRadius.circular(11),
-                    ),
-                    child: id == null
-                        ? Icon(icon, size: 20, color: tint)
-                        : ObgIcon(
-                            id: id!, fallback: icon, size: 20, color: tint),
-                  ),
+                  art ??
+                      Container(
+                        width: 38,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          color: tint.withValues(alpha: isDark ? 0.22 : 0.12),
+                          borderRadius: BorderRadius.circular(11),
+                        ),
+                        child: id == null
+                            ? Icon(icon, size: 20, color: tint)
+                            : ObgIcon(
+                                id: id!,
+                                fallback: icon,
+                                size: 20,
+                                color: tint),
+                      ),
                   const Spacer(),
                   if (badge != null)
                     Container(

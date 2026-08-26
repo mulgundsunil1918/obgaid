@@ -1,0 +1,12 @@
+<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" fill="none"
+     stroke="currentColor" stroke-width="3" stroke-linecap="round"
+     stroke-linejoin="round">
+  <!-- Head -->
+  <circle cx="40" cy="19" r="9"/>
+  <!-- Profile: back down the left, gravid abdomen bulging right -->
+  <path d="M40 30c-7 4-11 12-11 22 0 11 1 19 3 26"/>
+  <path d="M32 78h22"/>
+  <path d="M46 31c12 3 22 12 22 25 0 12-8 22-20 22"/>
+  <!-- Fetus -->
+  <circle cx="51" cy="55" r="11" fill="#C2603C" stroke="none"/>
+</svg>

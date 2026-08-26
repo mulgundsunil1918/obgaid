@@ -1,0 +1,12 @@
+<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" fill="none"
+     stroke="currentColor" stroke-width="3" stroke-linecap="round"
+     stroke-linejoin="round">
+  <!-- Uterine body -->
+  <path d="M30 26c0 18 8 29 18 35 10-6 18-17 18-35"/>
+  <path d="M30 26h36"/>
+  <!-- Presenting part, descended to the os -->
+  <circle cx="48" cy="48" r="12" fill="#C2603C" stroke="none"/>
+  <!-- Cervix, dilating -->
+  <path d="M40 64c-3 5-3 10-1 14"/>
+  <path d="M56 64c3 5 3 10 1 14"/>
+</svg>

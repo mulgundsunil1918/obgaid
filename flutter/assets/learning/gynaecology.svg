@@ -1,0 +1,15 @@
+<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" fill="none"
+     stroke="currentColor" stroke-width="3" stroke-linecap="round"
+     stroke-linejoin="round">
+  <!-- Uterine body -->
+  <path d="M32 36c0 16 7 26 16 32 9-6 16-16 16-32"/>
+  <path d="M32 36h32"/>
+  <!-- Fallopian tubes -->
+  <path d="M32 36c-4-8-10-11-15-9"/>
+  <path d="M64 36c4-8 10-11 15-9"/>
+  <!-- Ovaries -->
+  <ellipse cx="14" cy="24" rx="7" ry="5" fill="#C2603C" stroke="none"/>
+  <ellipse cx="82" cy="24" rx="7" ry="5" fill="#C2603C" stroke="none"/>
+  <!-- Cervix -->
+  <path d="M48 68v8"/>
+</svg>

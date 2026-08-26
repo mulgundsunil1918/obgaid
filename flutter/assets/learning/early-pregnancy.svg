@@ -1,0 +1,14 @@
+<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" fill="none"
+     stroke="currentColor" stroke-width="3" stroke-linecap="round"
+     stroke-linejoin="round">
+  <!-- Uterine body -->
+  <path d="M30 32c0 18 8 29 18 35 10-6 18-17 18-35"/>
+  <path d="M30 32h36"/>
+  <!-- Tubes -->
+  <path d="M30 32c-4-7-9-10-14-8"/>
+  <path d="M66 32c4-7 9-10 14-8"/>
+  <!-- Gestational sac, implanted high -->
+  <circle cx="48" cy="44" r="10" fill="#C2603C" stroke="none"/>
+  <!-- Cervix -->
+  <path d="M48 67v9"/>
+</svg>
