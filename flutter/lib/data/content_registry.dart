@@ -22,6 +22,7 @@ import '../screens/scores/simple_scores.dart';
 import '../screens/scores/meows_robson.dart';
 import '../screens/scores/caprini_rasrm.dart';
 import '../screens/calculators/efw_screen.dart';
+import '../screens/calculators/biometry_screen.dart';
 import '../screens/calculators/bishop_screen.dart';
 import '../screens/calculators/dipsi_screen.dart';
 import '../screens/calculators/mgso4_screen.dart';
@@ -179,6 +180,8 @@ class ContentRegistry {
         _anNerves),
     ContentLink('anat-perineum', 'Perineum and anal sphincter',
         Icons.account_tree_outlined, _anPerineum),
+    ContentLink('biometry', 'Biometry centiles & growth velocity',
+        Icons.straighten_outlined, _biometryS),
     ContentLink('vulval-disorders', 'Vulval disorders',
         Icons.healing_outlined, _vulval),
     ContentLink('aub', 'Abnormal uterine bleeding — PALM-COEIN',
@@ -836,6 +839,26 @@ class ContentRegistry {
         Related('anat-internal-iliac', 'The vessel behind a retroperitoneal '
             'bleed'),
         Related('proc-laparoscopy', 'Port-site and epigastric vessel injury'),
+      ],
+    ),
+    'biometry': ContentMeta(
+      id: 'biometry',
+      title: 'Biometry centiles and growth velocity',
+      category: 'Obstetrics · Fetal growth',
+      sourceOrg: 'Hadlock / INTERGROWTH-21st',
+      sourceTitle: 'Hadlock biometry references 1982; INTERGROWTH-21st fetal '
+          'and newborn standards, Lancet 2014',
+      year: 2014,
+      evidence: EvidenceLevel.observational,
+      created: _built,
+      nextReview: _review(18),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('efw', 'The weight this breaks apart into its components'),
+        Related('algo-fgr', 'What a falling AC centile leads to'),
+        Related('fgr', 'Why the trajectory matters more than the value'),
+        Related('usg', 'How the measurements are taken'),
       ],
     ),
     'vulval-disorders': ContentMeta(
@@ -2320,6 +2343,7 @@ Widget _formulary(BuildContext _) =>
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
 
+Widget _biometryS(BuildContext _) => const BiometryScreen();
 Widget _vulval(BuildContext _) => _t('vulval-disorders');
 Widget _procOxytocin(BuildContext _) => _t('proc-oxytocin');
 Widget _procUterineExp(BuildContext _) => _t('proc-uterine-exploration');

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../models/tool.dart';
 import '../screens/calculators/dating_screen.dart';
 import '../screens/calculators/efw_screen.dart';
+import '../screens/calculators/biometry_screen.dart';
 import '../screens/calculators/bishop_screen.dart';
 import '../screens/calculators/dipsi_screen.dart';
 import '../screens/calculators/mgso4_screen.dart';
@@ -42,6 +43,13 @@ class ToolRegistry {
       blurb: 'Hadlock EFW with growth centile · SGA / LGA flags',
       module: ToolModule.biometry,
       builder: _efw,
+    ),
+    Tool(
+      id: 'biometry',
+      name: 'Biometry centiles & growth velocity',
+      blurb: 'HC · AC · FL centiles · interval growth · birth weight',
+      module: ToolModule.biometry,
+      builder: _biometry,
     ),
     Tool(
       id: 'usg',
@@ -250,6 +258,7 @@ class ToolRegistry {
 
 Widget _dating(BuildContext _) => const DatingScreen();
 Widget _efw(BuildContext _) => const EfwScreen();
+Widget _biometry(BuildContext _) => const BiometryScreen();
 Widget _bishop(BuildContext _) => const BishopScreen();
 Widget _dipsi(BuildContext _) => const DipsiScreen();
 Widget _mgso4(BuildContext _) => const MgSo4Screen();
