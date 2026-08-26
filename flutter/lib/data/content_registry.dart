@@ -41,6 +41,8 @@ import 'anatomy.dart';
 import 'counselling.dart';
 import 'trial_registry.dart';
 import 'derived_meta.dart';
+import 'scores.dart';
+import '../screens/hubs/scores_hub.dart' show ScoreScreen;
 import '../screens/counselling/counselling_screen.dart';
 import '../screens/academics/trial_screen.dart';
 import '../screens/algorithms/algorithm_screen.dart';
@@ -227,6 +229,9 @@ class ContentRegistry {
     for (final a in AlgorithmRegistry.all)
       ContentLink(a.id, a.name, Icons.emergency_outlined,
           (_) => AlgorithmScreen(algorithm: a)),
+    for (final sc in kScores)
+      ContentLink(sc.id, sc.name, Icons.calculate_outlined,
+          (_) => ScoreScreen(score: sc)),
     for (final g in kCounsellingGuides)
       ContentLink(g.id, g.title, Icons.record_voice_over_outlined,
           (_) => CounsellingScreen(guide: g)),
@@ -686,6 +691,151 @@ class ContentRegistry {
             'before the scan'),
         Related('usg', 'The scan findings, and why normal Doppler proves '
             'nothing'),
+      ],
+    ),
+    'algo-ruptured-cyst': ContentMeta(
+      id: 'algo-ruptured-cyst',
+      title: 'Ruptured ovarian cyst algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / ACOG',
+      sourceTitle: 'Green-top Guidelines 62 and 34; ACOG Practice Bulletin '
+          '174',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ectopic', 'The diagnosis it is mistaken for, in the '
+            'direction that kills'),
+        Related('algo-pelvic-pain', 'The wider differential this sits in'),
+        Related('adnexal-mass', 'Assessing the mass that remains afterwards'),
+      ],
+    ),
+    'algo-septic-abortion': ContentMeta(
+      id: 'algo-septic-abortion',
+      title: 'Septic abortion algorithm',
+      category: 'Obstetrics · Early pregnancy',
+      sourceOrg: 'WHO / RCOG / MoHFW',
+      sourceTitle: 'WHO Abortion Care Guideline 2022; Green-top Guidelines '
+          '64a and 64b; MoHFW Comprehensive Abortion Care guidelines',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-miscarriage', 'The same evacuation, without the '
+            'sepsis'),
+        Related('algo-sepsis', 'The resuscitation this runs on'),
+        Related('mtp-act', 'The legal route that prevents this presentation'),
+        Related('proc-uterine-exploration', 'How the source control is '
+            'performed'),
+      ],
+    ),
+    'algo-pelvic-sepsis': ContentMeta(
+      id: 'algo-pelvic-sepsis',
+      title: 'Pelvic inflammatory disease and tubo-ovarian abscess algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / BASHH / NACO',
+      sourceTitle: 'Green-top Guideline 32; BASHH PID guideline; NACO '
+          'National RTI/STI Guidelines',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pelvic-pain', 'Where this sits in the differential'),
+        Related('infertility', 'The consequence that makes early treatment '
+            'worth the overtreatment'),
+        Related('algo-ectopic', 'The other consequence of tubal damage'),
+      ],
+    ),
+    'algo-bartholin': ContentMeta(
+      id: 'algo-bartholin',
+      title: 'Bartholin abscess algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / ACOG',
+      sourceTitle: 'Green-top Guideline 58; ACOG Practice Bulletin 224',
+      year: 2022,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(18),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('vulval-disorders', 'The rest of the vulval differential'),
+        Related('anat-perineum', 'Where the gland sits, and why the incision '
+            'goes inside the hymenal ring'),
+        Related('figo-vulva-2021', 'What a biopsy showing carcinoma leads '
+            'to'),
+      ],
+    ),
+    'algo-vaginal-foreign-body': ContentMeta(
+      id: 'algo-vaginal-foreign-body',
+      title: 'Vaginal foreign body algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / BritSPAG / MoHFW',
+      sourceTitle: 'RCOG paediatric and adolescent gynaecology guidance; '
+          'BritSPAG guidance; MoHFW medico-legal care protocols',
+      year: 2021,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(18),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('vulval-disorders', 'The discharge differential it hides '
+            'inside'),
+        Related('pcpndt-act', 'The other place where a statutory duty sits '
+            'inside a clinical encounter'),
+        Related('popq', 'Pessary review, where the retained object is one we '
+            'placed'),
+      ],
+    ),
+    'algo-urinary-retention': ContentMeta(
+      id: 'algo-urinary-retention',
+      title: 'Acute urinary retention algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'NICE / RCOG / EAU',
+      sourceTitle: 'NICE NG123; RCOG postpartum bladder care guidance; EAU '
+          'guidelines on female LUTS',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(18),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('urogynaecology', 'The bladder in the rest of its life'),
+        Related('score-iciq-ui', 'Measuring the symptoms that follow'),
+        Related('proc-vaginal-surgery', 'Where obstruction after continence '
+            'surgery comes from'),
+      ],
+    ),
+    'algo-postop-haemorrhage': ContentMeta(
+      id: 'algo-postop-haemorrhage',
+      title: 'Postoperative haemorrhage algorithm',
+      category: 'Gynaecology · Emergency',
+      sourceOrg: 'RCOG / BSH / NICE',
+      sourceTitle: 'Green-top Guideline 47; BSH major haemorrhage guideline; '
+          'NICE NG24',
+      year: 2015,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'The same physiology, a different operation'),
+        Related('proc-vaginal-surgery', 'The pedicles that slip'),
+        Related('anat-internal-iliac', 'The vessel behind a retroperitoneal '
+            'bleed'),
+        Related('proc-laparoscopy', 'Port-site and epigastric vessel injury'),
       ],
     ),
     'vulval-disorders': ContentMeta(

@@ -3,6 +3,8 @@ import 'trial_registry.dart';
 import 'counselling.dart';
 import 'anatomy.dart';
 import 'staging_data.dart';
+import 'scores.dart';
+import '../models/clinical_score.dart';
 
 /// §62 records for the content families whose nodes are generated rather than
 /// hand-listed — trials, counselling guides, anatomy entries and staging
@@ -272,6 +274,55 @@ class DerivedMeta {
     ],
   };
 
+  /// A score belongs beside the thing it is used to decide.
+  static const _scoreEdges = <String, List<Related>>{
+    'score-meows': [Related('algo-sepsis', 'The score that should have '
+        'triggered the escalation')],
+    'score-epds': [Related('couns-breastfeeding', 'Screened at the same '
+        'postnatal contacts')],
+    'score-vte': [Related('vte-risk', 'The assessment this drives')],
+    'score-bpp': [Related('algo-rfm', 'Ordered when movements reduce')],
+    'score-quintero': [Related('senat-ttts', 'The trial that randomised by '
+        'this staging')],
+    'score-bishop': [Related('induction', 'What the score is deciding')],
+    'score-shock-index': [Related('algo-pph', 'The number that beats blood '
+        'pressure in a young woman')],
+    'score-apgar': [Related('algo-ctg', 'What the trace was trying to '
+        'prevent')],
+    'score-robson': [Related('caesarean', 'The classification that makes '
+        'caesarean rates comparable')],
+    'score-fg': [Related('pcos', 'Scoring the hirsutism in the diagnostic '
+        'criteria')],
+    'score-popq': [Related('proc-vaginal-surgery', 'What the staging decides '
+        'to repair')],
+    'score-pbac': [Related('algo-aub', 'Quantifying what she calls heavy')],
+    'score-rasrm': [Related('endometriosis', 'Staging the disease found at '
+        'laparoscopy')],
+    'score-caprini': [Related('vte-risk', 'The surgical counterpart of the '
+        'obstetric assessment')],
+    'score-mrs': [Related('menopause', 'Measuring what she came about')],
+    'score-rotterdam': [Related('pcos', 'The criteria themselves')],
+    'score-ecog': [Related('couns-cancer-treatment', 'Performance status '
+        'decides what treatment is offered')],
+    'score-rmi': [Related('adnexal-mass', 'The mass being stratified')],
+    'score-gtn': [Related('figo-who-gtn', 'The staging this score sits '
+        'inside')],
+    'score-omqsofa': [Related('algo-sepsis', 'The pathway it screens into')],
+    'score-iciq-ui': [Related('algo-urinary-retention', 'The symptoms that '
+        'follow retention'), Related('urogynaecology', 'The condition being '
+        'measured')],
+    'score-fsfi': [Related('couns-endometriosis', 'Dyspareunia is where this '
+        'usually starts'), Related('menopause', 'Genitourinary syndrome and '
+        'its effect on function')],
+    'score-ehp30': [Related('endometriosis', 'The impact that disease extent '
+        'does not predict')],
+    'score-roma': [Related('adnexal-mass', 'The mass being stratified'),
+        Related('score-rmi', 'The index it is compared against')],
+    'score-iota-adnex': [Related('adnexal-mass', 'The mass being '
+        'stratified'), Related('figo-ovary-2014', 'Where a malignant result '
+        'goes next')],
+  };
+
   static Map<String, ContentMeta> build() {
     final out = <String, ContentMeta>{};
 
@@ -319,6 +370,21 @@ class DerivedMeta {
         status: ContentStatus.draft,
         highRisk: true,
         related: _anatomyEdges[a.id] ?? const [],
+      );
+    }
+
+    for (final sc in kScores) {
+      out[sc.id] = ContentMeta(
+        id: sc.id,
+        title: sc.name,
+        category: 'Score · ${sc.category.label}',
+        sourceOrg: _org(sc.sources),
+        sourceTitle: sc.sources.isEmpty ? sc.name : sc.sources.first,
+        evidence: EvidenceLevel.observational,
+        created: _built,
+        nextReview: _review(24),
+        status: ContentStatus.draft,
+        related: _scoreEdges[sc.id] ?? const [],
       );
     }
 

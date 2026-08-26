@@ -7,6 +7,8 @@ import 'algorithms/gynae_algorithms.dart';
 import 'algorithms/gynae_algorithms_2.dart';
 import 'algorithms/antenatal_algorithms.dart';
 import 'algorithms/early_pregnancy_algorithms.dart';
+import 'algorithms/gynae_emergencies.dart';
+import 'algorithms/gynae_emergencies_2.dart';
 
 /// Emergency grouping for the hub. Ordered by how a clinician thinks about
 /// them, not alphabetically.
@@ -62,6 +64,7 @@ class AlgorithmRegistry {
     EmergencyGroup.earlyPregnancy: [
       kEctopicAlgorithm,
       kMiscarriageAlgorithm,
+      kSepticAbortionAlgorithm,
     ],
     EmergencyGroup.gynae: [
       kOvarianTorsionAlgorithm,
@@ -69,6 +72,12 @@ class AlgorithmRegistry {
       kAubAlgorithm,
       kPmbAlgorithm,
       kOhssAlgorithm,
+      kRupturedCystAlgorithm,
+      kPelvicSepsisAlgorithm,
+      kBartholinAlgorithm,
+      kVaginalForeignBodyAlgorithm,
+      kUrinaryRetentionAlgorithm,
+      kPostopHaemorrhageAlgorithm,
     ],
   };
 
