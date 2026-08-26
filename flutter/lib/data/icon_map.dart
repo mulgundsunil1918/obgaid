@@ -12,6 +12,86 @@ import 'package:flutter/material.dart';
 class IconMap {
   static IconData? of(String id) => _map[id];
 
+  /// Health Icons asset name for a node, where the subject has a real glyph.
+  /// Material has no uterus, fetus, speculum or IUD.
+  static String? svgFor(String id) => _svg[id];
+
+  /// Every asset the map references, so a test can prove they all exist.
+  static Iterable<String> get svgAssets => _svg.values.toSet();
+
+  /// Node ids the SVG map claims, for the staleness test.
+  static Iterable<String> get svgMappedIds => _svg.keys;
+
+  static const _svg = <String, String>{
+    // Pregnancy and the fetus
+    'dating': 'pregnant',
+    'lrn-pregnancy-physiology': 'pregnant',
+    'couns-antenatal-care': 'pregnant',
+    'lrn-post-term': 'pregnant-late',
+    'efw': 'fetus',
+    'biometry': 'fetus',
+    'fgr': 'fetus',
+    'algo-fgr': 'fetus',
+    'algo-rfm': 'fetus',
+    'fetal-medicine': 'fetus',
+    'couns-fetal-movements': 'fetus',
+    'lrn-fetal-circulation': 'fetus',
+
+    // Ultrasound
+    'usg': 'ultrasound',
+    'usg-guide': 'ultrasound',
+    'imaging': 'sonogram',
+    'quintero': 'sonogram',
+
+    // The newborn
+    'apgar': 'baby',
+    'score-apgar': 'baby',
+    'couns-breastfeeding': 'breasts',
+    'lrn-lactation': 'breasts',
+
+    // Gynaecology
+    'vulval-disorders': 'vagina',
+    'algo-bartholin': 'vagina',
+    'lrn-vaginitis': 'vagina',
+    'lrn-pelvic-exam': 'gynaecology',
+    'lrn-gyn-history': 'gynaecology',
+    'pathology': 'microscope',
+    'lab-reference': 'microscope',
+
+    // Contraception
+    'contraception': 'pill',
+    'proc-iucd': 'iud',
+    'couns-postpartum-contraception': 'condom',
+    'lrn-sti': 'condom',
+    'immunisation': 'contraceptive-injection',
+
+    // Oncology
+    'figo-cervix-2018': 'cervical-cancer',
+    'lrn-cervical-cancer': 'cervical-cancer',
+    'proc-pap': 'cervical-cancer',
+
+    // Blood and transfusion
+    'algo-pph': 'blood-bag',
+    'pph': 'blood-bag',
+    'rh-negative': 'rh-negative',
+    'anaemia': 'blood-bag',
+    'algo-postop-haemorrhage': 'blood-bag',
+
+    // Assessment and procedures
+    'algo-severe-htn': 'bp',
+    'haemodynamics': 'bp',
+    'meows': 'stethoscope',
+    'score-meows': 'stethoscope',
+    'lrn-obs-history': 'stethoscope',
+    'lrn-abdominal-exam': 'stethoscope',
+    'caesarean': 'surgical',
+    'proc-vaginal-surgery': 'surgical',
+    'insulin': 'syringe',
+    'mgso4': 'iv-drip',
+    'proc-oxytocin': 'iv-drip',
+    'couns-labour-preparation': 'clinician',
+  };
+
   /// Every id this map claims to know. Used by the test that catches stale
   /// entries after a rename.
   static Iterable<String> get mappedIds => _map.keys;

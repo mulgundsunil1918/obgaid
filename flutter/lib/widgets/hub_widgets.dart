@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
+import 'obg_icon.dart';
 
 /// Standard hub page: title, optional intro, and its tiles laid out as boxes.
 ///
@@ -231,6 +232,7 @@ class HubTile extends StatelessWidget {
     required this.onTap,
     this.badge,
     this.accent,
+    this.id,
   });
 
   final String title;
@@ -239,6 +241,10 @@ class HubTile extends StatelessWidget {
   final VoidCallback onTap;
   final String? badge;
   final Color? accent;
+
+  /// Node id, where the tile represents one. Lets the tile draw a Health
+  /// Icons glyph for subjects Material has no icon for.
+  final String? id;
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +279,10 @@ class HubTile extends StatelessWidget {
                       color: tint.withValues(alpha: isDark ? 0.22 : 0.12),
                       borderRadius: BorderRadius.circular(11),
                     ),
-                    child: Icon(icon, size: 20, color: tint),
+                    child: id == null
+                        ? Icon(icon, size: 20, color: tint)
+                        : ObgIcon(
+                            id: id!, fallback: icon, size: 20, color: tint),
                   ),
                   const Spacer(),
                   if (badge != null)

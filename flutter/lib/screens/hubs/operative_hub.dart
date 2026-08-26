@@ -40,6 +40,7 @@ class OperativeHub extends StatelessWidget {
               title: t.name,
               subtitle: t.subtitle,
               icon: IconMap.resolve(t.id, Icons.medical_services_outlined),
+              id: t.id,
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
             )),

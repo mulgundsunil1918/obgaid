@@ -34,6 +34,7 @@ class CalculatorsHub extends StatelessWidget {
                 title: t.name,
                 subtitle: t.blurb,
                 icon: IconMap.resolve(t.id, t.module.icon),
+                id: t.id,
                 badge: t.indiaSpecific ? 'India' : null,
                 onTap: () => Navigator.push(
                     context, MaterialPageRoute(builder: t.builder)),
@@ -48,6 +49,7 @@ class CalculatorsHub extends StatelessWidget {
             title: sc.name,
             subtitle: sc.subtitle,
             icon: IconMap.resolve(sc.id, Icons.rule_outlined),
+            id: sc.id,
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => ScoreScreen(score: sc))),
           ),

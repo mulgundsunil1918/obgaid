@@ -33,6 +33,7 @@ class TopicsHub extends StatelessWidget {
                 title: t.name,
                 subtitle: t.subtitle,
                 icon: IconMap.resolve(t.id, Icons.article_outlined),
+                id: t.id,
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
               )),
