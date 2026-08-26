@@ -44,6 +44,14 @@ import 'trial_registry.dart';
 import 'derived_meta.dart';
 import 'scores.dart';
 import 'learning_registry.dart';
+import 'quick_tables.dart';
+import 'guidelines.dart';
+import '../screens/reference/guidelines_screen.dart';
+import 'safety_cases.dart';
+import 'exam_topics.dart';
+import '../screens/reference/quick_tables_screen.dart';
+import '../screens/safety/safety_case_screen.dart';
+import '../screens/academics/exam_screen.dart';
 import '../screens/learning/learning_topic_screen.dart';
 import '../screens/hubs/scores_hub.dart' show ScoreScreen;
 import '../screens/counselling/counselling_screen.dart';
@@ -234,6 +242,21 @@ class ContentRegistry {
     for (final a in AlgorithmRegistry.all)
       ContentLink(a.id, a.name, Icons.emergency_outlined,
           (_) => AlgorithmScreen(algorithm: a)),
+    for (final d in DrugRegistry.all)
+      ContentLink(d.id, d.generic, Icons.medication_outlined,
+          (_) => DrugScreen(drug: d)),
+    for (final g in kGuidelines)
+      ContentLink(g.id, '${g.organisation} — ${g.title}',
+          Icons.gavel_outlined, (_) => const GuidelinesScreen()),
+    for (final qt in kQuickTables)
+      ContentLink(qt.id, qt.title, Icons.table_chart_outlined,
+          (_) => QuickTablesScreen(initialQuery: qt.title)),
+    for (final sc in kSafetyCases)
+      ContentLink(sc.id, sc.title, Icons.report_problem_outlined,
+          (_) => SafetyCaseScreen(safetyCase: sc)),
+    for (final ex in kExamTopics)
+      ContentLink(ex.id, ex.title, Icons.school_outlined,
+          (_) => ExamScreen(topic: ex)),
     for (final lt in LearningRegistry.all)
       ContentLink(lt.id, lt.title, Icons.menu_book_outlined,
           (_) => LearningTopicScreen(topic: lt)),

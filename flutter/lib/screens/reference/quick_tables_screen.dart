@@ -4,13 +4,23 @@ import '../../models/quick_table.dart';
 import '../../widgets/reference_note.dart';
 
 class QuickTablesScreen extends StatefulWidget {
-  const QuickTablesScreen({super.key});
+  const QuickTablesScreen({super.key, this.initialQuery});
+
+  /// Pre-filters to one table. Search results deep-link here, so a hit on
+  /// "Blood products" opens that table rather than the top of a list of twelve.
+  final String? initialQuery;
   @override
   State<QuickTablesScreen> createState() => _QuickTablesScreenState();
 }
 
 class _QuickTablesScreenState extends State<QuickTablesScreen> {
   final _query = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialQuery != null) _query.text = widget.initialQuery!;
+  }
 
   @override
   Widget build(BuildContext context) {

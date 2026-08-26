@@ -4,6 +4,14 @@ import 'counselling.dart';
 import 'anatomy.dart';
 import 'staging_data.dart';
 import 'scores.dart';
+import 'quick_tables.dart';
+import 'guidelines.dart';
+import 'drug_registry.dart';
+import 'safety_cases.dart';
+import 'exam_topics.dart';
+import '../models/quick_table.dart';
+import '../models/safety_case.dart';
+import '../models/exam_topic.dart';
 import 'learning_registry.dart';
 import '../models/learning_topic.dart';
 import '../models/clinical_score.dart';
@@ -377,6 +385,121 @@ class DerivedMeta {
 
     // Learning topics carry their own related-ids, so the edge table is the
     // topic itself — nothing to hand-maintain.
+    for (final dr in DrugRegistry.all) {
+      out[dr.id] = ContentMeta(
+        id: dr.id,
+        title: dr.generic,
+        category: 'Formulary · ${dr.drugClass}',
+        sourceOrg: _org(dr.references),
+        sourceTitle: dr.references.isEmpty ? dr.generic : dr.references.first,
+        evidence: EvidenceLevel.guideline,
+        created: _built,
+        nextReview: _review(12),
+        status: ContentStatus.draft,
+        highRisk: true,
+        related: [Related('formulary', 'The rest of the formulary, and the '
+            'pregnancy and lactation framing §46 requires')],
+      );
+    }
+
+    for (final g in kGuidelines) {
+      out[g.id] = ContentMeta(
+        id: g.id,
+        title: '${g.organisation} — ${g.title}',
+        category: 'Guideline library',
+        sourceOrg: g.organisation,
+        sourceTitle: '${g.title} (${g.published})',
+        evidence: EvidenceLevel.guideline,
+        created: _built,
+        nextReview: _review(12),
+        status: ContentStatus.draft,
+        related: [Related('formulary', 'Where this guideline\'s dosing '
+            'recommendations are applied')],
+      );
+    }
+
+    // Quick tables: the edge is the clinical area the table serves.
+    const tableAnchor = <QuickTableGroup, String>{
+      QuickTableGroup.antenatal: 'couns-antenatal-care',
+      QuickTableGroup.intrapartum: 'algo-pph',
+      QuickTableGroup.transfusion: 'algo-postop-haemorrhage',
+      QuickTableGroup.gynaecology: 'algo-aub',
+    };
+    for (final qt in kQuickTables) {
+      out[qt.id] = ContentMeta(
+        id: qt.id,
+        title: qt.title,
+        category: 'Quick reference',
+        sourceOrg: _org(qt.sources),
+        sourceTitle: qt.sources.isEmpty ? qt.title : qt.sources.first,
+        evidence: EvidenceLevel.guideline,
+        created: _built,
+        nextReview: _review(18),
+        status: ContentStatus.draft,
+        related: [
+          Related(tableAnchor[qt.group] ?? 'formulary',
+              'The clinical situation this table is looked up in'),
+        ],
+      );
+    }
+
+    // Safety cases: the edge is the algorithm the case is a failure of.
+    const caseAnchor = <SafetyCategory, String>{
+      SafetyCategory.medicationError: 'formulary',
+      SafetyCategory.wrongDose: 'mgso4',
+      SafetyCategory.wrongRoute: 'proc-oxytocin',
+      SafetyCategory.handoverFailure: 'algo-uterine-rupture',
+      SafetyCategory.retainedProducts: 'proc-uterine-exploration',
+      SafetyCategory.wrongBloodProduct: 'algo-pph',
+      SafetyCategory.delayedEscalation: 'algo-sepsis',
+      SafetyCategory.delayedRecognitionPph: 'algo-pph',
+      SafetyCategory.delayedRecognitionEclampsia: 'algo-eclampsia',
+      SafetyCategory.delayedRecognitionSepsis: 'algo-sepsis',
+      SafetyCategory.ctgFailure: 'algo-ctg',
+      SafetyCategory.delayedCaesarean: 'caesarean',
+      SafetyCategory.communicationFailure: 'couns-warning-signs',
+      SafetyCategory.documentationFailure: 'algo-pph',
+      SafetyCategory.surgicalComplication: 'anat-ureter',
+      SafetyCategory.vteFailure: 'vte-risk',
+    };
+    for (final sc in kSafetyCases) {
+      out[sc.id] = ContentMeta(
+        id: sc.id,
+        title: sc.title,
+        category: 'Never Again · ${sc.category.label}',
+        sourceOrg: _org(sc.sources),
+        sourceTitle: sc.sources.isEmpty ? sc.title : sc.sources.first,
+        evidence: EvidenceLevel.guideline,
+        created: _built,
+        nextReview: _review(18),
+        status: ContentStatus.draft,
+        highRisk: true,
+        related: [
+          Related(caseAnchor[sc.category] ?? 'algo-pph',
+              'The pathway this case is a failure of'),
+        ],
+      );
+    }
+
+    // Exam topics already declare what they read in the app.
+    for (final ex in kExamTopics) {
+      out[ex.id] = ContentMeta(
+        id: ex.id,
+        title: ex.title,
+        category: 'Examination · ${ex.area.label}',
+        sourceOrg: _org(ex.sources),
+        sourceTitle: ex.sources.isEmpty ? ex.title : ex.sources.first,
+        evidence: EvidenceLevel.referenceText,
+        created: _built,
+        nextReview: _review(24),
+        status: ContentStatus.draft,
+        related: [
+          for (final r in ex.readsInApp)
+            Related(r, 'The content this topic is examined on'),
+        ],
+      );
+    }
+
     for (final lt in LearningRegistry.all) {
       out[lt.id] = ContentMeta(
         id: lt.id,
