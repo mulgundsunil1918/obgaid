@@ -9,6 +9,7 @@ import 'topics/medicine_topics.dart';
 import 'topics/pathology_imaging_topics.dart';
 import 'topics/procedure_topics.dart';
 import 'topics/procedure_topics_obs.dart';
+import 'topics/procedure_topics_3.dart';
 import 'topics/procedure_topics_gyn.dart';
 
 enum TopicGroup {
@@ -61,6 +62,9 @@ class TopicRegistry {
     TopicGroup.diagnostics: [kPathologyTopic, kImagingTopic],
     TopicGroup.procedures: [
       kVaginalExamTopic,
+      kOxytocinInfusionTopic,
+      kUterineExplorationTopic,
+      kVaginalSurgeryTopic,
       kAvdTopic,
       kPerinealRepairTopic,
       kManualRemovalTopic,

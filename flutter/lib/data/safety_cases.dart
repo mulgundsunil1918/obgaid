@@ -1,7 +1,8 @@
 import '../models/safety_case.dart';
+import 'safety_cases_2.dart';
 
 /// Anonymised composite cases. None describes an identifiable patient.
-const kSafetyCases = <SafetyCase>[
+const _core = <SafetyCase>[
   SafetyCase(
     id: 'case-pph-drape',
     title: 'The blood loss nobody measured',
@@ -302,3 +303,7 @@ const kSafetyCases = <SafetyCase>[
     ],
   ),
 ];
+
+
+/// Every §56 case, core and the remaining categories.
+List<SafetyCase> get kSafetyCases => [..._core, ...kSafetyCases2];

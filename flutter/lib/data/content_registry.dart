@@ -142,6 +142,12 @@ class ContentRegistry {
         Icons.medical_services_outlined, _pPerineal),
     ContentLink('proc-manual-removal', 'Manual removal of placenta',
         Icons.medical_services_outlined, _pManual),
+    ContentLink('proc-oxytocin', 'Oxytocin infusion',
+        Icons.medical_services_outlined, _procOxytocin),
+    ContentLink('proc-uterine-exploration', 'Uterine exploration',
+        Icons.medical_services_outlined, _procUterineExp),
+    ContentLink('proc-vaginal-surgery', 'Vaginal surgery',
+        Icons.medical_services_outlined, _procVaginalSurg),
     ContentLink('proc-vaginal-exam', 'Vaginal examination in labour',
         Icons.medical_services_outlined, _pVe),
     ContentLink('proc-pap', 'Cervical screening',
@@ -678,6 +684,66 @@ class ContentRegistry {
             'before the scan'),
         Related('usg', 'The scan findings, and why normal Doppler proves '
             'nothing'),
+      ],
+    ),
+    'proc-oxytocin': ContentMeta(
+      id: 'proc-oxytocin',
+      title: 'Oxytocin infusion',
+      category: 'Obstetrics · Procedure',
+      sourceOrg: 'NICE / RCOG / WHO',
+      sourceTitle: 'NICE NG235 and NG207; Green-top Guideline 45',
+      year: 2023,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-ctg', 'The trace that must stop the infusion'),
+        Related('algo-uterine-rupture', 'The complication oxytocin causes in '
+            'a scarred uterus'),
+        Related('induction', 'The pathway this usually follows'),
+        Related('proc-vaginal-exam', 'The examination that must precede it'),
+      ],
+    ),
+    'proc-uterine-exploration': ContentMeta(
+      id: 'proc-uterine-exploration',
+      title: 'Uterine exploration',
+      category: 'Obstetrics · Procedure',
+      sourceOrg: 'RCOG / WHO',
+      sourceTitle: 'Green-top Guidelines 52 and 27a; WHO PPH recommendations',
+      year: 2016,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('algo-pph', 'The bleeding that brings you here'),
+        Related('proc-manual-removal', 'The step that usually precedes it'),
+        Related('figo-who-gtn', 'Why the tissue always goes to histology'),
+      ],
+    ),
+    'proc-vaginal-surgery': ContentMeta(
+      id: 'proc-vaginal-surgery',
+      title: 'Vaginal surgery',
+      category: 'Gynaecology · Procedure',
+      sourceOrg: 'NICE / RCOG / AAGL',
+      sourceTitle: 'NICE NG123; RCOG consent advice; AAGL position statement '
+          'on route of hysterectomy',
+      year: 2019,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(12),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('popq', 'The staging that decides what to repair'),
+        Related('anat-ureter', 'The structure closest to the uterine '
+            'pedicle'),
+        Related('urogynaecology', 'Continence, which prolapse surgery can '
+            'unmask'),
+        Related('anat-perineum', 'The support being reconstructed'),
       ],
     ),
     // ── Tier 1B/2 algorithms added to complete spec §52 ──────────────────
@@ -2077,6 +2143,10 @@ Widget _formulary(BuildContext _) =>
     DrugScreen(drug: DrugRegistry.byId('oxytocin')!);
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
+
+Widget _procOxytocin(BuildContext _) => _t('proc-oxytocin');
+Widget _procUterineExp(BuildContext _) => _t('proc-uterine-exploration');
+Widget _procVaginalSurg(BuildContext _) => _t('proc-vaginal-surgery');
 
 StagingSystem _system(String id) =>
     kStagingSystems.firstWhere((s) => s.id == id);

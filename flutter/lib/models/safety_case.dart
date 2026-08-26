@@ -1,6 +1,11 @@
 /// Categories named in spec §56.
 enum SafetyCategory {
   medicationError,
+  wrongDose,
+  wrongRoute,
+  handoverFailure,
+  retainedProducts,
+  wrongBloodProduct,
   delayedEscalation,
   delayedRecognitionPph,
   delayedRecognitionEclampsia,
@@ -16,6 +21,11 @@ enum SafetyCategory {
 extension SafetyCategoryInfo on SafetyCategory {
   String get label => switch (this) {
         SafetyCategory.medicationError => 'Medication error',
+        SafetyCategory.wrongDose => 'Wrong dose',
+        SafetyCategory.wrongRoute => 'Wrong route',
+        SafetyCategory.handoverFailure => 'Handover failure',
+        SafetyCategory.retainedProducts => 'Retained products',
+        SafetyCategory.wrongBloodProduct => 'Wrong blood product',
         SafetyCategory.delayedEscalation => 'Delayed escalation',
         SafetyCategory.delayedRecognitionPph => 'Delayed recognition of PPH',
         SafetyCategory.delayedRecognitionEclampsia =>
