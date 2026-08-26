@@ -1,7 +1,8 @@
 import '../models/clinical_score.dart';
+import 'scores_2.dart';
 
 /// The §51 score library. Every scoring system in the app, indexed once.
-const kScores = <ClinicalScore>[
+const _core = <ClinicalScore>[
   // ── Obstetric ────────────────────────────────────────────────────────────
   ClinicalScore(
     id: 'score-meows',
@@ -716,3 +717,7 @@ const kScores = <ClinicalScore>[
     ],
   ),
 ];
+
+
+/// Every §51 score, core and the families added later.
+List<ClinicalScore> get kScores => [..._core, ...kScores2];

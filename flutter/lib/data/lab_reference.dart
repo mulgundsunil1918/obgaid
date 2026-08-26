@@ -53,6 +53,19 @@ const kLabPanels = <LabPanel>[
   ]),
   LabPanel('Biochemistry', [
     LabAnalyte(
+      name: 'Chloride',
+      unit: 'mmol/L',
+      nonPregnant: '98 – 107',
+      first: '97 – 109',
+      second: '97 – 109',
+      third: '97 – 109',
+      direction: LabDirection.unchanged,
+      note: 'Essentially unchanged in pregnancy. Useful for the anion gap in '
+          'a woman with vomiting or diabetic ketoacidosis, where the '
+          'bicarbonate is already low from physiological respiratory '
+          'alkalosis.',
+    ),
+    LabAnalyte(
       name: 'Creatinine',
       unit: 'mg/dL',
       nonPregnant: '0.5 – 0.9',
@@ -200,6 +213,35 @@ const kLabPanels = <LabPanel>[
     ),
   ]),
   LabPanel('Endocrine', [
+    LabAnalyte(
+      name: 'Sex hormone binding globulin',
+      unit: 'nmol/L',
+      nonPregnant: '20 – 130',
+      first: 'Rises steeply',
+      second: 'Several-fold above non-pregnant',
+      third: 'Several-fold above non-pregnant',
+      direction: LabDirection.rises,
+      note: 'Oestrogen-driven, so it rises markedly in pregnancy and on '
+          'combined oral contraception. Low SHBG with hyperandrogenism '
+          'supports PCOS and raises free androgen index even when total '
+          'testosterone is normal. Interpret androgens through the free '
+          'androgen index, not the total alone.',
+    ),
+    LabAnalyte(
+      name: 'DHEAS',
+      unit: 'µmol/L',
+      nonPregnant: '1.0 – 11.5',
+      first: 'Falls',
+      second: 'Falls',
+      third: 'Low',
+      direction: LabDirection.falls,
+      note: 'Adrenal in origin, so it separates adrenal from ovarian '
+          'androgen excess. A markedly raised DHEAS — conventionally more '
+          'than about twice the upper limit — points to an adrenal tumour or '
+          'congenital adrenal hyperplasia rather than PCOS, and needs '
+          'imaging. Falls in pregnancy through increased placental '
+          'metabolism.',
+    ),
     LabAnalyte(
       name: 'TSH',
       unit: 'mIU/L',

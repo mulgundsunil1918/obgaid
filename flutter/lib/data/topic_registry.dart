@@ -3,6 +3,7 @@ import 'topics/monitoring_topics.dart';
 import 'topics/preterm_topics.dart';
 import 'topics/labour_topics.dart';
 import 'topics/gynae_topics.dart';
+import 'topics/vulval_topics.dart';
 import 'topics/womens_health_topics.dart';
 import 'topics/fertility_topics.dart';
 import 'topics/medicine_topics.dart';
@@ -47,6 +48,7 @@ class TopicRegistry {
     TopicGroup.labour: [kInductionTopic, kVbacTopic, kCaesareanTopic],
     TopicGroup.immunology: [kRhTopic],
     TopicGroup.gynaecology: [
+      kVulvalTopic,
       kPcosTopic,
       kFibroidsTopic,
       kEndometriosisTopic,

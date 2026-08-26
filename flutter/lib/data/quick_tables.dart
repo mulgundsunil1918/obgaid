@@ -360,4 +360,45 @@ const kQuickTables = <QuickTable>[
       'FOGSI GCPR — Anaemia in Pregnancy.',
     ],
   ),
+  QuickTable(
+    id: 'qt-menstrual-terms',
+    title: 'Menstrual terminology',
+    subtitle: 'FIGO normal limits, and the old words they replaced',
+    group: QuickTableGroup.gynaecology,
+    columns: ['Parameter', 'Normal', 'Abnormal', 'Older term'],
+    rows: [
+      ['Frequency', 'Every 24 – 38 days', 'Under 24 days — frequent',
+          'Polymenorrhoea'],
+      ['Frequency', 'Every 24 – 38 days', 'Over 38 days — infrequent',
+          'Oligomenorrhoea'],
+      ['Regularity', 'Shortest to longest cycle varies by 7 – 9 days',
+          'Varies by more than 9 days', 'Metrorrhagia'],
+      ['Duration', '8 days or fewer', 'Longer than 8 days — prolonged',
+          'Menorrhagia (in part)'],
+      ['Volume', 'Does not interfere with quality of life',
+          'Heavy — interferes with physical, social or emotional life',
+          'Menorrhagia'],
+      ['Volume', 'As above', 'Light', 'Hypomenorrhoea'],
+      ['Timing', 'Bleeding only with menstruation',
+          'Intermenstrual bleeding', 'Metrorrhagia'],
+      ['Absent', 'Menstruation present', 'No period for 90 days or more',
+          'Amenorrhoea'],
+      ['After menopause', 'No bleeding',
+          'Any bleeding 12 months or more after the last period',
+          'Postmenopausal bleeding'],
+    ],
+    note: 'FIGO abandoned the older Greek-derived terms in 2011 because they '
+        'were used inconsistently and often meant different things to '
+        'different clinicians. Describe frequency, regularity, duration and '
+        'volume instead — and define heavy by its effect on her life, not by '
+        'millilitres.',
+    sources: [
+      'Munro MG et al. FIGO classification system (PALM-COEIN) for causes of '
+          'abnormal uterine bleeding. Int J Gynaecol Obstet 2011;113:3–13.',
+      'Munro MG et al. FIGO Menstrual Disorders Committee — revised system. '
+          'Int J Gynaecol Obstet 2018;143:393–408.',
+      'NICE NG88 — Heavy menstrual bleeding.',
+      'FOGSI GCPR — Abnormal Uterine Bleeding.',
+    ],
+  ),
 ];

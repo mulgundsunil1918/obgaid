@@ -70,6 +70,32 @@ const kMaternalMedicineTopic = ClinicalTopic(
           'disease, current or past — they cross the placenta and cause fetal '
           'thyrotoxicosis even after maternal thyroidectomy', critical: true),
     ]),
+    TopicSection('Calcium and the parathyroid', [
+      TopicPoint('Total calcium falls in pregnancy with albumin; IONISED '
+          'calcium is unchanged — always correct for albumin or measure '
+          'ionised calcium before calling it abnormal', critical: true),
+      TopicPoint('Primary hyperparathyroidism in pregnancy is uncommon and '
+          'frequently missed, because nausea, vomiting, constipation and '
+          'fatigue are all attributed to the pregnancy', critical: true),
+      TopicPoint('Untreated maternal hypercalcaemia raises the risk of '
+          'miscarriage, growth restriction, preterm birth and stillbirth'),
+      TopicPoint('The neonate is at risk of hypocalcaemic tetany after birth, '
+          'from suppression of its own parathyroid glands — warn the '
+          'paediatric team', critical: true),
+      TopicPoint('Confirm with corrected or ionised calcium plus PTH; a '
+          'non-suppressed PTH with hypercalcaemia is diagnostic'),
+      TopicPoint('Ultrasound of the neck is the imaging of choice; avoid '
+          'sestamibi scanning'),
+      TopicPoint('Mild disease: hydration and monitoring. Symptomatic or '
+          'severe disease: parathyroidectomy, ideally in the second '
+          'trimester', critical: true),
+      TopicPoint('use bisphosphonates', avoid: true,
+          detail: 'They cross the placenta and are avoided in pregnancy.'),
+      TopicPoint('Hypoparathyroidism: calcium and active vitamin D '
+          'requirements typically rise through pregnancy and fall sharply '
+          'after delivery and with lactation — recheck early postpartum to '
+          'avoid hypercalcaemia', critical: true),
+    ]),
     TopicSection('Epilepsy', [
       TopicPoint('SODIUM VALPROATE must not be used in women of childbearing '
           'potential unless no alternative exists and a pregnancy prevention '
@@ -140,6 +166,38 @@ const kMaternalMedicineTopic = ClinicalTopic(
           critical: true),
       TopicPoint('Group B streptococcus — intrapartum prophylaxis by the '
           'risk-based or screening strategy your unit uses'),
+    ]),
+    TopicSection('Dengue and tropical infection', [
+      TopicPoint('Dengue in pregnancy carries a higher risk of haemorrhage, '
+          'preterm birth, low birth weight and maternal death, and is '
+          'endemic across much of India', critical: true),
+      TopicPoint('The warning signs are the same as outside pregnancy: '
+          'abdominal pain, persistent vomiting, mucosal bleeding, lethargy, '
+          'hepatomegaly, a rising haematocrit with a falling platelet count',
+          critical: true),
+      TopicPoint('Physiological haemodilution masks haemoconcentration — a '
+          'haematocrit that looks normal may already represent plasma '
+          'leakage', critical: true),
+      TopicPoint('Thrombocytopenia has a wide differential here: dengue, '
+          'gestational thrombocytopenia, pre-eclampsia, HELLP, ITP and '
+          'malaria all present with it', critical: true),
+      TopicPoint('Fluid management follows the national dengue protocol, with '
+          'crystalloid titrated to perfusion and haematocrit rather than to '
+          'a fixed volume'),
+      TopicPoint('give NSAIDs or aspirin for the fever', avoid: true,
+          detail: 'They worsen bleeding and gastric injury. Paracetamol '
+              'only.'),
+      TopicPoint('Peripartum dengue is the highest-risk period — delivery '
+          'during the critical phase carries a substantial haemorrhage risk. '
+          'Involve haematology and anaesthesia early.', critical: true),
+      TopicPoint('Vertical transmission occurs; alert the neonatal team where '
+          'delivery is near the febrile illness'),
+      TopicPoint('Malaria in pregnancy: screen where endemic, treat '
+          'according to the national programme, and remember that '
+          'Plasmodium falciparum sequesters in the placenta and causes '
+          'growth restriction with a normal peripheral film', critical: true),
+      TopicPoint('Notify per the state programme, and use mosquito nets and '
+          'source reduction as part of the antenatal advice'),
     ]),
     TopicSection('Renal disease', [
       TopicPoint('Creatinine falls in normal pregnancy — 0.4–0.8 mg/dL. A '
@@ -282,6 +340,36 @@ const kFetalMedicineTopic = ClinicalTopic(
       TopicPoint('EXIT procedure where the airway will be obstructed at birth'),
       TopicPoint('All of this belongs in a fetal medicine centre. The referral '
           'is the intervention that matters most.', critical: true),
+    ]),
+    TopicSection('Twin complications — TTTS, TAPS and sFGR', [
+      TopicPoint('All three are complications of monochorionic placentation '
+          'and require fortnightly scanning from 16 weeks', critical: true),
+      TopicPoint('TWIN-TWIN TRANSFUSION SYNDROME: polyhydramnios in one sac '
+          'and oligohydramnios in the other, staged by Quintero. Treated by '
+          'fetoscopic laser (Senat).', critical: true),
+      TopicPoint('TAPS — twin anaemia polycythaemia sequence: a large '
+          'inter-twin haemoglobin difference WITHOUT the liquor discordance '
+          'of TTTS, so it is missed unless Doppler is used', critical: true),
+      TopicPoint('TAPS is diagnosed on middle cerebral artery peak systolic '
+          'velocity — above 1.5 MoM in the donor and below 1.0 MoM in the '
+          'recipient', critical: true),
+      TopicPoint('Spontaneous TAPS occurs in around 3–5% of monochorionic '
+          'twins; post-laser TAPS follows incomplete laser in a larger '
+          'proportion'),
+      TopicPoint('Management options are expectant care, intrauterine '
+          'transfusion, repeat laser, selective reduction or delivery, '
+          'depending on gestation and stage'),
+      TopicPoint('rely on liquor volume alone to exclude a monochorionic '
+          'complication', avoid: true,
+          detail: 'TAPS has normal liquor in both sacs. Without MCA Doppler '
+              'it will be missed.'),
+      TopicPoint('SELECTIVE FETAL GROWTH RESTRICTION: estimated weight '
+          'discordance above 25% with one twin below the 10th centile, '
+          'classified by umbilical artery Doppler pattern'),
+      TopicPoint('Single fetal death in a monochorionic pair risks '
+          'co-twin death or neurological injury through acute '
+          'transfusion — imaging of the survivor\'s brain is indicated',
+          critical: true),
     ]),
     TopicSection('Counselling', [
       TopicPoint('Give the diagnosis in a quiet room, with her partner present '

@@ -177,6 +177,8 @@ class ContentRegistry {
         _anNerves),
     ContentLink('anat-perineum', 'Perineum and anal sphincter',
         Icons.account_tree_outlined, _anPerineum),
+    ContentLink('vulval-disorders', 'Vulval disorders',
+        Icons.healing_outlined, _vulval),
     ContentLink('aub', 'Abnormal uterine bleeding — PALM-COEIN',
         Icons.female_outlined, _cAub),
     ContentLink('pcos-assessment', 'PCOS assessment', Icons.female_outlined,
@@ -684,6 +686,30 @@ class ContentRegistry {
             'before the scan'),
         Related('usg', 'The scan findings, and why normal Doppler proves '
             'nothing'),
+      ],
+    ),
+    'vulval-disorders': ContentMeta(
+      id: 'vulval-disorders',
+      title: 'Vulval disorders',
+      category: 'Gynaecology',
+      sourceOrg: 'BAD / BSSVD / RCOG',
+      sourceTitle: 'BAD lichen sclerosus guideline 2018; Green-top Guideline '
+          '58; BSSVD guidance',
+      year: 2018,
+      evidence: EvidenceLevel.guideline,
+      created: _built,
+      nextReview: _review(18),
+      status: ContentStatus.draft,
+      highRisk: true,
+      related: [
+        Related('figo-vulva-2021', 'Where a biopsy that shows invasion goes '
+            'next'),
+        Related('algo-pelvic-pain', 'Vulvodynia sits in the same differential '
+            'as chronic pelvic pain'),
+        Related('menopause', 'Atrophy is the differential that is treated '
+            'instead, wrongly'),
+        Related('anat-perineum', 'The anatomy the architectural changes '
+            'destroy'),
       ],
     ),
     'proc-oxytocin': ContentMeta(
@@ -2144,6 +2170,7 @@ Widget _formulary(BuildContext _) =>
 
 Widget _t(String id) => TopicScreen(topic: TopicRegistry.byId(id)!);
 
+Widget _vulval(BuildContext _) => _t('vulval-disorders');
 Widget _procOxytocin(BuildContext _) => _t('proc-oxytocin');
 Widget _procUterineExp(BuildContext _) => _t('proc-uterine-exploration');
 Widget _procVaginalSurg(BuildContext _) => _t('proc-vaginal-surgery');
