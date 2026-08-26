@@ -137,7 +137,7 @@ const kInfertilityTopic = ClinicalTopic(
     ]),
   ],
   sources: [
-    'NICE CG156 — Fertility problems: assessment and treatment.',
+    'NICE NG257 — Fertility problems: assessment and treatment (replaced CG156).',
     'WHO Laboratory Manual for the Examination and Processing of Human Semen, '
         '6th edition, 2021.',
     'ESHRE guideline on ovarian stimulation; POSEIDON criteria.',
@@ -293,7 +293,7 @@ const kOhssTopic = ClinicalTopic(
   sources: [
     'RCOG Green-top Guideline 5 — The Management of Ovarian Hyperstimulation '
         'Syndrome.',
-    'NICE CG156 — Fertility problems.',
+    'NICE NG257 — Fertility problems (replaced CG156).',
     'ESHRE guideline on ovarian stimulation for IVF/ICSI.',
     'HFEA guidance on multiple births and single embryo transfer.',
     'Indian Society for Assisted Reproduction (ISAR) practice '

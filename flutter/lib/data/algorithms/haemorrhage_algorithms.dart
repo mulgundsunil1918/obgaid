@@ -283,7 +283,7 @@ const kAbruptionAlgorithm = Algorithm(
   ],
   sources: [
     'RCOG Green-top Guideline 63 — Antepartum Haemorrhage.',
-    'ACOG Practice Bulletin 232 — Antepartum Fetal Surveillance; abruption '
+    'ACOG Practice Bulletin 229 — Antepartum Fetal Surveillance; abruption '
         'management principles.',
     'FOGSI GCPR — Antepartum Haemorrhage.',
     'Oyelese Y, Ananth CV. Placental abruption. Obstet Gynecol 2006;108:1005–1016.',

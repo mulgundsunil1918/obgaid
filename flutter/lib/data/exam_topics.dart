@@ -285,7 +285,7 @@ const _core = <ExamTopic>[
       'FOGSI-ICOG GCPR on PCOS; Indian Society for Assisted Reproduction (ISAR) practice recommendations.',
       'International Evidence-Based Guideline for the Assessment and Management of PCOS, 2023.',
       'WHO Laboratory Manual for the Examination and Processing of Human Semen, 6th edition, 2021.',
-      'NICE CG156; ESHRE ovarian stimulation guideline; RCOG Green-top Guideline 5 (OHSS).',
+      'NICE NG257; ESHRE ovarian stimulation guideline; RCOG Green-top Guideline 5 (OHSS).',
       'Legro RS et al. N Engl J Med 2014;371:119.',
     ],
     readsInApp: ['pcos', 'infertility', 'ohss', 'pcos-assessment', 'legro-letrozole'],

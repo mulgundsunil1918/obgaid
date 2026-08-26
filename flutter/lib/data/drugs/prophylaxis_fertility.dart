@@ -348,7 +348,7 @@ const kLetrozole = Drug(
     'Legro RS et al. Letrozole versus clomiphene for infertility in the '
         'polycystic ovary syndrome. N Engl J Med 2014;371:119–129.',
     'Teede HJ et al. International PCOS Guideline, 2023.',
-    'NICE CG156 — Fertility problems.',
+    'NICE NG257 — Fertility problems (replaced CG156).',
     'FOGSI-ICOG GCPR on PCOS; ISAR practice recommendations.',
   ],
 );
@@ -420,7 +420,7 @@ const kClomiphene = Drug(
   fertility: 'Superseded by letrozole as first line in PCOS, but remains '
       'widely used, inexpensive and effective.',
   references: [
-    'NICE CG156 — Fertility problems: assessment and treatment.',
+    'NICE NG257 — Fertility problems: assessment and treatment (replaced CG156).',
     'Legro RS et al. N Engl J Med 2014;371:119–129.',
     'FOGSI GCPR — Ovulation Induction; ISAR practice recommendations.',
   ],

@@ -368,7 +368,7 @@ const kCounsellingGuides3 = <CounsellingGuide>[
           'monthly',
     ],
     sources: [
-      'NICE CG156 — Fertility problems: assessment and treatment.',
+      'NICE NG257 — Fertility problems: assessment and treatment (replaced CG156).',
       'ESHRE guideline — Unexplained Infertility.',
       'WHO laboratory manual for the examination and processing of human '
           'semen, 6th edition, 2021.',
@@ -428,7 +428,7 @@ const kCounsellingGuides3 = <CounsellingGuide>[
           'it',
     ],
     sources: [
-      'NICE CG156 — Fertility problems.',
+      'NICE NG257 — Fertility problems (replaced CG156).',
       'ESHRE guideline — Ovarian Stimulation for IVF/ICSI, 2019.',
       'HFEA information on treatment add-ons and success rates.',
       'ART (Regulation) Act 2021 and Rules, India; Surrogacy (Regulation) Act '

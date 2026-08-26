@@ -415,7 +415,7 @@ const kGonadotrophins = Drug(
       'dangerous without monitoring.',
   references: [
     'ESHRE guideline on ovarian stimulation for IVF/ICSI.',
-    'NICE CG156 — Fertility problems.',
+    'NICE NG257 — Fertility problems (replaced CG156).',
     'RCOG Green-top Guideline 5 — OHSS.',
     'Indian Society for Assisted Reproduction (ISAR) practice '
         'recommendations; Assisted Reproductive Technology (Regulation) Act '

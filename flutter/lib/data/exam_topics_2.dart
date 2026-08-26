@@ -151,7 +151,7 @@ const kExamTopics2 = <ExamTopic>[
       'ART (Regulation) Act 2021; Surrogacy (Regulation) Act 2021; PCPNDT '
           'Act 1994.',
       'ESHRE guideline — Ovarian Stimulation for IVF/ICSI, 2019.',
-      'NICE CG156 — Fertility problems.',
+      'NICE NG257 — Fertility problems (replaced CG156).',
       'Legro RS et al. Letrozole versus clomiphene for infertility in PCOS. '
           'N Engl J Med 2014;371:119–129.',
     ],

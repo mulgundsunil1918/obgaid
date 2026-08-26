@@ -1080,7 +1080,7 @@ class ContentRegistry {
       title: 'Acute pelvic pain algorithm',
       category: 'Gynaecology · Emergency',
       sourceOrg: 'RCOG / NICE',
-      sourceTitle: 'Green-top Guidelines 62 and 32; NICE CG154',
+      sourceTitle: 'Green-top Guideline 62; BASHH PID guideline; NICE NG126',
       year: 2019,
       evidence: EvidenceLevel.guideline,
       created: _built,
@@ -1721,7 +1721,7 @@ class ContentRegistry {
       title: 'Infertility',
       category: 'Gynaecology · Reproductive medicine',
       sourceOrg: 'NICE / WHO / ESHRE',
-      sourceTitle: 'NICE CG156; WHO Laboratory Manual for the Examination and '
+      sourceTitle: 'NICE NG257; WHO Laboratory Manual for the Examination and '
           'Processing of Human Semen, 6th edition 2021; POSEIDON criteria',
       year: 2021,
       evidence: EvidenceLevel.guideline,
