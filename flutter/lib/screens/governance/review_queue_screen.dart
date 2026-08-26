@@ -77,8 +77,9 @@ class ReviewQueueScreen extends StatelessWidget {
                 Expanded(
                   child: Text(
                     '${pending.length} item${pending.length == 1 ? '' : 's'} '
-                    'published without sign-off. These must clear review before '
-                    'store launch.',
+                    'awaiting sign-off. Each is held as a draft and carries an '
+                    'unreviewed banner until a clinician approves it. They '
+                    'must clear review before store launch.',
                     style: TextStyle(
                         fontSize: 12.5,
                         height: 1.45,
