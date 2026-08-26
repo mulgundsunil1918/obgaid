@@ -117,18 +117,26 @@ action block: these are read over hours, not seconds.
 
 **Tier 1 is complete. Tier 2 is complete. Every Tier 3 module now exists.**
 
-Several modules are deliberately partial and marked so in the table — the
-formulary at 33 drugs, trials at 25, procedures at 13, counselling at 12 of
-§58's 24 topics. They are breadth-limited,
-not shape-limited: the model, screen and governance record are done, so
-extending them is data entry rather than design.
+Every content family the specification enumerates is now built to the count
+it asks for: §43's eleven gynaecological emergencies, §51's score families,
+§52's algorithms, §56's sixteen Never Again categories, §57's procedures,
+§58's twenty-four counselling guides and §59's academic areas.
+
+Current totals: 28 calculators · 29 algorithms · 38 topics · 35 drugs ·
+25 trials · 25 scores · 24 counselling guides · 16 safety cases ·
+16 academic topics · 12 quick tables · 7 anatomy entries · 5 staging systems ·
+8 guidelines. 187 nodes, 187 content records, 452 edges, 368 tests.
+
+What remains is depth within families rather than families that do not
+exist — more trials, more guidelines in the library, more procedures — and
+the §63 review queue, which needs a second clinician.
 
 ## Tier 2 — Depth *(spec §65)*
 
 | Module | Spec § | Status |
 |---|---|---|
-| Drug formulary — §45 record on every entry | §44, §45 | ✅ *(33 drugs across all §44 categories)* |
-| Pregnancy & lactation safety — narrative, no SAFE/UNSAFE labels | §46 | 🔨 *(on all 14; enforced in CI)* |
+| Drug formulary — §45 record on every entry | §44, §45 | ✅ *(35 drugs across all §44 categories, including immunotherapy and anti-VEGF)* |
+| Pregnancy & lactation safety — narrative, no SAFE/UNSAFE labels | §46 | ✅ *(on all 35; enforced in CI)* |
 | Maternal medicine — cardiac (mWHO), thyroid, epilepsy, autoimmune, infection, renal | §24 | ✅ |
 | Fetal medicine — screening, diagnosis, TTTS/IUT/fetal therapy | §25 | ✅ |
 | Infertility, IVF & OHSS — WHO 2021 semen criteria, OHSS staging | §36, §37 | ✅ |
@@ -137,7 +145,7 @@ extending them is data entry rather than design.
 | Menopause · POI | §39 | ✅ |
 | Urogynaecology · obstetric fistula | §40 | ✅ |
 | Gynaecological pathology | §48 | ✅ |
-| Ultrasound reference — full trimester-by-trimester | §14–16 | 🔨 *(guide + parameters done)* |
+| Ultrasound reference — full trimester-by-trimester | §14–16 | ✅ *(guide, parameters, biometry centiles, growth velocity)* |
 | Imaging reference — CT/MRI in pregnancy, contrast, modality choice | §49 | ✅ |
 | Gynaecology calculators — Ferriman-Gallwey, HOMA-IR, RMI/IOTA/O-RADS, POP-Q, PALM-COEIN, PBAC | §31, §35, §40, §42 | ✅ |
 | Laboratory reference — trimester-specific ranges | §47 | ✅ |
@@ -148,16 +156,16 @@ extending them is data entry rather than design.
 | Module | Spec § | Status |
 |---|---|---|
 | Gynaecological oncology — FIGO staging × 5 | §41 | ✅ *(shipped ahead of tier)* |
-| Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ⬜ |
+| Ovarian masses — RMI, IOTA, O-RADS, ROMA | §42 | ✅ *(RMI, IOTA Simple Rules and ADNEX, O-RADS, ROMA)* |
 | Landmark trials — full §53 record on each | §53 | ✅ *(25 trials across all nine §53 categories)* |
-| Guideline library — §54 record on each | §54 | 🔨 *(8 guidelines)* |
+| Guideline library — §54 record on each | §54 | 🔨 *(8 guidelines — breadth, not shape)* |
 | Guideline change tracker — previous, now, what changed, why | §55 | ✅ |
-| Advanced fetal medicine | §25 | ⬜ |
-| Procedures reference — §57 field structure | §57 | ✅ *(13 procedures)* |
-| Never Again — anonymised safety cases | §56 | 🔨 *(4 cases; submission needs the backend)* |
+| Advanced fetal medicine | §25 | ✅ *(TTTS, TAPS, sFGR, fetal therapy, invasive testing)* |
+| Procedures reference — §57 field structure | §57 | ✅ *(16 procedures)* |
+| Never Again — anonymised safety cases | §56 | ✅ *(16 cases, one per §56 category; submission needs the backend)* |
 | Academic / examination content — high-yield, viva, traps, links | §59 | ✅ |
-| Patient counselling — clinician checklists with actual wording | §58 | 🔨 *(12 of 24 topics)* |
-| Quick reference tables — 11 searchable tables | §60 | ✅ |
+| Patient counselling — clinician checklists with actual wording | §58 | ✅ *(24 of 24 topics)* |
+| Quick reference tables — searchable | §60 | ✅ *(12 tables)* |
 
 ## India-specific content *(not a spec tier — ObgAid's differentiator)*
 
