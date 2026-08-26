@@ -4,6 +4,8 @@ import 'counselling.dart';
 import 'anatomy.dart';
 import 'staging_data.dart';
 import 'scores.dart';
+import 'learning_registry.dart';
+import '../models/learning_topic.dart';
 import '../models/clinical_score.dart';
 
 /// §62 records for the content families whose nodes are generated rather than
@@ -370,6 +372,26 @@ class DerivedMeta {
         status: ContentStatus.draft,
         highRisk: true,
         related: _anatomyEdges[a.id] ?? const [],
+      );
+    }
+
+    // Learning topics carry their own related-ids, so the edge table is the
+    // topic itself — nothing to hand-maintain.
+    for (final lt in LearningRegistry.all) {
+      out[lt.id] = ContentMeta(
+        id: lt.id,
+        title: lt.title,
+        category: 'Learning · ${lt.category.label}',
+        sourceOrg: _org(lt.sources),
+        sourceTitle: lt.sources.isEmpty ? lt.title : lt.sources.first,
+        evidence: EvidenceLevel.guideline,
+        created: _built,
+        nextReview: _review(24),
+        status: ContentStatus.draft,
+        related: [
+          for (final r in lt.related)
+            Related(r, 'The clinical detail behind what this topic teaches'),
+        ],
       );
     }
 

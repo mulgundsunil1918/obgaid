@@ -43,6 +43,8 @@ import 'counselling.dart';
 import 'trial_registry.dart';
 import 'derived_meta.dart';
 import 'scores.dart';
+import 'learning_registry.dart';
+import '../screens/learning/learning_topic_screen.dart';
 import '../screens/hubs/scores_hub.dart' show ScoreScreen;
 import '../screens/counselling/counselling_screen.dart';
 import '../screens/academics/trial_screen.dart';
@@ -232,6 +234,9 @@ class ContentRegistry {
     for (final a in AlgorithmRegistry.all)
       ContentLink(a.id, a.name, Icons.emergency_outlined,
           (_) => AlgorithmScreen(algorithm: a)),
+    for (final lt in LearningRegistry.all)
+      ContentLink(lt.id, lt.title, Icons.menu_book_outlined,
+          (_) => LearningTopicScreen(topic: lt)),
     for (final sc in kScores)
       ContentLink(sc.id, sc.name, Icons.calculate_outlined,
           (_) => ScoreScreen(score: sc)),

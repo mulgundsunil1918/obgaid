@@ -19,6 +19,9 @@ import '../hubs/formulary_hub.dart';
 import '../hubs/reference_hub.dart';
 import '../hubs/never_again_hub.dart';
 import '../hubs/academics_hub.dart';
+import '../learning/learning_hub.dart';
+import '../../data/learning_registry.dart';
+import '../../data/trial_registry.dart';
 import '../hubs/cme_hub.dart';
 import '../search/app_search_delegate.dart';
 import '../governance/review_queue_screen.dart';
@@ -144,8 +147,17 @@ class _HomeScreenState extends State<HomeScreen> {
           'Learning',
           [
             _FeatureDef(
+              'Learning',
+              '${LearningRegistry.all.length} teaching topics across the '
+                  'curriculum',
+              Icons.menu_book_rounded,
+              const Color(0xFF00695C),
+              () => _open(context, () => const LearningHub()),
+            ),
+            _FeatureDef(
               'Academics',
-              '25 landmark trials · examination topics',
+              '${TrialRegistry.all.length} landmark trials · examination '
+                  'topics',
               Icons.school_rounded,
               const Color(0xFFAD1457),
               () => _open(context, () => const AcademicsHub()),
