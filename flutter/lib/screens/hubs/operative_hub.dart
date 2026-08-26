@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/topic_registry.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/icon_map.dart';
 import '../topics/topic_screen.dart';
 import '../anatomy/anatomy_screen.dart';
 import '../../data/anatomy.dart';
@@ -38,7 +39,7 @@ class OperativeHub extends StatelessWidget {
         ...procedures.map((t) => HubTile(
               title: t.name,
               subtitle: t.subtitle,
-              icon: Icons.medical_services_outlined,
+              icon: IconMap.resolve(t.id, Icons.medical_services_outlined),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
             )),

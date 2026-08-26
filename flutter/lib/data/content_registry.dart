@@ -44,6 +44,7 @@ import 'trial_registry.dart';
 import 'derived_meta.dart';
 import 'scores.dart';
 import 'learning_registry.dart';
+import 'icon_map.dart';
 import 'quick_tables.dart';
 import 'guidelines.dart';
 import '../screens/reference/guidelines_screen.dart';
@@ -240,10 +241,11 @@ class ContentRegistry {
     // Every algorithm in the registry gets a node automatically. Adding an
     // algorithm without a node is therefore impossible by construction.
     for (final a in AlgorithmRegistry.all)
-      ContentLink(a.id, a.name, Icons.emergency_outlined,
+      ContentLink(a.id, a.name, IconMap.resolve(a.id, Icons.emergency_outlined),
           (_) => AlgorithmScreen(algorithm: a)),
     for (final d in DrugRegistry.all)
-      ContentLink(d.id, d.generic, Icons.medication_outlined,
+      ContentLink(d.id, d.generic,
+          IconMap.resolve(d.id, IconMap.forDrugClass(d.drugClass)),
           (_) => DrugScreen(drug: d)),
     for (final g in kGuidelines)
       ContentLink(g.id, '${g.organisation} — ${g.title}',
@@ -258,21 +260,25 @@ class ContentRegistry {
       ContentLink(ex.id, ex.title, Icons.school_outlined,
           (_) => ExamScreen(topic: ex)),
     for (final lt in LearningRegistry.all)
-      ContentLink(lt.id, lt.title, Icons.menu_book_outlined,
+      ContentLink(lt.id, lt.title, IconMap.resolve(lt.id, Icons.menu_book_outlined),
           (_) => LearningTopicScreen(topic: lt)),
     for (final sc in kScores)
-      ContentLink(sc.id, sc.name, Icons.calculate_outlined,
+      ContentLink(sc.id, sc.name, IconMap.resolve(sc.id, Icons.calculate_outlined),
           (_) => ScoreScreen(score: sc)),
     for (final g in kCounsellingGuides)
       ContentLink(g.id, g.title, Icons.record_voice_over_outlined,
           (_) => CounsellingScreen(guide: g)),
     for (final t in TrialRegistry.all)
-      ContentLink(t.id, '${t.acronym} · ${t.year}', Icons.science_outlined,
+      ContentLink(t.id, '${t.acronym} · ${t.year}',
+          IconMap.forTrialCategory(t.category.name),
           (_) => TrialScreen(trial: t)),
   ];
 
   /// Every node in the graph, hand-listed and generated alike.
-  static List<ContentLink> get allNodes => [..._nodes, ..._generated];
+  static List<ContentLink> get allNodes => [
+        for (final n in [..._nodes, ..._generated])
+          ContentLink(n.id, n.title, IconMap.resolve(n.id, n.icon), n.builder),
+      ];
 
   static ContentLink? resolve(String id) {
     for (final n in allNodes) {

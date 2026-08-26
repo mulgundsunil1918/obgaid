@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/tool_registry.dart';
 import '../../models/tool.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/icon_map.dart';
 import '../../data/scores.dart';
 import 'scores_hub.dart' show ScoreScreen;
 
@@ -32,7 +33,7 @@ class CalculatorsHub extends StatelessWidget {
           ...entry.value.map((t) => HubTile(
                 title: t.name,
                 subtitle: t.blurb,
-                icon: t.module.icon,
+                icon: IconMap.resolve(t.id, t.module.icon),
                 badge: t.indiaSpecific ? 'India' : null,
                 onTap: () => Navigator.push(
                     context, MaterialPageRoute(builder: t.builder)),
@@ -46,7 +47,7 @@ class CalculatorsHub extends StatelessWidget {
           HubTile(
             title: sc.name,
             subtitle: sc.subtitle,
-            icon: Icons.rule_outlined,
+            icon: IconMap.resolve(sc.id, Icons.rule_outlined),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => ScoreScreen(score: sc))),
           ),

@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSpacing: 12,
                       // Card height follows the text scale, or the content
                       // overflows at accessibility sizes.
-                      mainAxisExtent: (isPhone ? 132.0 : 142.0) *
+                      mainAxisExtent: (isPhone ? 146.0 : 152.0) *
                           MediaQuery.textScalerOf(context)
                               .scale(14)
                               .clamp(14, 28) /
@@ -565,14 +565,17 @@ class _FeatureCardWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Two lines: "Calculators & Scores" and "Procedures &
+                  // Anatomy" do not fit a 2-column phone card on one.
                   Text(card.title,
                       style: GoogleFonts.plusJakartaSans(
                           color: cs.onSurface,
                           fontSize: 14,
-                          fontWeight: FontWeight.w700),
-                      maxLines: 1,
+                          fontWeight: FontWeight.w700,
+                          height: 1.2),
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: 3),
                   Text(card.subtitle,
                       style: GoogleFonts.plusJakartaSans(
                           color: cs.onSurface.withValues(alpha: 0.55),

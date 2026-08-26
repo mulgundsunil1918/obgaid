@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/topic_registry.dart';
 import '../../widgets/hub_widgets.dart';
+import '../../data/icon_map.dart';
 import '../../data/learning_registry.dart';
 import '../../models/learning_topic.dart';
 import '../learning/learning_hub.dart';
@@ -31,7 +32,7 @@ class TopicsHub extends StatelessWidget {
           ...entry.value.map((t) => HubTile(
                 title: t.name,
                 subtitle: t.subtitle,
-                icon: Icons.article_outlined,
+                icon: IconMap.resolve(t.id, Icons.article_outlined),
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (_) => TopicScreen(topic: t))),
               )),
