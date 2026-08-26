@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:obgaid_app/data/tool_registry.dart';
+import 'package:obgaid_app/data/learning_registry.dart';
+import 'package:obgaid_app/models/learning_topic.dart';
+import 'package:obgaid_app/screens/learning/learning_hub.dart';
+import 'package:obgaid_app/screens/learning/learning_topic_screen.dart';
 import 'package:obgaid_app/widgets/hub_widgets.dart';
 import 'package:obgaid_app/data/algorithm_registry.dart';
 import 'package:obgaid_app/data/staging_data.dart';
@@ -48,6 +52,7 @@ import 'package:obgaid_app/screens/hubs/ultrasound_hub.dart';
 /// record would crash at the bedside rather than in CI without this.
 void main() {
   _hubLayoutTests();
+  _learningScreenTests();
   Widget wrap(Widget child) => MaterialApp(
         theme: AppTheme.light(),
         home: MediaQuery(
@@ -349,5 +354,45 @@ void _hubLayoutTests() {
       await t.pumpAndSettle();
       expect(find.byType(HubSearchField), findsNothing);
     });
+  });
+}
+
+/// Every Learning screen renders: the hub, each category, and each topic.
+void _learningScreenTests() {
+  group('learning screens', () {
+    testWidgets('the hub lists every populated category', (t) async {
+      await t.pumpWidget(
+          MaterialApp(theme: AppTheme.light(), home: const LearningHub()));
+      await t.pumpAndSettle();
+      for (final c in LearningRegistry.populated) {
+        expect(find.widgetWithText(HubTile, c.label), findsOneWidget,
+            reason: '${c.label} missing from the hub');
+      }
+    });
+
+    for (final c in LearningCategory.values)
+      testWidgets('category screen renders ${c.name}', (t) async {
+        await t.pumpWidget(MaterialApp(
+            theme: AppTheme.light(), home: LearningCategoryScreen(c)));
+        await t.pumpAndSettle();
+        final topics = LearningRegistry.byCategory[c] ?? const [];
+        // An empty category must still render rather than throw — the hub
+        // hides it, but a stale link could still reach it.
+        expect(find.text(c.label), findsWidgets);
+        for (final topic in topics) {
+          expect(find.widgetWithText(HubTile, topic.title), findsOneWidget,
+              reason: '${topic.id} missing from its category screen');
+        }
+      });
+
+    for (final topic in LearningRegistry.all)
+      testWidgets('topic renders ${topic.id}', (t) async {
+        await t.pumpWidget(MaterialApp(
+            theme: AppTheme.light(),
+            home: LearningTopicScreen(topic: topic)));
+        await t.pumpAndSettle();
+        expect(find.text(topic.summary), findsOneWidget,
+            reason: '${topic.id} did not render its summary');
+      });
   });
 }

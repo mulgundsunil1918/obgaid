@@ -1,10 +1,12 @@
 import '../models/learning_topic.dart';
+import 'learning/basic_sciences.dart';
 import 'learning/history_examination.dart';
 import 'learning/labour_puerperium.dart';
 import 'learning/antenatal.dart';
 import 'learning/early_pregnancy.dart';
 import 'learning/gynaecology.dart';
 import 'learning/sexual_health.dart';
+import 'learning/repro_oncology.dart';
 
 /// Every teaching topic in the Learning section, grouped by curriculum area.
 ///
@@ -13,12 +15,21 @@ import 'learning/sexual_health.dart';
 /// cited to them — the categories organise, they do not source.
 class LearningRegistry {
   static final Map<LearningCategory, List<LearningTopic>> byCategory = {
+    LearningCategory.basicSciences: kBasicScienceLearningTopics,
     LearningCategory.historyExamination: kHistoryExamTopics,
     LearningCategory.earlyPregnancy: kEarlyPregnancyLearningTopics,
     LearningCategory.antenatal: kAntenatalLearningTopics,
     LearningCategory.labourPuerperium: kLabourPuerperiumTopics,
     LearningCategory.gynaecology: kGynaecologyLearningTopics,
     LearningCategory.sexualHealth: kSexualHealthLearningTopics,
+    LearningCategory.reproductive: [
+      for (final t in kReproOncLearningTopics)
+        if (t.category == LearningCategory.reproductive) t,
+    ],
+    LearningCategory.oncology: [
+      for (final t in kReproOncLearningTopics)
+        if (t.category == LearningCategory.oncology) t,
+    ],
   };
 
   static List<LearningTopic> get all =>
