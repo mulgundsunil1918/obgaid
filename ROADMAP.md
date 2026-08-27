@@ -162,7 +162,7 @@ the §63 review queue, which needs a second clinician.
 | Guideline change tracker — previous, now, what changed, why | §55 | ✅ |
 | Advanced fetal medicine | §25 | ✅ *(TTTS, TAPS, sFGR, fetal therapy, invasive testing)* |
 | Procedures reference — §57 field structure | §57 | ✅ *(16 procedures)* |
-| Never Again — anonymised safety cases | §56 | ✅ *(16 cases, one per §56 category; submission needs the backend)* |
+| Never Again — anonymised safety cases | §56 | ✅ *(16 cases, one per §56 category, all offline)* |
 | Academic / examination content — high-yield, viva, traps, links | §59 | ✅ |
 | Patient counselling — clinician checklists with actual wording | §58 | ✅ *(24 of 24 topics)* |
 | Quick reference tables — searchable | §60 | ✅ *(12 tables)* |
@@ -181,16 +181,32 @@ the §63 review queue, which needs a second clinician.
 | LaQshya · SUMAN · JSY / JSSK | ⬜ |
 | NACO syndromic STI management | ⬜ |
 
-## Platform *(after content; PediAid's backend, not a second one)*
+## Platform — dropped
 
-| # | Sub-phase | Status |
-|---|---|---|
-| P.1 | Backend `app` discriminator — one Fastify+Postgres serves both apps | ⬜ |
-| P.2 | SSO handoff with PediAid — one login, both apps | ⬜ |
-| P.3 | Bookmarks, recents, saved | ⬜ |
-| P.4 | Academics / CME scoped to OBG | ⬜ |
-| P.5 | Push notifications | ⬜ |
-| P.6 | `aid_core` shared package extraction | ⬜ |
+ObgAid is an offline app. That is a decision, not a stage it has not reached
+yet: everything runs on the device, there is no account, and nothing is sent
+anywhere.
+
+The dependency list is the proof. No http client, no Supabase, no Firebase,
+no auth, no SQL. The only thing written to disk is the theme preference and
+the CME credit log, both in shared_preferences.
+
+What that rules out, deliberately:
+
+| Dropped | Why it is no loss |
+|---|---|
+| Backend `app` discriminator on PediAid's Fastify + Postgres | Nothing needs a server |
+| SSO handoff with PediAid | No account to sign into |
+| Server-side bookmarks and recents | Can be local if wanted |
+| Push notifications | No server to push from |
+| Never Again case submission | The 16 cases read offline; only submitting needed a server, and it was never built |
+| CME event listings | The credit log is local and works; event listings would have meant inventing events, which §61 forbids |
+
+`aid_core` extraction is also dropped — sharing a package with PediAid only
+pays for itself if the two apps share a backend.
+
+The consequence worth stating plainly: a clinician in a labour room with no
+signal has the whole app. That is the point.
 
 ## Launch
 
